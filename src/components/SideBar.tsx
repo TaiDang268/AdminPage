@@ -1,13 +1,13 @@
 import clsx from 'clsx'
 import { useState } from 'react'
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
-
+import { useNavigate } from 'react-router-dom'
 import images from '~/assets/images'
 const arr = [
   {
     id: 1,
     title: 'Bài viết',
-    value: 'news'
+    value: 'posts'
   },
   {
     id: 1,
@@ -26,6 +26,7 @@ const arr = [
   }
 ]
 const SideBar = () => {
+  const navigate = useNavigate()
   const [active, setActive] = useState<string>('')
   const [showSidebar, setShowSidebar] = useState<boolean>(false)
   const handleOnclickSidebar = (sidebarItem: string) => {
@@ -33,6 +34,7 @@ const SideBar = () => {
       setShowSidebar(!showSidebar)
     }
     setActive(sidebarItem)
+    navigate(sidebarItem)
   }
   return (
     <>

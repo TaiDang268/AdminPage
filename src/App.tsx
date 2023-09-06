@@ -1,11 +1,20 @@
+import { BrowserRouter } from 'react-router-dom'
 import './App.css'
-import SideBar from './components/SideBar'
+
+import Routers from './routes'
 
 function App() {
   return (
-    <div>
-      <SideBar />
-    </div>
+    // <div className='flex'>
+    //   <SideBar />
+    //   <div className='w-full p-4'>
+    //     <TitleTable title='Danh sách bài viết' nameButton='Bài viết mới' />
+    //     <Filter />
+    //   </div>
+    // </div>
+    <BrowserRouter>
+      <Routers />
+    </BrowserRouter>
   )
 }
 
