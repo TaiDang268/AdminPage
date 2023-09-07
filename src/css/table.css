@@ -1,0 +1,22 @@
+table,
+th,
+td {
+  border: 1px solid #e3e5e8;
+}
+table {
+  width: 100%;
+  border-top-right-radius: 4px;
+}
+tr {
+  height: 45px;
+}
+td {
+  padding: 0 4px;
+}
+.th-checkbox {
+  width: 45px;
+}
+
+input[type='checkbox'] {
+  accent-color: green;
+}

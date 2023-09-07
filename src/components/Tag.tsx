@@ -1,20 +1,20 @@
 import Filter from './common/Filter'
 import Pagination from './common/Pagination'
 import TitleTable from './common/TitleTable'
-import TopicTable from './tables/TopicTable'
+import TagTable from './tables/TagTable'
 
-const Topic = () => {
+const Tag = () => {
   return (
     <>
       <div className='w-full h-screen'>
         <div className='w-full p-4'>
-          <TitleTable title='Chủ đề' nameButton='Thêm chủ đề' />
+          <TitleTable title='Tag' nameButton='Thêm tag' />
           <Filter />
-          <TopicTable />
+          <TagTable />
           <Pagination />
         </div>
       </div>
     </>
   )
 }
-export default Topic
+export default Tag

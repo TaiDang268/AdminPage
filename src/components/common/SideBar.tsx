@@ -2,27 +2,29 @@ import clsx from 'clsx'
 import { useState } from 'react'
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 import { useNavigate } from 'react-router-dom'
+
 import images from '~/assets/images'
+import routesPath from '~/routes/routesPath'
 const arr = [
   {
     id: 1,
     title: 'Bài viết',
-    value: 'posts'
+    path: routesPath.posts
   },
   {
-    id: 1,
+    id: 2,
     title: 'Chủ đề',
-    value: 'topic'
+    path: routesPath.topic
   },
   {
-    id: 1,
+    id: 3,
     title: 'Tác giả',
-    value: 'author'
+    path: routesPath.author
   },
   {
-    id: 1,
+    id: 4,
     title: 'Tag',
-    value: 'tag'
+    path: routesPath.tag
   }
 ]
 const SideBar = () => {
@@ -35,6 +37,10 @@ const SideBar = () => {
     }
     setActive(sidebarItem)
     navigate(sidebarItem)
+  }
+  const handleOnclickItemChildren = (itemChildren: string) => {
+    setActive(itemChildren)
+    navigate(`/write/${itemChildren}`)
   }
   return (
     <>
@@ -62,9 +68,9 @@ const SideBar = () => {
                 key={item.id}
                 className={clsx(
                   ' cursor-pointer w-full rounded h-[40px]  pl-12 flex items-center ',
-                  active === item.value ? 'bg-[#3F4D63]' : null
+                  active === item.path ? 'bg-[#3F4D63]' : null
                 )}
-                onClick={() => handleOnclickSidebar(item.value)}
+                onClick={() => handleOnclickItemChildren(item.path)}
               >
                 {item.title}
               </p>

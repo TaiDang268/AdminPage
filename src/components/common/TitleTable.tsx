@@ -1,4 +1,4 @@
-import images from '~/assets/images'
+import images from '../../assets/images'
 
 interface ITitleTable {
   title: string
@@ -11,7 +11,7 @@ const TitleTable = (props: ITitleTable) => {
       <div className='w-full'>
         <div className='flex justify-between'>
           <p className='font-semibold text-[24px]'>{title}</p>
-          <div className='h-[32px] w-[130px] bg-[#186E25] rounded flex justify-center items-center'>
+          <div className='h-[32px] min-w-[130px] bg-[#186E25] rounded flex justify-center items-center'>
             <img src={images.Add} />
             <p className='ml-2 text-white cursor-pointer'>{nameButton}</p>
           </div>

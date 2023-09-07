@@ -1,5 +1,7 @@
-import Filter from './Filter'
-import TitleTable from './TitleTable'
+import Filter from './common/Filter'
+import Pagination from './common/Pagination'
+import TitleTable from './common/TitleTable'
+import PostsTable from './tables/PostsTable'
 
 const Posts = () => {
   return (
@@ -8,6 +10,8 @@ const Posts = () => {
         <div className='w-full p-4'>
           <TitleTable title='Danh sách bài viết' nameButton='Bài viết mới' />
           <Filter />
+          <PostsTable />
+          <Pagination />
         </div>
       </div>
     </>
