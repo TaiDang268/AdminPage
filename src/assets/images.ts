@@ -10,6 +10,9 @@ import Avatar from './images/avatar.svg'
 import BackgroundLogin from './images/bg-login.svg'
 import LogoBattechSidebar from './images/logo-battech-sidebar.svg'
 import LogoBattech from './images/logo-battech.svg'
+import Trash from './icons/trash.svg'
+import NotePencil from './icons/NotePencil.svg'
+import Cards from './icons/Cards.svg'
 
 const images = {
   LogoBattech,
@@ -23,6 +26,9 @@ const images = {
   Sort,
   FilterOption,
   Search,
-  Add
+  Add,
+  Trash,
+  Cards,
+  NotePencil
 }
 export default images

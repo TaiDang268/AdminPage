@@ -1,7 +1,7 @@
 import Filter from './common/Filter'
 import Pagination from './common/Pagination'
 import TitleTable from './common/TitleTable'
-import AuthorTable from './tables/Author'
+import AuthorTable from './tables/AuthorTable'
 
 const Author = () => {
   return (

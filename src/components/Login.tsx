@@ -1,6 +1,12 @@
+import { useNavigate } from 'react-router-dom'
+
 import images from '~/assets/images'
 
 const Login = () => {
+  const navigate = useNavigate()
+  const handleClickLogin = () => {
+    navigate('/write')
+  }
   return (
     <>
       <div
@@ -30,7 +36,7 @@ const Login = () => {
                 <p>Quên mật khẩu</p>
               </div>
             </div>
-            <div className='mt-7'>
+            <div className='mt-7' onClick={handleClickLogin}>
               <button className='bg-[#F27024] rounded-[25px] h-[36px] w-full text-white font-bold'>Đăng nhập</button>
             </div>
           </div>

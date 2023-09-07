@@ -31,6 +31,7 @@ const SideBar = () => {
   const navigate = useNavigate()
   const [active, setActive] = useState<string>('')
   const [showSidebar, setShowSidebar] = useState<boolean>(false)
+  // click sidebar cha
   const handleOnclickSidebar = (sidebarItem: string) => {
     if (sidebarItem === 'write') {
       setShowSidebar(!showSidebar)
@@ -38,9 +39,14 @@ const SideBar = () => {
     setActive(sidebarItem)
     navigate(sidebarItem)
   }
+  // click item tronf write
   const handleOnclickItemChildren = (itemChildren: string) => {
     setActive(itemChildren)
     navigate(`/write/${itemChildren}`)
+  }
+  //logout
+  const handleClickLogOut = () => {
+    navigate('/login')
   }
   return (
     <>
@@ -110,7 +116,10 @@ const SideBar = () => {
             </div>
           </div>
           <div>
-            <div className=' bg-[#3F4D63] w-full rounded h-[40px] cursor-pointer flex items-center  '>
+            <div
+              className=' bg-[#3F4D63] w-full rounded h-[40px] cursor-pointer flex items-center'
+              onClick={handleClickLogOut}
+            >
               <img src={images.LogoutIcon} className='mx-4' />
               <p className=' font-normal'>Log out</p>
             </div>
