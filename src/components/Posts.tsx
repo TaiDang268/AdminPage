@@ -1,9 +1,3 @@
-import { useEffect, useState } from 'react'
-
-import { fetchData } from '~/api'
-import { useAppDispatch, useAppSelector } from '~/redux/hooks'
-import { IPosts } from '~/types/interfaces'
-
 import Filter from './common/Filter'
 import Pagination from './common/Pagination'
 import TitleTable from './common/TitleTable'

@@ -1,12 +1,19 @@
-import { useEffect } from 'react'
-import { BsFillTrashFill } from 'react-icons/bs'
+import { useEffect, useState } from 'react'
+import { ToastContainer } from 'react-toastify'
 
 import { getAll } from '~/api'
-import images from '~/assets/images'
 import { deletePost, setDataPost } from '~/redux/features/PostsSlice'
 import { useAppDispatch, useAppSelector } from '~/redux/hooks'
+import { IPosts } from '~/types/interfaces'
+
+import Action from '../common/Action'
+import DeleteModal from '../notification/DeleteModal'
+import { deleteSuccessMess } from '../toast-message'
+
 const PostsTable = () => {
   const dispatch = useAppDispatch()
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  const [selectedItem, setSelectedItem] = useState<IPosts | null>(null)
   useEffect(() => {
     const fetchDataAsync = async () => {
       try {
@@ -19,9 +26,16 @@ const PostsTable = () => {
     fetchDataAsync()
   }, [])
   const dataPosts = useAppSelector((state) => state.posts.posts)
-  const handleDeletePost = (postId: string) => {
-    dispatch(deletePost(postId))
+  const handleClickTrash = (item: IPosts) => {
+    setIsModalOpen(true)
+    setSelectedItem(item)
   }
+  const handleClickDelete = (postId: string) => {
+    dispatch(deletePost(postId))
+    setIsModalOpen(false)
+    deleteSuccessMess()
+  }
+
   return (
     <>
       <div className='w-full mt-3'>
@@ -52,21 +66,24 @@ const PostsTable = () => {
                 <td>{item.author}</td>
                 <td>{item.topic}</td>
                 <td>{item.posting_date}</td>
-                <td className='' onClick={() => handleDeletePost(item.id)}>
-                  <div>
-                    <img src={images.Cards} />
-                  </div>
-                  <div>
-                    <img src={images.NotePencil} />
-                  </div>
-                  <div>
-                    <img src={images.Trash} />
+                <td className=''>
+                  <div className='flex justify-center'>
+                    <Action onDelete={() => handleClickTrash(item)} />
                   </div>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+        <div className='fixed top-0 right-0'>
+          <DeleteModal
+            entityShow={selectedItem}
+            isShow={isModalOpen}
+            isClose={() => setIsModalOpen(false)}
+            handleClickOk={() => selectedItem && handleClickDelete(selectedItem.id)}
+          />
+        </div>
+        <ToastContainer />
       </div>
     </>
   )

@@ -1,96 +1,6 @@
 {
   "posts": [
     {
-      "id": "7",
-      "name": "Báo cáo 7",
-      "description": "Báo cáo số 7 về NFT",
-      "author": "Tác giả G",
-      "topic": "Chủ đề G",
-      "posting_date": "Ngày đăng bài 7",
-      "tag": "NFT"
-    },
-    {
-      "id": "8",
-      "name": "Báo cáo 8",
-      "description": "Báo cáo số 8 về NFT",
-      "author": "Tác giả H",
-      "topic": "Chủ đề H",
-      "posting_date": "Ngày đăng bài 8",
-      "tag": "NFT"
-    },
-    {
-      "id": "9",
-      "name": "Báo cáo 9",
-      "description": "Báo cáo số 9 về NFT",
-      "author": "Tác giả I",
-      "topic": "Chủ đề I",
-      "posting_date": "Ngày đăng bài 9",
-      "tag": "NFT"
-    },
-    {
-      "id": "10",
-      "name": "Báo cáo 10",
-      "description": "Báo cáo số 10 về NFT",
-      "author": "Tác giả J",
-      "topic": "Chủ đề J",
-      "posting_date": "Ngày đăng bài 10",
-      "tag": "NFT"
-    },
-    {
-      "id": "11",
-      "name": "Báo cáo 11",
-      "description": "Báo cáo số 11 về NFT",
-      "author": "Tác giả K",
-      "topic": "Chủ đề K",
-      "posting_date": "Ngày đăng bài 11",
-      "tag": "NFT"
-    },
-    {
-      "id": "12",
-      "name": "Báo cáo 12",
-      "description": "Báo cáo số 12 về NFT",
-      "author": "Tác giả L",
-      "topic": "Chủ đề L",
-      "posting_date": "Ngày đăng bài 12",
-      "tag": "NFT"
-    },
-    {
-      "id": "13",
-      "name": "Báo cáo 13",
-      "description": "Báo cáo số 13 về NFT",
-      "author": "Tác giả M",
-      "topic": "Chủ đề M",
-      "posting_date": "Ngày đăng bài 13",
-      "tag": "NFT"
-    },
-    {
-      "id": "14",
-      "name": "Báo cáo 14",
-      "description": "Báo cáo số 14 về NFT",
-      "author": "Tác giả N",
-      "topic": "Chủ đề N",
-      "posting_date": "Ngày đăng bài 14",
-      "tag": "NFT"
-    },
-    {
-      "id": "15",
-      "name": "Báo cáo 15",
-      "description": "Báo cáo số 15 về NFT",
-      "author": "Tác giả O",
-      "topic": "Chủ đề O",
-      "posting_date": "Ngày đăng bài 15",
-      "tag": "NFT"
-    },
-    {
-      "id": "16",
-      "name": "Báo cáo 16",
-      "description": "Báo cáo số 16 về NFT",
-      "author": "Tác giả P",
-      "topic": "Chủ đề P",
-      "posting_date": "Ngày đăng bài 16",
-      "tag": "NFT"
-    },
-    {
       "id": "17",
       "name": "Báo cáo 17",
       "description": "Báo cáo số 17 về NFT",
@@ -125,6 +35,128 @@
       "topic": "Chủ đề T",
       "posting_date": "Ngày đăng bài 20",
       "tag": "NFT"
+    }
+  ],
+  "topic": [
+    {
+      "id": "1",
+      "name": "Chủ đề 1",
+      "slug": "slug-1",
+      "quantity": "10"
+    },
+    {
+      "id": "2",
+      "name": "Chủ đề 2",
+      "slug": "slug-2",
+      "quantity": "10"
+    },
+    {
+      "id": "3",
+      "name": "Chủ đề 3",
+      "slug": "slug-3",
+      "quantity": "10"
+    },
+    {
+      "id": "4",
+      "name": "Chủ đề 4",
+      "slug": "slug-4",
+      "quantity": "10"
+    },
+    {
+      "id": "5",
+      "name": "Chủ đề 5",
+      "slug": "slug-5",
+      "quantity": "10"
+    },
+    {
+      "id": "6",
+      "name": "Chủ đề 6",
+      "slug": "slug-6",
+      "quantity": "10"
+    },
+    {
+      "id": "7",
+      "name": "Chủ đề 7",
+      "slug": "slug-7",
+      "quantity": "10"
+    },
+    {
+      "id": "8",
+      "name": "Chủ đề 8",
+      "slug": "slug-8",
+      "quantity": "10"
+    },
+    {
+      "id": "9",
+      "name": "Chủ đề 9",
+      "slug": "slug-9",
+      "quantity": "10"
+    },
+    {
+      "id": "10",
+      "name": "Chủ đề 10",
+      "slug": "slug-10",
+      "quantity": "10"
+    },
+    {
+      "id": "11",
+      "name": "Chủ đề 11",
+      "slug": "slug-11",
+      "quantity": "10"
+    },
+    {
+      "id": "12",
+      "name": "Chủ đề 12",
+      "slug": "slug-12",
+      "quantity": "10"
+    },
+    {
+      "id": "13",
+      "name": "Chủ đề 13",
+      "slug": "slug-13",
+      "quantity": "10"
+    },
+    {
+      "id": "14",
+      "name": "Chủ đề 14",
+      "slug": "slug-14",
+      "quantity": "10"
+    },
+    {
+      "id": "15",
+      "name": "Chủ đề 15",
+      "slug": "slug-15",
+      "quantity": "10"
+    },
+    {
+      "id": "16",
+      "name": "Chủ đề 16",
+      "slug": "slug-16",
+      "quantity": "10"
+    },
+    {
+      "id": "17",
+      "name": "Chủ đề 17",
+      "slug": "slug-17",
+      "quantity": "10"
+    },
+    {
+      "id": "18",
+      "name": "Chủ đề 18",
+      "slug": "slug-18",
+      "quantity": "10"
+    },
+    {
+      "id": "19",
+      "name": "Chủ đề 19",
+      "slug": "slug-19",
+      "quantity": "10"
+    },
+    {
+      "id": "20",
+      "name": "Chủ đề 20",
+      "slug": "slug-20",
+      "quantity": "10"
     }
   ]
 }
