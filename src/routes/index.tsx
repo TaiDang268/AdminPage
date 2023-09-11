@@ -1,5 +1,7 @@
 import { useRoutes } from 'react-router'
 
+import CreatePosts from '~/components/create/CreatePosts'
+
 import routesPath from './routesPath'
 import Author from '../components/Author'
 import Layout from '../components/common/Layout'
@@ -20,7 +22,13 @@ const routers = [
 
       {
         path: routesPath.posts,
-        element: <Posts />
+        children: [
+          { index: true, path: '', element: <Posts /> },
+          {
+            path: 'create_posts',
+            element: <CreatePosts />
+          }
+        ]
       },
       {
         path: routesPath.topic,
