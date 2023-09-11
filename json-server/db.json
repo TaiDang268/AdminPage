@@ -2,278 +2,102 @@
   "posts": [
     {
       "id": "1",
-      "name": "Báo cáo 1",
-      "description": "Báo cáo số 1 về NFT",
       "author": "Tác giả A",
-      "topic": "Chủ đề A",
-      "posting_date": "Ngày đăng bài 1",
-      "tag": "NFT"
+      "image": "url_hinh_1.jpg",
+      "category": "NFT",
+      "date": "Ngày đăng bài 1",
+      "title": "Chủ đề A",
+      "description": "Báo cáo số 1 về NFT",
+      "name": "Báo cáo 1",
+      "short_desc": "Mô tả ngắn cho báo cáo 1"
     },
     {
       "id": "2",
-      "name": "Báo cáo 2",
-      "description": "Báo cáo số 2 về NFT",
       "author": "Tác giả B",
-      "topic": "Chủ đề B",
-      "posting_date": "Ngày đăng bài 2",
-      "tag": "NFT"
+      "image": "url_hinh_2.jpg",
+      "category": "NFT",
+      "date": "Ngày đăng bài 2",
+      "title": "Chủ đề B",
+      "description": "Báo cáo số 2 về NFT",
+      "name": "Báo cáo 2",
+      "short_desc": "Mô tả ngắn cho báo cáo 2"
     },
     {
       "id": "3",
-      "name": "Báo cáo 3",
-      "description": "Báo cáo số 3 về NFT",
       "author": "Tác giả C",
-      "topic": "Chủ đề C",
-      "posting_date": "Ngày đăng bài 3",
-      "tag": "NFT"
+      "image": "url_hinh_3.jpg",
+      "category": "Blockchain",
+      "date": "Ngày đăng bài 3",
+      "title": "Chủ đề C",
+      "description": "Báo cáo số 3 về Blockchain",
+      "name": "Báo cáo 3",
+      "short_desc": "Mô tả ngắn cho báo cáo 3"
     },
     {
       "id": "4",
-      "name": "Báo cáo 4",
-      "description": "Báo cáo số 4 về NFT",
       "author": "Tác giả D",
-      "topic": "Chủ đề D",
-      "posting_date": "Ngày đăng bài 4",
-      "tag": "NFT"
-    },
-    {
-      "id": "5",
-      "name": "Báo cáo 5",
-      "description": "Báo cáo số 5 về NFT",
-      "author": "Tác giả E",
-      "topic": "Chủ đề E",
-      "posting_date": "Ngày đăng bài 5",
-      "tag": "NFT"
+      "image": "url_hinh_4.jpg",
+      "category": "Blockchain",
+      "date": "Ngày đăng bài 4",
+      "title": "Chủ đề D",
+      "description": "Báo cáo số 4 về Blockchain",
+      "name": "Báo cáo 4",
+      "short_desc": "Mô tả ngắn cho báo cáo 4"
     },
     {
       "id": "6",
-      "name": "Báo cáo 6",
-      "description": "Báo cáo số 6 về NFT",
       "author": "Tác giả F",
-      "topic": "Chủ đề F",
-      "posting_date": "Ngày đăng bài 6",
-      "tag": "NFT"
+      "image": "url_hinh_6.jpg",
+      "category": "AI",
+      "date": "Ngày đăng bài 6",
+      "title": "Chủ đề F",
+      "description": "Báo cáo số 6 về AI",
+      "name": "Báo cáo 6",
+      "short_desc": "Mô tả ngắn cho báo cáo 6"
     },
     {
       "id": "7",
-      "name": "Báo cáo 7",
-      "description": "Báo cáo số 7 về NFT",
       "author": "Tác giả G",
-      "topic": "Chủ đề G",
-      "posting_date": "Ngày đăng bài 7",
-      "tag": "NFT"
-    },
-    {
-      "id": "11",
-      "name": "Báo cáo 11",
-      "description": "Báo cáo số 11 về NFT",
-      "author": "Tác giả K",
-      "topic": "Chủ đề K",
-      "posting_date": "Ngày đăng bài 11",
-      "tag": "NFT"
-    },
-    {
-      "id": "12",
-      "name": "Báo cáo 12",
-      "description": "Báo cáo số 12 về NFT",
-      "author": "Tác giả L",
-      "topic": "Chủ đề L",
-      "posting_date": "Ngày đăng bài 12",
-      "tag": "NFT"
-    },
-    {
-      "id": "13",
-      "name": "Báo cáo 13",
-      "description": "Báo cáo số 13 về NFT",
-      "author": "Tác giả M",
-      "topic": "Chủ đề M",
-      "posting_date": "Ngày đăng bài 13",
-      "tag": "NFT"
-    },
-    {
-      "id": "14",
-      "name": "Báo cáo 14",
-      "description": "Báo cáo số 14 về NFT",
-      "author": "Tác giả N",
-      "topic": "Chủ đề N",
-      "posting_date": "Ngày đăng bài 14",
-      "tag": "NFT"
-    },
-    {
-      "id": "15",
-      "name": "Báo cáo 15",
-      "description": "Báo cáo số 15 về NFT",
-      "author": "Tác giả O",
-      "topic": "Chủ đề O",
-      "posting_date": "Ngày đăng bài 15",
-      "tag": "NFT"
-    },
-    {
-      "id": "16",
-      "name": "Báo cáo 16",
-      "description": "Báo cáo số 16 về NFT",
-      "author": "Tác giả P",
-      "topic": "Chủ đề P",
-      "posting_date": "Ngày đăng bài 16",
-      "tag": "NFT"
-    },
-    {
-      "id": "17",
-      "name": "Báo cáo 17",
-      "description": "Báo cáo số 17 về NFT",
-      "author": "Tác giả Q",
-      "topic": "Chủ đề Q",
-      "posting_date": "Ngày đăng bài 17",
-      "tag": "NFT"
-    },
-    {
-      "id": "18",
-      "name": "Báo cáo 18",
-      "description": "Báo cáo số 18 về NFT",
-      "author": "Tác giả R",
-      "topic": "Chủ đề R",
-      "posting_date": "Ngày đăng bài 18",
-      "tag": "NFT"
-    },
-    {
-      "id": "19",
-      "name": "Báo cáo 19",
-      "description": "Báo cáo số 19 về NFT",
-      "author": "Tác giả S",
-      "topic": "Chủ đề S",
-      "posting_date": "Ngày đăng bài 19",
-      "tag": "NFT"
-    },
-    {
-      "id": "20",
-      "name": "Báo cáo 20",
-      "description": "Báo cáo số 20 về NFT",
-      "author": "Tác giả T",
-      "topic": "Chủ đề T",
-      "posting_date": "Ngày đăng bài 20",
-      "tag": "NFT"
-    }
-  ],
-  "topic": [
-    {
-      "id": "1",
-      "name": "Chủ đề 1",
-      "slug": "slug-1",
-      "quantity": "10"
-    },
-    {
-      "id": "2",
-      "name": "Chủ đề 2",
-      "slug": "slug-2",
-      "quantity": "10"
-    },
-    {
-      "id": "3",
-      "name": "Chủ đề 3",
-      "slug": "slug-3",
-      "quantity": "10"
-    },
-    {
-      "id": "4",
-      "name": "Chủ đề 4",
-      "slug": "slug-4",
-      "quantity": "10"
-    },
-    {
-      "id": "5",
-      "name": "Chủ đề 5",
-      "slug": "slug-5",
-      "quantity": "10"
-    },
-    {
-      "id": "6",
-      "name": "Chủ đề 6",
-      "slug": "slug-6",
-      "quantity": "10"
-    },
-    {
-      "id": "7",
-      "name": "Chủ đề 7",
-      "slug": "slug-7",
-      "quantity": "10"
+      "image": "url_hinh_7.jpg",
+      "category": "Data Science",
+      "date": "Ngày đăng bài 7",
+      "title": "Chủ đề G",
+      "description": "Báo cáo số 7 về Data Science",
+      "name": "Báo cáo 7",
+      "short_desc": "Mô tả ngắn cho báo cáo 7"
     },
     {
       "id": "8",
-      "name": "Chủ đề 8",
-      "slug": "slug-8",
-      "quantity": "10"
+      "author": "Tác giả H",
+      "image": "url_hinh_8.jpg",
+      "category": "Data Science",
+      "date": "Ngày đăng bài 8",
+      "title": "Chủ đề H",
+      "description": "Báo cáo số 8 về Data Science",
+      "name": "Báo cáo 8",
+      "short_desc": "Mô tả ngắn cho báo cáo 8"
     },
     {
       "id": "9",
-      "name": "Chủ đề 9",
-      "slug": "slug-9",
-      "quantity": "10"
+      "author": "Tác giả I",
+      "image": "url_hinh_9.jpg",
+      "category": "Web Development",
+      "date": "Ngày đăng bài 9",
+      "title": "Chủ đề I",
+      "description": "Báo cáo số 9 về Web Development",
+      "name": "Báo cáo 9",
+      "short_desc": "Mô tả ngắn cho báo cáo 9"
     },
     {
       "id": "10",
-      "name": "Chủ đề 10",
-      "slug": "slug-10",
-      "quantity": "10"
-    },
-    {
-      "id": "11",
-      "name": "Chủ đề 11",
-      "slug": "slug-11",
-      "quantity": "10"
-    },
-    {
-      "id": "12",
-      "name": "Chủ đề 12",
-      "slug": "slug-12",
-      "quantity": "10"
-    },
-    {
-      "id": "13",
-      "name": "Chủ đề 13",
-      "slug": "slug-13",
-      "quantity": "10"
-    },
-    {
-      "id": "14",
-      "name": "Chủ đề 14",
-      "slug": "slug-14",
-      "quantity": "10"
-    },
-    {
-      "id": "15",
-      "name": "Chủ đề 15",
-      "slug": "slug-15",
-      "quantity": "10"
-    },
-    {
-      "id": "16",
-      "name": "Chủ đề 16",
-      "slug": "slug-16",
-      "quantity": "10"
-    },
-    {
-      "id": "17",
-      "name": "Chủ đề 17",
-      "slug": "slug-17",
-      "quantity": "10"
-    },
-    {
-      "id": "18",
-      "name": "Chủ đề 18",
-      "slug": "slug-18",
-      "quantity": "10"
-    },
-    {
-      "id": "19",
-      "name": "Chủ đề 19",
-      "slug": "slug-19",
-      "quantity": "10"
-    },
-    {
-      "id": "20",
-      "name": "Chủ đề 20",
-      "slug": "slug-20",
-      "quantity": "10"
+      "author": "Tác giả J",
+      "image": "url_hinh_10.jpg",
+      "category": "Web Development",
+      "date": "Ngày đăng bài 10",
+      "title": "Chủ đề J",
+      "description": "Báo cáo số 10 về Web Development",
+      "name": "Báo cáo 10",
+      "short_desc": "Mô tả ngắn cho báo cáo 10"
     }
   ]
 }

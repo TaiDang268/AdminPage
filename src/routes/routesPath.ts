@@ -3,7 +3,7 @@ const routesPath = {
   write: '/write',
   image: '/image',
   setting: '/setting',
-  //   path children of write
+  //path children of write
   posts: 'posts',
   topic: 'topic',
   author: 'author',

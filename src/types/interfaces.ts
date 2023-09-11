@@ -1,9 +1,11 @@
 export interface IPosts {
   id: string
-  name: string
-  description: string
   author: string
-  topic: string
-  posting_date: string
-  tag: string
+  image: string
+  category: string
+  date: string
+  title: string
+  description: string
+  name: string
+  short_desc: string
 }

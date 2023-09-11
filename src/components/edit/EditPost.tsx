@@ -1,13 +1,10 @@
 import { GrClose } from 'react-icons/gr'
-interface IDeleteModal {
-  entityShow?: any
+interface IEditPosts {
   isShow?: boolean
   isClose?: () => void
-  handleClickOk?: () => void
 }
-const DeleteModal = (props: IDeleteModal) => {
-  const { entityShow, isShow, isClose, handleClickOk } = props
-
+const EditPosts = (props: IEditPosts) => {
+  const { isShow, isClose } = props
   return (
     <>
       {isShow && (
@@ -19,11 +16,7 @@ const DeleteModal = (props: IDeleteModal) => {
        border border-gray-500 bg-white rounded-lg px-4 '
           >
             <p className='font-bold my-4'> Bạn chắc chắn muốn xóa?</p>
-            <p>{entityShow?.name}</p>
-            <p>{entityShow?.short_desc}</p>
-            <p>{entityShow?.author}</p>
-            <p>{entityShow?.category}</p>
-            <p>{entityShow?.date}</p>
+
             <button className='fixed right-5 top-5' onClick={isClose}>
               <GrClose />
             </button>
@@ -31,9 +24,7 @@ const DeleteModal = (props: IDeleteModal) => {
               <button className='rounded border  px-3 py-1' onClick={isClose}>
                 Thoát
               </button>
-              <button className='text-white bg-red-500  rounded px-3 py-1 ml-4' onClick={handleClickOk}>
-                Xóa
-              </button>
+              <button className='text-white bg-red-500  rounded px-3 py-1 ml-4'>Cập nhật</button>
             </div>
           </div>
         </>
@@ -41,4 +32,4 @@ const DeleteModal = (props: IDeleteModal) => {
     </>
   )
 }
-export default DeleteModal
+export default EditPosts

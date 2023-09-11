@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import { IPosts } from '~/types/interfaces'
 
-const baseUrl = 'http://localhost:3006'
+const baseUrl = 'http://localhost:3007'
 export const getAll = async (endpoint: string) => {
   const res = await axios.get(`${baseUrl}/${endpoint}`)
   const { data } = res
@@ -26,4 +26,13 @@ export const sortZA = async (endpoint: string) => {
   const res = await axios.get(`${baseUrl}/${endpoint}?_sort=name&_order=desc`)
   const { data } = res
   return data as IPosts[]
+}
+// export const getLastIdPosts = async (endpoint: string) => {
+//   const res = await axios.get(`${baseUrl}/${endpoint}`)
+//   const length = res.data.length
+//   return res.data[length - 1].id as string
+// }
+export const postPosts = async (endpoint: string, data: IPosts) => {
+  const res = await axios.post(`${baseUrl}/${endpoint}`, data)
+  return res
 }

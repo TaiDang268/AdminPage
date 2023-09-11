@@ -8,11 +8,13 @@ import { IPosts } from '~/types/interfaces'
 
 import Action from '../common/Action'
 import DeleteModal from '../notification/DeleteModal'
-import { deleteSuccessMess } from '../toast-message'
+import { deleteErrorMess, deleteSuccessMess } from '../toast-message'
+import EditPost from '../edit/EditPost'
 
 const PostsTable = () => {
   const dispatch = useAppDispatch()
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+  const [isEditShow, setIsEditShow] = useState<boolean>(false)
   const [selectedItem, setSelectedItem] = useState<IPosts | null>(null)
   useEffect(() => {
     const fetchDataAsync = async () => {
@@ -30,10 +32,15 @@ const PostsTable = () => {
     setIsModalOpen(true)
     setSelectedItem(item)
   }
-  const handleClickDelete = (postId: string) => {
-    dispatch(deletePost(postId))
-    setIsModalOpen(false)
-    deleteSuccessMess()
+  const handleClickDelete = async (postId: string) => {
+    try {
+      dispatch(deletePost(postId))
+      setIsModalOpen(false)
+      deleteSuccessMess()
+    } catch (err) {
+      deleteErrorMess()
+      console.log(err)
+    }
   }
 
   return (
@@ -62,10 +69,10 @@ const PostsTable = () => {
                 </th>
                 <td className='text-center'>{item.id}</td>
                 <td>{item.name}</td>
-                <td>{item.description}</td>
+                <td>{item.short_desc}</td>
                 <td>{item.author}</td>
-                <td>{item.topic}</td>
-                <td>{item.posting_date}</td>
+                <td>{item.category}</td>
+                <td>{item.date}</td>
                 <td className=''>
                   <div className='flex justify-center'>
                     <Action onDelete={() => handleClickTrash(item)} />
@@ -82,6 +89,9 @@ const PostsTable = () => {
             isClose={() => setIsModalOpen(false)}
             handleClickOk={() => selectedItem && handleClickDelete(selectedItem.id)}
           />
+        </div>
+        <div className='fixed top-0 right-0'>
+          <EditPost isShow={isEditShow} isClose={() => setIsEditShow(false)} />
         </div>
         <ToastContainer />
       </div>
