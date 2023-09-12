@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ToastContainer } from 'react-toastify'
 
-import { getAll } from '~/api'
+import { getByParams } from '~/api'
 import { deletePost, setDataPost } from '~/redux/features/PostsSlice'
 import { useAppDispatch, useAppSelector } from '~/redux/hooks'
 import { IPosts } from '~/types/interfaces'
@@ -19,7 +19,7 @@ const PostsTable = () => {
   useEffect(() => {
     const fetchDataAsync = async () => {
       try {
-        const res = await getAll('posts')
+        const res = await getByParams('posts', { _page: 1, _limit: 10 })
         dispatch(setDataPost(res))
       } catch (error) {
         console.error('Lỗi khi lấy dữ liệu:', error)

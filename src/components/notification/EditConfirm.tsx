@@ -1,9 +1,13 @@
 import axios from 'axios'
 import { GrClose } from 'react-icons/gr'
+import { ToastContainer } from 'react-toastify'
 
 import { getAll } from '~/api'
 import { setDataPost } from '~/redux/features/PostsSlice'
 import { useAppDispatch } from '~/redux/hooks'
+
+import { updateSuccessMess } from '../toast-message'
+
 interface IEditConfirm {
   isShow?: boolean
   isClose: () => void
@@ -13,7 +17,7 @@ interface IEditConfirm {
 const EditConfirm = (props: IEditConfirm) => {
   const { isShow, isClose, itemAfterEdit, isCheckConfirm } = props
   const dispatch = useAppDispatch()
-  const handleClickConfirm = () => {
+  const handleClickConfirm = async () => {
     isCheckConfirm()
     const data = {
       author: itemAfterEdit.author,
@@ -22,24 +26,29 @@ const EditConfirm = (props: IEditConfirm) => {
       category: itemAfterEdit.category,
       date: itemAfterEdit.date
     }
-    axios
-      .patch(`http://localhost:3007/posts/${itemAfterEdit.id}`, data)
-      .then((res) => {
-        console.log(res)
+    try {
+      await axios
+        .patch(`http://localhost:3007/posts/${itemAfterEdit.id}`, data)
+        .then((res) => {
+          console.log(res)
 
-        const fetchDataAsync = async () => {
-          try {
-            const res = await getAll('posts')
-            dispatch(setDataPost(res))
-          } catch (error) {
-            console.error('Lỗi khi lấy dữ liệu:', error)
+          const fetchDataAsync = async () => {
+            try {
+              const res = await getAll('posts')
+              dispatch(setDataPost(res))
+            } catch (error) {
+              console.error('Lỗi khi lấy dữ liệu:', error)
+            }
           }
-        }
-        fetchDataAsync()
-      })
-      .catch((error) => {
-        console.log(error)
-      })
+          fetchDataAsync()
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+      updateSuccessMess()
+    } catch (err) {
+      console.log(err)
+    }
   }
   return (
     <>
@@ -82,6 +91,7 @@ const EditConfirm = (props: IEditConfirm) => {
               </button>
             </div>
           </div>
+          <ToastContainer />
         </>
       )}
     </>

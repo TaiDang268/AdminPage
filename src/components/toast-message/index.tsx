@@ -19,3 +19,8 @@ export const addErrorMess = () => {
     position: toast.POSITION.TOP_RIGHT
   })
 }
+export const updateSuccessMess = () => {
+  toast.success('Cập nhật bài viết thành công !', {
+    position: toast.POSITION.TOP_RIGHT
+  })
+}

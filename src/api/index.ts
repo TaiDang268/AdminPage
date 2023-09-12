@@ -8,6 +8,11 @@ export const getAll = async (endpoint: string) => {
   const { data } = res
   return data as IPosts[]
 }
+export const getByParams = async (endpoint: string, params: any) => {
+  const res = await axios.get(`${baseUrl}/${endpoint}`, { params: params })
+  const { data } = res
+  return data as IPosts[]
+}
 export const deleteById = async (endpoint: string, id: string) => {
   const res = await axios.delete(`${baseUrl}/${endpoint}/${id}`)
   return res

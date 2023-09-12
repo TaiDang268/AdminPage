@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { searchByName, sortAZ, sortZA } from '~/api'
 import { setDataPost } from '~/redux/features/PostsSlice'
-import { useAppDispatch } from '~/redux/hooks'
+import { useAppDispatch, useAppSelector } from '~/redux/hooks'
 
 import images from '../../assets/images'
 
@@ -10,6 +10,7 @@ const Filter = () => {
   const [valueInput, setValueInput] = useState<string>('')
   const [showOptionsSort, setShowOptionsSort] = useState<boolean>(false)
   const dispatch = useAppDispatch()
+  const selector = useAppSelector((state) => state.posts.posts)
   const handleOnClickSearch = async () => {
     try {
       const res = await searchByName('posts', valueInput)

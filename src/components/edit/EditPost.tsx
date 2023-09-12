@@ -32,17 +32,17 @@ const EditPosts = (props: IEditPosts) => {
             <p className='font-bold text-[24px] my-4'> Sửa bài viết</p>
             <div className='grid grid-cols-[150px,auto]  gap-4'>
               <div className=' my-auto font-medium  '>Id</div>
-              <input className='bg-gray-400' value={itemEdit?.id} {...register('id')} />
+              <input className='bg-gray-400 h-[32px]' value={itemEdit?.id} {...register('id')} />
               <div className=' my-auto font-medium  '>Tên bài viết</div>
-              <input defaultValue={itemEdit?.name} {...register('name')} />
+              <input className='h-[32px]' defaultValue={itemEdit?.name} {...register('name')} />
               <div className=' my-auto font-medium'>Mô tả</div>
-              <input defaultValue={itemEdit?.short_desc} {...register('short_desc')} />
+              <input className='h-[32px]' defaultValue={itemEdit?.short_desc} {...register('short_desc')} />
               <div className=' my-auto font-medium'>Tác giả</div>
-              <input defaultValue={itemEdit?.author} {...register('author')} />
+              <input className='h-[32px]' defaultValue={itemEdit?.author} {...register('author')} />
               <div className=' my-auto font-medium'>Chủ đề</div>
-              <input defaultValue={itemEdit?.category} {...register('category')} />
+              <input className='h-[32px]' defaultValue={itemEdit?.category} {...register('category')} />
               <div className=' my-auto font-medium'>Ngày đăng bài</div>
-              <input defaultValue={itemEdit?.date} {...register('date')} />
+              <input className='h-[32px]' defaultValue={itemEdit?.date} {...register('date')} />
             </div>
 
             <button className='fixed right-5 top-5' onClick={isClose}>
