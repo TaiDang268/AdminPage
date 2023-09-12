@@ -7,9 +7,9 @@ import { useAppDispatch, useAppSelector } from '~/redux/hooks'
 import { IPosts } from '~/types/interfaces'
 
 import Action from '../common/Action'
-import DeleteModal from '../notification/DeleteModal'
-import { deleteErrorMess, deleteSuccessMess } from '../toast-message'
 import EditPost from '../edit/EditPost'
+import DeleteModal from '../notification/DeleteConfirm'
+import { deleteErrorMess, deleteSuccessMess } from '../toast-message'
 
 const PostsTable = () => {
   const dispatch = useAppDispatch()
@@ -42,7 +42,10 @@ const PostsTable = () => {
       console.log(err)
     }
   }
-
+  const handleClickEdit = (item: IPosts) => {
+    setIsEditShow(true)
+    setSelectedItem(item)
+  }
   return (
     <>
       <div className='w-full mt-3'>
@@ -75,7 +78,7 @@ const PostsTable = () => {
                 <td>{item.date}</td>
                 <td className=''>
                   <div className='flex justify-center'>
-                    <Action onDelete={() => handleClickTrash(item)} />
+                    <Action onDelete={() => handleClickTrash(item)} onEdit={() => handleClickEdit(item)} />
                   </div>
                 </td>
               </tr>
@@ -91,7 +94,13 @@ const PostsTable = () => {
           />
         </div>
         <div className='fixed top-0 right-0'>
-          <EditPost isShow={isEditShow} isClose={() => setIsEditShow(false)} />
+          <EditPost
+            key={selectedItem?.id}
+            isShow={isEditShow}
+            isClose={() => setIsEditShow(false)}
+            itemEdit={selectedItem}
+            isCheckConfirm={() => setIsEditShow(false)}
+          />
         </div>
         <ToastContainer />
       </div>
