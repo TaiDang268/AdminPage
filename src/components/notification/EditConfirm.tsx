@@ -2,7 +2,7 @@ import axios from 'axios'
 import { GrClose } from 'react-icons/gr'
 import { ToastContainer } from 'react-toastify'
 
-import { getAll } from '~/api'
+import { getByParams } from '~/api'
 import { setDataPost } from '~/redux/features/PostsSlice'
 import { useAppDispatch } from '~/redux/hooks'
 
@@ -29,12 +29,10 @@ const EditConfirm = (props: IEditConfirm) => {
     try {
       await axios
         .patch(`http://localhost:3007/posts/${itemAfterEdit.id}`, data)
-        .then((res) => {
-          console.log(res)
-
+        .then(() => {
           const fetchDataAsync = async () => {
             try {
-              const res = await getAll('posts')
+              const res = await getByParams('posts', { _limit: 10 })
               dispatch(setDataPost(res))
             } catch (error) {
               console.error('Lỗi khi lấy dữ liệu:', error)

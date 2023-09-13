@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form'
 import { AiOutlineCheck } from 'react-icons/ai'
 import { MdArrowBackIos } from 'react-icons/md'
 import '../../css/custom.css'
+import { useNavigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
 import { postPosts } from '~/api'
@@ -13,6 +14,7 @@ import { IPosts } from '~/types/interfaces'
 
 import { addErrorMess, addSuccessMess } from '../toast-message'
 const CreatePosts = () => {
+  const navigate = useNavigate()
   const { register, getValues } = useForm()
   const [textCkEditor, setTextCkEditor] = useState<string>('0')
   const [lastId, setLastId] = useState<string>('')
@@ -52,7 +54,9 @@ const CreatePosts = () => {
       <div className='w-full bg-[#F0F6FF] h-screen p-4'>
         <div className='flex justify-between'>
           <div className='flex justify-center items-center  mb-4'>
-            <MdArrowBackIos />
+            <div className='cursor-pointer' onClick={() => navigate(-1)}>
+              <MdArrowBackIos />
+            </div>
             <p className='font-semibold text-[24px]'>Bài viết mới</p>
           </div>
           <div className='flex'>

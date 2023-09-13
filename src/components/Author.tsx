@@ -8,10 +8,10 @@ const Author = () => {
     <>
       <div className='w-full h-screen'>
         <div className='w-full p-4'>
-          <TitleTable title='Tác giả' nameButton='Thêm tác giả' />
+          <TitleTable title='Tác giả' nameButton='Thêm tác giả' navigateTo='create_author' />
           <Filter />
           <AuthorTable />
-          <Pagination />
+          <Pagination pageCount={3} />
         </div>
       </div>
     </>

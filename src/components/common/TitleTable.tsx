@@ -15,12 +15,15 @@ const TitleTable = (props: ITitleTable) => {
   }
   return (
     <>
-      <div className='w-full cursor-pointer'>
-        <div className='flex justify-between' onClick={handleOnClick}>
+      <div className='w-full '>
+        <div className='flex justify-between'>
           <p className='font-semibold text-[24px]'>{title}</p>
-          <div className='h-[32px] min-w-[130px] bg-[#186E25] rounded flex justify-center items-center'>
+          <div
+            className='h-[32px] min-w-[130px] bg-[#186E25] rounded flex justify-center items-center cursor-pointer'
+            onClick={handleOnClick}
+          >
             <img src={images.Add} />
-            <p className='ml-2 text-white cursor-pointer'>{nameButton}</p>
+            <p className='ml-2 text-white '>{nameButton}</p>
           </div>
         </div>
       </div>

@@ -1,12 +1,27 @@
+import axios from 'axios'
+import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
 import images from '~/assets/images'
 
 const Login = () => {
   const navigate = useNavigate()
-  const handleClickLogin = () => {
-    navigate('/write')
+  const { register, getValues } = useForm()
+  const handleClickLogin = async () => {
+    const value = getValues()
+    console.log(value)
+    try {
+      const res = await axios.get(`http://localhost:3007/users/`)
+      const users = res.data
+      console.log(users)
+      const foundUser = users.find((user: any) => user.email === value.email)
+      console.log(foundUser)
+      navigate('/write')
+    } catch (err) {
+      console.log(err)
+    }
   }
+  const handleClickLoginButton = () => {}
   return (
     <>
       <div
@@ -21,11 +36,14 @@ const Login = () => {
             <p className='font-bold text-[24px]'>Đăng nhập tài khoản </p>
             <div className='my-2'>
               <p className='mb-1'>Email</p>
-              <input className='h-[36px] w-full rounded-[25px] border border-[#d9d9d9] px-4' />
+              <input className='h-[36px] w-full rounded-[25px] border border-[#d9d9d9] px-4' {...register('email')} />
             </div>
             <div className='my-2'>
               <p className='mb-1'>Mật khẩu</p>
-              <input className='h-[36px] w-full rounded-[25px] border border-[#d9d9d9] px-4' />
+              <input
+                className='h-[36px] w-full rounded-[25px] border border-[#d9d9d9] px-4'
+                {...register('password')}
+              />
             </div>
             <div className='flex justify-between my-2'>
               <div className='flex'>
@@ -37,7 +55,12 @@ const Login = () => {
               </div>
             </div>
             <div className='mt-7' onClick={handleClickLogin}>
-              <button className='bg-[#F27024] rounded-[25px] h-[36px] w-full text-white font-bold'>Đăng nhập</button>
+              <button
+                className='bg-[#F27024] rounded-[25px] h-[36px] w-full text-white font-bold'
+                onClick={handleClickLoginButton}
+              >
+                Đăng nhập
+              </button>
             </div>
           </div>
         </div>

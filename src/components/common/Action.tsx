@@ -3,8 +3,8 @@ import { FiEdit } from 'react-icons/fi'
 import { PiCards } from 'react-icons/pi'
 
 interface IAction {
-  onDelete: () => void
-  onEdit: () => void
+  onDelete?: () => void
+  onEdit?: () => void
 }
 const Action = (props: IAction) => {
   const { onDelete, onEdit } = props

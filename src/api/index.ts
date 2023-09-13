@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-import { IPosts } from '~/types/interfaces'
+import { IPosts, ITopic } from '~/types/interfaces'
 
 const baseUrl = 'http://localhost:3007'
 export const getAll = async (endpoint: string) => {
@@ -13,6 +13,11 @@ export const getByParams = async (endpoint: string, params: any) => {
   const { data } = res
   return data as IPosts[]
 }
+export const getByParamsTopic = async (endpoint: string, params: any) => {
+  const res = await axios.get(`${baseUrl}/${endpoint}`, { params: params })
+  const { data } = res
+  return data as ITopic[]
+}
 export const deleteById = async (endpoint: string, id: string) => {
   const res = await axios.delete(`${baseUrl}/${endpoint}/${id}`)
   return res
@@ -23,12 +28,12 @@ export const searchByName = async (endpoint: string, name: string) => {
   return data as IPosts[]
 }
 export const sortAZ = async (endpoint: string) => {
-  const res = await axios.get(`${baseUrl}/${endpoint}?_sort=name&_order=asc`)
+  const res = await axios.get(`${baseUrl}/${endpoint}?_sort=name&_order=asc&_limit=10`)
   const { data } = res
   return data as IPosts[]
 }
 export const sortZA = async (endpoint: string) => {
-  const res = await axios.get(`${baseUrl}/${endpoint}?_sort=name&_order=desc`)
+  const res = await axios.get(`${baseUrl}/${endpoint}?_sort=name&_order=desc&_limit=10`)
   const { data } = res
   return data as IPosts[]
 }

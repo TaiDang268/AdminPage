@@ -1,6 +1,9 @@
 import { useRoutes } from 'react-router'
 
+import CreateAuthor from '~/components/create/CreateAuthor'
 import CreatePosts from '~/components/create/CreatePosts'
+import CreateTag from '~/components/create/CreateTag'
+import CreateTopic from '~/components/create/CreateTopic'
 
 import routesPath from './routesPath'
 import Author from '../components/Author'
@@ -18,7 +21,7 @@ const routers = [
   {
     path: routesPath.write,
     children: [
-      { index: true, path: '', element: <Posts /> },
+      { index: true, path: '', element: <Tag /> },
 
       {
         path: routesPath.posts,
@@ -32,18 +35,33 @@ const routers = [
       },
       {
         path: routesPath.topic,
-
-        element: <Topic />
+        children: [
+          { index: true, path: '', element: <Topic /> },
+          {
+            path: 'create_topic',
+            element: <CreateTopic />
+          }
+        ]
       },
       {
         path: routesPath.author,
-
-        element: <Author />
+        children: [
+          { index: true, path: '', element: <Author /> },
+          {
+            path: 'create_author',
+            element: <CreateAuthor />
+          }
+        ]
       },
       {
         path: routesPath.tag,
-
-        element: <Tag />
+        children: [
+          { index: true, path: '', element: <Tag /> },
+          {
+            path: 'create_tag',
+            element: <CreateTag />
+          }
+        ]
       }
     ]
   }

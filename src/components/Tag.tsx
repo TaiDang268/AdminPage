@@ -8,10 +8,10 @@ const Tag = () => {
     <>
       <div className='w-full h-screen'>
         <div className='w-full p-4'>
-          <TitleTable title='Tag' nameButton='Thêm tag' />
+          <TitleTable title='Tag' nameButton='Thêm tag' navigateTo='create_tag' />
           <Filter />
           <TagTable />
-          <Pagination />
+          <Pagination pageCount={3} />
         </div>
       </div>
     </>

@@ -8,10 +8,10 @@ const Topic = () => {
     <>
       <div className='w-full h-screen'>
         <div className='w-full p-4'>
-          <TitleTable title='Chủ đề' nameButton='Thêm chủ đề' />
+          <TitleTable title='Chủ đề' nameButton='Thêm chủ đề' navigateTo='create_topic' />
           <Filter />
           <TopicTable />
-          <Pagination />
+          <Pagination pageCount={3} />
         </div>
       </div>
     </>
