@@ -25,17 +25,17 @@ export const deleteById = async (endpoint: string, id: string) => {
 export const searchByName = async (endpoint: string, name: string) => {
   const res = await axios.get(`${baseUrl}/${endpoint}?name_like=${name}`)
   const { data } = res
-  return data as IPosts[]
+  return data
 }
 export const sortAZ = async (endpoint: string) => {
   const res = await axios.get(`${baseUrl}/${endpoint}?_sort=name&_order=asc&_limit=10`)
   const { data } = res
-  return data as IPosts[]
+  return data
 }
 export const sortZA = async (endpoint: string) => {
   const res = await axios.get(`${baseUrl}/${endpoint}?_sort=name&_order=desc&_limit=10`)
   const { data } = res
-  return data as IPosts[]
+  return data
 }
 // export const getLastIdPosts = async (endpoint: string) => {
 //   const res = await axios.get(`${baseUrl}/${endpoint}`)

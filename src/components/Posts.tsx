@@ -1,4 +1,6 @@
-import { getByParams } from '~/api'
+import { useState } from 'react'
+
+import { getByParams, searchByName, sortAZ, sortZA } from '~/api'
 import { setDataPost } from '~/redux/features/PostsSlice'
 import { useAppDispatch } from '~/redux/hooks'
 
@@ -9,7 +11,31 @@ import PostsTable from './tables/PostsTable'
 
 const Posts = () => {
   const dispatch = useAppDispatch()
-
+  const [valueInput, setValueInput] = useState<string>('')
+  const handleOnClickSearch = async () => {
+    try {
+      const res = await searchByName('posts', valueInput)
+      dispatch(setDataPost(res))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  const handleSortAZ = async () => {
+    try {
+      const res = await sortAZ('posts')
+      dispatch(setDataPost(res))
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  const handleSortZA = async () => {
+    try {
+      const res = await sortZA('posts')
+      dispatch(setDataPost(res))
+    } catch (err) {
+      console.log(err)
+    }
+  }
   const handlePageChange = ({ selected }: { selected: number }) => {
     const fetchDataAsync = async () => {
       try {
@@ -26,7 +52,12 @@ const Posts = () => {
       <div className='w-full h-screen'>
         <div className='w-full p-4'>
           <TitleTable title='Danh sách bài viết' nameButton='Bài viết mới' navigateTo='create_posts' />
-          <Filter />
+          <Filter
+            setValueInput={setValueInput}
+            onSearch={handleOnClickSearch}
+            sortAZ={handleSortAZ}
+            sortZA={handleSortZA}
+          />
           <PostsTable />
           <Pagination pageCount={4} onPageChange={handlePageChange} />
         </div>

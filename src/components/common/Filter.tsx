@@ -1,41 +1,16 @@
 import { useState } from 'react'
 
-import { searchByName, sortAZ, sortZA } from '~/api'
-import { setDataPost } from '~/redux/features/PostsSlice'
-import { useAppDispatch } from '~/redux/hooks'
-
 import images from '../../assets/images'
-
-const Filter = () => {
-  const [valueInput, setValueInput] = useState<string>('')
+interface IFilter {
+  onSearch: () => void
+  setValueInput: React.Dispatch<React.SetStateAction<string>>
+  sortAZ: () => void
+  sortZA: () => void
+}
+const Filter = (props: IFilter) => {
+  const { onSearch, setValueInput, sortAZ, sortZA } = props
   const [showOptionsSort, setShowOptionsSort] = useState<boolean>(false)
-  const dispatch = useAppDispatch()
-  const handleOnClickSearch = async () => {
-    try {
-      const res = await searchByName('posts', valueInput)
-      dispatch(setDataPost(res))
-    } catch (err) {
-      console.log(err)
-    }
-  }
-  const handleOnClickAZ = async () => {
-    setShowOptionsSort(false)
-    try {
-      const res = await sortAZ('posts')
-      dispatch(setDataPost(res))
-    } catch (err) {
-      console.log(err)
-    }
-  }
-  const handleOnClickZA = async () => {
-    setShowOptionsSort(false)
-    try {
-      const res = await sortZA('posts')
-      dispatch(setDataPost(res))
-    } catch (err) {
-      console.log(err)
-    }
-  }
+
   return (
     <>
       <div className='w-full mt-4'>
@@ -43,7 +18,7 @@ const Filter = () => {
           <div className='flex'>
             <div
               className='border border-[#9D9D9D] rounded h-[32px] w-[32px] flex items-center justify-center mr-4 cursor-pointer'
-              onClick={handleOnClickSearch}
+              onClick={onSearch}
             >
               <img src={images.Search} />
             </div>
@@ -71,13 +46,17 @@ const Filter = () => {
               <div className='absolute mt-3'>
                 <p
                   className=' flex items-center justify-center border border-[#9D9D9D] rounded h-[32px] w-[87px]  cursor-pointer bg-white hover:bg-gray-400'
-                  onClick={handleOnClickAZ}
+                  onClick={() => {
+                    setShowOptionsSort(false), sortAZ()
+                  }}
                 >
                   A - Z
                 </p>
                 <p
                   className=' flex items-center justify-center border border-[#9D9D9D] rounded h-[32px] w-[87px]  cursor-pointer bg-white  hover:bg-gray-400'
-                  onClick={handleOnClickZA}
+                  onClick={() => {
+                    setShowOptionsSort(false), sortZA()
+                  }}
                 >
                   Z - A
                 </p>

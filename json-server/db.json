@@ -497,12 +497,34 @@
       "description": "Báo cáo số 50 về Blockchain",
       "name": "Báo cáo 50",
       "short_desc": "Mô tả ngắn cho báo cáo 50"
+    },
+    {
+      "id": "51",
+      "author": "",
+      "image": "",
+      "category": "",
+      "date": "",
+      "title": "",
+      "description": "0",
+      "name": "",
+      "short_desc": ""
+    },
+    {
+      "id": "52",
+      "author": "",
+      "image": "",
+      "category": "",
+      "date": "",
+      "title": "",
+      "description": "0",
+      "name": "",
+      "short_desc": ""
     }
   ],
   "topics": [
     {
       "id": "2",
-      "name": "Chủ đề",
+      "name": "Chủ đề 123456",
       "slug": "Bồ đào nha",
       "quantity": "10"
     },
@@ -517,12 +539,6 @@
       "name": "Chủ đề D",
       "slug": "Chile",
       "quantity": "12"
-    },
-    {
-      "id": "5",
-      "name": "Chủ đề E",
-      "slug": "",
-      "quantity": "10"
     },
     {
       "id": "6",
@@ -627,7 +643,7 @@
       "id": "yu2QVKF"
     },
     {
-      "name": "dag tai",
+      "name": "Đặng Tài",
       "id": "MuFBtJ5"
     }
   ]
