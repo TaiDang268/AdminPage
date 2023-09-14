@@ -501,22 +501,16 @@
   ],
   "topics": [
     {
-      "id": "1",
-      "name": "Chủ đề A",
-      "slug": "Mexico",
+      "id": "2",
+      "name": "Chủ đề",
+      "slug": "Bồ đào nha",
       "quantity": "10"
     },
     {
-      "id": "2",
-      "name": "Chủ đề B",
-      "slug": "Argentina",
-      "quantity": "15"
-    },
-    {
       "id": "3",
-      "name": "Chủ đề C",
+      "name": "Chủ đề Ta",
       "slug": "Brazil",
-      "quantity": "8"
+      "quantity": "10"
     },
     {
       "id": "4",
@@ -537,12 +531,6 @@
       "quantity": "6"
     },
     {
-      "id": "7",
-      "name": "Chủ đề G",
-      "slug": "Peru",
-      "quantity": "18"
-    },
-    {
       "id": "8",
       "name": "Chủ đề H",
       "slug": "Venezuela",
@@ -559,20 +547,24 @@
       "name": "Chủ đề J",
       "slug": "Paraguay",
       "quantity": "7"
+    },
+    {
+      "name": "sade",
+      "slug": "ưedwesdcsfcs",
+      "id": "onZgNeK",
+      "quantity": "10"
+    },
+    {
+      "name": "",
+      "slug": "",
+      "quantity": "10",
+      "id": "9Obhaqw"
     }
   ],
   "tags": [
     {
-      "id": "1",
-      "name": "Game"
-    },
-    {
       "id": "2",
       "name": "Thể thao"
-    },
-    {
-      "id": "3",
-      "name": "Âm nhạc"
     },
     {
       "id": "4",
@@ -604,10 +596,6 @@
     }
   ],
   "authors": [
-    {
-      "id": "1",
-      "name": "Tác giả A"
-    },
     {
       "id": "2",
       "name": "Tác giả B"
