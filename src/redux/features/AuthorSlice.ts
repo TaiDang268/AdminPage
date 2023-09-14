@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-import { deleteById } from '~/api'
+import { deleteById, post, update } from '~/api'
 import { IAuthor } from '~/types/interfaces'
 
 interface AuthorState {
@@ -16,17 +16,34 @@ export const authorSlice = createSlice({
     setDataAuthor: (state, action: PayloadAction<IAuthor[]>) => {
       state.authors = action.payload
     },
-    deleteAuthor: (state, action: PayloadAction<string>) => {
-      const topicIdToDelete = action.payload
+    addAuthor: (state, action: PayloadAction<Omit<IAuthor, 'id'>>) => {
+      const data = action.payload
       try {
-        deleteById('authors', topicIdToDelete)
-        state.authors = state.authors.filter((author) => author.id !== topicIdToDelete)
+        post('authors', data)
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    updateAuthor: (state, action: PayloadAction<IAuthor>) => {
+      const data = action.payload
+      try {
+        update(`authors/${data.id}`, data)
+        console.log(`authors/${data.id}`)
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    deleteAuthor: (state, action: PayloadAction<string>) => {
+      const authorIdToDelete = action.payload
+      try {
+        deleteById('authors', authorIdToDelete)
+        state.authors = state.authors.filter((author) => author.id !== authorIdToDelete)
       } catch (err) {
         console.log(err)
       }
     }
   }
 })
-export const { setDataAuthor, deleteAuthor } = authorSlice.actions
+export const { setDataAuthor, deleteAuthor, addAuthor, updateAuthor } = authorSlice.actions
 
 export default authorSlice.reducer

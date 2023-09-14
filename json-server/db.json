@@ -521,8 +521,8 @@
     {
       "id": "5",
       "name": "Chủ đề E",
-      "slug": "Colombia",
-      "quantity": "20"
+      "slug": "",
+      "quantity": "10"
     },
     {
       "id": "6",
@@ -553,12 +553,6 @@
       "slug": "ưedwesdcsfcs",
       "id": "onZgNeK",
       "quantity": "10"
-    },
-    {
-      "name": "",
-      "slug": "",
-      "quantity": "10",
-      "id": "9Obhaqw"
     }
   ],
   "tags": [
@@ -579,10 +573,6 @@
       "name": "Du lịch"
     },
     {
-      "id": "7",
-      "name": "Thời trang"
-    },
-    {
       "id": "8",
       "name": "Ẩm thực"
     },
@@ -593,24 +583,20 @@
     {
       "id": "10",
       "name": "Sức khỏe"
+    },
+    {
+      "name": "csd",
+      "id": "qfRsAGW"
+    },
+    {
+      "name": "12323",
+      "id": "GUsAGue"
     }
   ],
   "authors": [
     {
-      "id": "2",
-      "name": "Tác giả B"
-    },
-    {
-      "id": "3",
-      "name": "Tác giả C"
-    },
-    {
       "id": "4",
       "name": "Tác giả D"
-    },
-    {
-      "id": "5",
-      "name": "Tác giả E"
     },
     {
       "id": "6",
@@ -631,6 +617,18 @@
     {
       "id": "10",
       "name": "Tác giả J"
+    },
+    {
+      "name": "Tác giả C",
+      "id": "nd-52OD"
+    },
+    {
+      "name": "tai",
+      "id": "yu2QVKF"
+    },
+    {
+      "name": "dag tai",
+      "id": "MuFBtJ5"
     }
   ]
 }

@@ -16,11 +16,10 @@ export const topicSlice = createSlice({
     setDataTopic: (state, action: PayloadAction<ITopic[]>) => {
       state.topics = action.payload
     },
-    addTopic: (state, action: PayloadAction<ITopic>) => {
+    addTopic: (state, action: PayloadAction<Omit<ITopic, 'id'>>) => {
       const data = action.payload
       try {
         post('topics', data)
-        state.topics.push(data)
       } catch (err) {
         console.log(err)
       }

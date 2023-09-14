@@ -15,12 +15,12 @@ const CreateTopic = () => {
   const { register, getValues } = useForm()
   const topicItem = location.state
   const handleClickButton = () => {
-    const dataAdd: ITopic = {
-      name: getValues('topic_name'),
-      slug: getValues('topic_slug'),
-      quantity: '10'
-    }
     if (!topicItem) {
+      const dataAdd: Omit<ITopic, 'id'> = {
+        name: getValues('topic_name'),
+        slug: getValues('topic_slug'),
+        quantity: '10'
+      }
       dispatch(addTopic(dataAdd))
       addSuccessMess('chủ đề')
     } else {
@@ -50,7 +50,7 @@ const CreateTopic = () => {
             </button>
           </div>
         </div>
-        <div className='w-full flex gap-8 bg-white  my-5 p-3'>
+        <div className='w-full flex gap-8 bg-white  my-5 p-3 border border-[#E3E5E8] rounded'>
           <div className='w-[50%]'>
             <div className='flex'>
               <p>Tên chủ đề</p>

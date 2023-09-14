@@ -1,9 +1,36 @@
+import { useForm } from 'react-hook-form'
 import { MdArrowBackIos } from 'react-icons/md'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+
+import { addAuthor, updateAuthor } from '~/redux/features/AuthorSlice'
+import { useAppDispatch } from '~/redux/hooks'
+import { IAuthor } from '~/types/interfaces'
+
+import { addSuccessMess, updateSuccessMess } from '../toast-message'
 
 const CreateAuthor = () => {
   const navigate = useNavigate()
-
+  const location = useLocation()
+  const dispatch = useAppDispatch()
+  const authorItem = location.state
+  const { register, getValues } = useForm()
+  const handleClickButton = () => {
+    if (!authorItem) {
+      const dataAdd: Omit<IAuthor, 'id'> = {
+        name: getValues('author_name')
+      }
+      dispatch(addAuthor(dataAdd))
+      addSuccessMess('tác giả')
+    } else {
+      const dataEdit: IAuthor = {
+        id: authorItem.id,
+        name: getValues('author_name')
+      }
+      dispatch(updateAuthor(dataEdit))
+      updateSuccessMess('tác giả')
+    }
+  }
   return (
     <>
       <div className='w-full bg-[#F0F6FF] h-screen p-4'>
@@ -12,12 +39,22 @@ const CreateAuthor = () => {
             <div className='cursor-pointer' onClick={() => navigate(-1)}>
               <MdArrowBackIos />
             </div>
-            <p className='text-[24px] font-semibold'>Tác giả mới</p>
+            <p className='text-[24px] font-semibold'>{authorItem?.id ? 'Cập nhật tác giả' : 'Tác giả mới'}</p>
           </div>
           <div>
-            <button className='text-white bg-primary px-3 rounded h-[32px]'>Lưu</button>
+            <button className='text-white bg-primary px-3 rounded h-[32px]' onClick={handleClickButton}>
+              {authorItem?.id ? 'Cập nhật ' : 'Lưu'}
+            </button>
           </div>
         </div>
+        <div className='w-full bg-white  my-5 p-3 border border-[#E3E5E8] rounded'>
+          <div className='flex'>
+            <p>Tên tác giả</p>
+            <p className='text-red-600'>*</p>
+          </div>
+          <input className='w-full h-[32px] mt-2' defaultValue={authorItem?.name} {...register('author_name')} />
+        </div>
+        <ToastContainer />
       </div>
     </>
   )
