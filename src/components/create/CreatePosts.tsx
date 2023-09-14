@@ -43,7 +43,7 @@ const CreatePosts = () => {
     }
     try {
       await postPosts('posts', data)
-      addSuccessMess()
+      addSuccessMess('bài viết')
     } catch (err) {
       console.log(err)
       addErrorMess()

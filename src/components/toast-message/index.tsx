@@ -9,8 +9,8 @@ export const deleteErrorMess = () => {
     position: toast.POSITION.TOP_RIGHT
   })
 }
-export const addSuccessMess = () => {
-  toast.success('Thêm bài viết thành công  !', {
+export const addSuccessMess = (name: string) => {
+  toast.success(`Thêm ${name} thành công !`, {
     position: toast.POSITION.TOP_RIGHT
   })
 }
@@ -19,8 +19,8 @@ export const addErrorMess = () => {
     position: toast.POSITION.TOP_RIGHT
   })
 }
-export const updateSuccessMess = () => {
-  toast.success('Cập nhật bài viết thành công !', {
+export const updateSuccessMess = (name: string) => {
+  toast.success(`Cập nhật ${name} thành công !`, {
     position: toast.POSITION.TOP_RIGHT
   })
 }

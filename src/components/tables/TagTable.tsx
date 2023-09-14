@@ -1,14 +1,17 @@
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 
 import { getByParamsTopic } from '~/api'
-import { setDataTag } from '~/redux/features/TagSlice'
+import { Theme } from '~/hooks/useContext'
+import { deleteTag, setDataTag } from '~/redux/features/TagSlice'
 import { useAppDispatch, useAppSelector } from '~/redux/hooks'
 
 import Action from '../common/Action'
+import DeleteWarning from '../notification/DeleteWarning'
 
 const TagTable = () => {
   const dispatch = useAppDispatch()
   const tagData = useAppSelector((state) => state.tag.tags)
+  const { toggle, setToggle, idDelete, setIdDelete } = useContext(Theme)
   useEffect(() => {
     const fetchDataAsync = async () => {
       try {
@@ -20,6 +23,14 @@ const TagTable = () => {
     }
     fetchDataAsync()
   }, [])
+  const handleClickTrash = (id: string) => {
+    setToggle(true)
+    setIdDelete(id)
+  }
+
+  const handleDeleteTag = () => {
+    dispatch(deleteTag(idDelete))
+  }
   return (
     <>
       <div className='w-full mt-3'>
@@ -35,20 +46,25 @@ const TagTable = () => {
           </thead>
           <tbody>
             {tagData.map((item) => (
-              <tr>
+              <tr key={item.id}>
                 <th>
                   <input type='checkbox' />
                 </th>
                 <td>{item.name}</td>
                 <td className='w-[120px]'>
                   <div className='flex justify-center'>
-                    <Action />
+                    <Action onDelete={() => handleClickTrash(item.id)} />
                   </div>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
+        {toggle && (
+          <div className='fixed top-0 right-0'>
+            <DeleteWarning handleDelete={handleDeleteTag} />
+          </div>
+        )}
       </div>
     </>
   )

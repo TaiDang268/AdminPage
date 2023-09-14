@@ -9,12 +9,15 @@ import App from './App.tsx'
 
 import './index.css'
 
+import { ProviderContext } from './hooks/useContext.tsx'
 import { store } from './redux/store.ts'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ProviderContext>
+        <App />
+      </ProviderContext>
     </Provider>
   </React.StrictMode>
 )
