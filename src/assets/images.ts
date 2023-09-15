@@ -8,6 +8,7 @@ import Search from './icons/search.svg'
 import Setting from './icons/setting.svg'
 import Sort from './icons/sort.svg'
 import Trash from './icons/trash.svg'
+import UploadImage from './icons/UploadSimple.svg'
 import WriteNews from './icons/write_new.svg'
 import Avatar from './images/avatar.svg'
 import BackgroundLogin from './images/bg-login.svg'
@@ -29,6 +30,7 @@ const images = {
   Add,
   Trash,
   Cards,
-  NotePencil
+  NotePencil,
+  UploadImage
 }
 export default images

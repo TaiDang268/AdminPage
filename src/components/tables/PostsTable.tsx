@@ -74,7 +74,7 @@ const PostsTable = () => {
                 <td>{item.name}</td>
                 <td>{item.short_desc}</td>
                 <td>{item.author}</td>
-                <td>{item.category}</td>
+                <td>{item.title}</td>
                 <td>{item.date}</td>
                 <td className=''>
                   <div className='flex justify-center'>

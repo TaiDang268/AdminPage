@@ -27,3 +27,6 @@ textarea {
 input[type='text'] {
   height: 32px;
 }
+select {
+  outline: none;
+}

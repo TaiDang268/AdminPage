@@ -37,11 +37,7 @@ export const sortZA = async (endpoint: string) => {
   const { data } = res
   return data
 }
-// export const getLastIdPosts = async (endpoint: string) => {
-//   const res = await axios.get(`${baseUrl}/${endpoint}`)
-//   const length = res.data.length
-//   return res.data[length - 1].id as string
-// }
+
 export const postPosts = async (endpoint: string, data: IPosts) => {
   const res = await axios.post(`${baseUrl}/${endpoint}`, data)
   return res
@@ -53,4 +49,8 @@ export const post = async (endpoint: string, data: any) => {
 export const update = async (endpoint: string, data: any) => {
   const res = await axios.patch(`${baseUrl}/${endpoint}`, data)
   return res
+}
+export const getNameForSelect = async (endpoint: string) => {
+  const res = await axios.get(`${baseUrl}/${endpoint}`)
+  return res.data.map((item: any) => item.name)
 }

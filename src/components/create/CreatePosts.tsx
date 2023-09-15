@@ -9,7 +9,10 @@ import '../../css/custom.css'
 import { useNavigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
-import { postPosts } from '~/api'
+import { getNameForSelect, postPosts } from '~/api'
+import images from '~/assets/images'
+import { getCurrentDate } from '~/constant/getCurrentDate'
+import { getCurrentTime } from '~/constant/getCurrentTime'
 import { IPosts } from '~/types/interfaces'
 
 import { addErrorMess, addSuccessMess } from '../toast-message'
@@ -18,6 +21,12 @@ const CreatePosts = () => {
   const { register, getValues } = useForm()
   const [textCkEditor, setTextCkEditor] = useState<string>('0')
   const [lastId, setLastId] = useState<string>('')
+  const [tagsName, setTagsName] = useState<string[]>([''])
+  const [authorName, setAuthorName] = useState<string[]>([''])
+  const [topicName, setTopicName] = useState<string[]>([''])
+  const [selectedImage, setSelectedImage] = useState<string>('')
+  console.log(getCurrentDate())
+
   useEffect(() => {
     axios
       .get('http://localhost:3007/posts')
@@ -29,13 +38,29 @@ const CreatePosts = () => {
         console.log(error)
       })
   }, [])
+  useEffect(() => {
+    const fetchData = async () => {
+      const resTag = await getNameForSelect('tags')
+      const resTopic = await getNameForSelect('topics')
+      const resAuthor = await getNameForSelect('authors')
+      setTagsName(resTag)
+      setAuthorName(resAuthor)
+      setTopicName(resTopic)
+    }
+    fetchData()
+  }, [])
+  const handleFileImgChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) return
+    const fileName = e.target.files[0]?.name || ''
+    setSelectedImage(fileName)
+  }
   const handleClickSave = async () => {
     const data: IPosts = {
       id: (Number(lastId) + 1).toString(),
       author: getValues('author'),
       image: getValues('image'),
       category: getValues('category'),
-      date: getValues('date'),
+      date: getCurrentDate(),
       title: getValues('title'),
       description: textCkEditor,
       name: getValues('name'),
@@ -73,7 +98,7 @@ const CreatePosts = () => {
           </div>
         </div>
         <div className='flex gap-5 '>
-          <div className='w-[80%] bg-white p-3'>
+          <div className='flex-1 bg-white p-3 border border-[#E3E5E8] rounded'>
             <div className='flex gap-5'>
               <div className='w-[50%] '>
                 <div className='flex '>
@@ -112,27 +137,67 @@ const CreatePosts = () => {
               </div>
               <div className='w-[50%]'>
                 <p>Ảnh</p>
-                <textarea className='w-full border border-[#9D9D9D] h-[70px] rounded' {...register('image')}></textarea>
+                <div className='border border-[#9D9D9D] h-[80px] rounded flex justify-center items-center'>
+                  <label htmlFor='inputTag' className='cursor-pointer flex flex-col justify-center items-center '>
+                    <img src={images.UploadImage} />
+                    <input
+                      id='inputTag'
+                      type='file'
+                      className='w-full border border-[#9D9D9D] rounded h-[70px] hidden'
+                      {...register('image')}
+                      onChange={handleFileImgChange}
+                    />
+                    <p className='text-center'>Click để tải ảnh</p>
+                    <p className='text-green-600'>{selectedImage}</p>
+                  </label>
+                </div>
               </div>
             </div>
           </div>
-          <div className='w-[20%] bg-white  p-3'>
+          <div className='w-[320px] h-[300px] bg-white  p-3 border border-[#E3E5E8] rounded'>
             <p className='font-bold'>Thông tin</p>
             <div className='my-2'>
-              <p>Chủ đề </p>
-              <input className='w-full h-[32px]' {...register('title')} />
+              <p className='mb-1'>Chủ đề </p>
+              <select className='w-full h-[32px]  border border-[#9D9D9D] rounded font-semibold' {...register('title')}>
+                {topicName.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className='mb-2'>
-              <p>Tác giả </p>
-              <input className='w-full h-[32px]' {...register('author')} />
+              <p className='mb-1'>Tác giả </p>
+              <select
+                className='w-full h-[32px]  border border-[#9D9D9D] rounded font-semibold'
+                {...register('author')}
+              >
+                {authorName.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className='mb-2'>
-              <p>Tag </p>
-              <input className='w-full h-[32px]' {...register('category')} />
+              <p className='mb-1'>Tag </p>
+              <select
+                className='w-full h-[32px]  border border-[#9D9D9D] rounded font-semibold'
+                {...register('category')}
+              >
+                {tagsName.map((item) => (
+                  <option key={item} value={item}>
+                    {item}
+                  </option>
+                ))}
+              </select>
             </div>
-            <div className='mb-2'>
-              <p>Ngày viết </p>
-              <input className='w-full h-[32px]' {...register('date')} />
+            <div className='mb-2 flex justify-between'>
+              <p>Ngày viết: </p>
+              <div className='flex'>
+                <p className='font-semibold mr-2'>{getCurrentTime()}</p>
+                <p className='font-semibold'>{getCurrentDate()}</p>
+              </div>
             </div>
           </div>
         </div>
