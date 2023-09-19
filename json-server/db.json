@@ -22,7 +22,7 @@
       "date": "26/10/2020",
       "title": "Chủ đề Q1",
       "description": "Báo cáo số 45 về AI",
-      "name": "Báo cáo 45",
+      "name": "Báo cáo ",
       "short_desc": "Mô tả ngắn cho báo cáo 45"
     },
     {
@@ -81,15 +81,103 @@
       "short_desc": "Mô tả ngắn cho báo cáo 50"
     },
     {
-      "id": "55",
-      "author": "",
+      "id": "56",
+      "author": "Tác giả D",
       "image": {},
       "category": "",
       "date": "15/9/2023",
+      "title": "Chủ đề D",
+      "description": "0",
+      "name": "",
+      "short_desc": ""
+    },
+    {
+      "id": "57",
+      "author": "Đặng Tài",
+      "image": {},
+      "category": "Blockchain",
+      "date": "15/9/20",
+      "title": "Chủ đề D",
+      "description": "<p>123</p>",
+      "name": "123",
+      "short_desc": "123"
+    },
+    {
+      "id": "58",
+      "author": "",
+      "image": {},
+      "category": "",
+      "date": "19/9/2023",
       "title": "",
       "description": "0",
       "name": "",
       "short_desc": ""
+    },
+    {
+      "id": "59",
+      "author": "",
+      "image": {},
+      "category": "",
+      "date": "19/9/2023",
+      "title": "",
+      "description": "0",
+      "name": "",
+      "short_desc": ""
+    },
+    {
+      "id": "60",
+      "author": "Trần Văn Hoàng",
+      "image": "url_hinh_45.jpg",
+      "category": "AI",
+      "date": "26/10/2020",
+      "title": "Chủ đề Q1",
+      "description": "Báo cáo số 45 về AI",
+      "name": "Báo cáo ",
+      "short_desc": "Mô tả ngắn cho báo cáo 45"
+    },
+    {
+      "id": "61",
+      "author": "Phạm Văn Khoa",
+      "image": "url_hinh_46.jpg",
+      "category": "Blockchain",
+      "date": "27/10/2020",
+      "title": "Chủ đề R1",
+      "description": "Báo cáo số 46 về Blockchain",
+      "name": "Báo cáo 46",
+      "short_desc": "Mô tả ngắn cho báo cáo 46"
+    },
+    {
+      "id": "62",
+      "author": "Nguyễn Thị Lan",
+      "image": "url_hinh_47.jpg",
+      "category": "Data Science",
+      "date": "28/10/2020",
+      "title": "Chủ đề S1",
+      "description": "Báo cáo số 47 về Data Science",
+      "name": "Báo cáo 47",
+      "short_desc": "Mô tả ngắn cho báo cáo 47"
+    },
+    {
+      "id": "63",
+      "author": "Trần Văn Mạnh",
+      "image": "url_hinh_48.jpg",
+      "category": "NFT",
+      "date": "29/10/2020",
+      "title": "Chủ đề T1",
+      "description": "Báo cáo số 48 về NFT",
+      "name": "Báo cáo 48",
+      "short_desc": "Mô tả ngắn cho báo cáo 48"
+    },
+    {
+      "id": "64",
+      "author": "Lê Thị Nga",
+      "image": "url_hinh_49.jpg",
+      "category": "AI",
+      "date": "30/10/2020",
+      "title": "Chủ đề U1",
+      "description": "Báo cáo số 49 về AI",
+      "name": "Báo cáo 49",
+      "short_desc": "Mô tả ngắn cho báo cáo 49"
     }
   ],
   "topics": [
@@ -158,10 +246,6 @@
     {
       "id": "6",
       "name": "Du lịch"
-    },
-    {
-      "id": "8",
-      "name": "Ẩm thực"
     },
     {
       "id": "9",

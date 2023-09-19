@@ -14,18 +14,18 @@ const TagTable = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const tagData = useAppSelector((state) => state.tag.tags)
-  const { toggle, setToggle, idDelete, setIdDelete } = useContext(Theme)
+  const { toggle, setToggle, idDelete, setIdDelete, perPage } = useContext(Theme)
   useEffect(() => {
     const fetchDataAsync = async () => {
       try {
-        const res = await getByParamsTopic('tags', { _page: 1, _limit: 10 })
+        const res = await getByParamsTopic('tags', { _page: 1, _limit: Number(perPage) })
         dispatch(setDataTag(res))
       } catch (error) {
         console.error('Lỗi khi lấy dữ liệu:', error)
       }
     }
     fetchDataAsync()
-  }, [])
+  }, [perPage])
   const handleClickTrash = (id: string) => {
     setToggle(true)
     setIdDelete(id)

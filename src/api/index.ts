@@ -8,6 +8,10 @@ export const getAll = async (endpoint: string) => {
   const { data } = res
   return data as IPosts[]
 }
+export const getTotalRecord = async (endpoint: string) => {
+  const res = await axios.get(`${baseUrl}/${endpoint}`)
+  return res.data.length
+}
 export const getByParams = async (endpoint: string, params: any) => {
   const res = await axios.get(`${baseUrl}/${endpoint}`, { params: params })
   const { data } = res

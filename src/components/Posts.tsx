@@ -1,17 +1,20 @@
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 
-import { getByParams, searchByName, sortAZ, sortZA } from '~/api'
+import { getByParams, getTotalRecord, searchByName, sortAZ, sortZA } from '~/api'
+import { Theme } from '~/hooks/useContext'
 import { setDataPost } from '~/redux/features/PostsSlice'
 import { useAppDispatch } from '~/redux/hooks'
 
 import Filter from './common/Filter'
-import Pagination from './common/Pagination'
+import PaginationCustom from './common/PaginationCustom'
 import TitleTable from './common/TitleTable'
 import PostsTable from './tables/PostsTable'
 
 const Posts = () => {
   const dispatch = useAppDispatch()
+  const { perPage } = useContext(Theme)
   const [valueInput, setValueInput] = useState<string>('')
+  const [pageCount, setPageCount] = useState<number>(1)
   const handleOnClickSearch = async () => {
     try {
       const res = await searchByName('posts', valueInput)
@@ -39,7 +42,7 @@ const Posts = () => {
   const handlePageChange = ({ selected }: { selected: number }) => {
     const fetchDataAsync = async () => {
       try {
-        const res = await getByParams('posts', { _page: selected + 1, _limit: 10 })
+        const res = await getByParams('posts', { _page: selected + 1, _limit: Number(perPage) })
         dispatch(setDataPost(res))
       } catch (error) {
         console.error('Lỗi khi lấy dữ liệu:', error)
@@ -47,6 +50,19 @@ const Posts = () => {
     }
     fetchDataAsync()
   }
+
+  useEffect(() => {
+    const handlePageCount = async () => {
+      try {
+        const res = await getTotalRecord('posts')
+        setPageCount(Math.ceil(res / Number(perPage)))
+      } catch (error) {
+        console.error('Lỗi khi lấy dữ liệu:', error)
+      }
+    }
+    handlePageCount()
+  }, [perPage])
+
   return (
     <>
       <div className='w-full h-screen'>
@@ -59,7 +75,7 @@ const Posts = () => {
             sortZA={handleSortZA}
           />
           <PostsTable />
-          <Pagination pageCount={4} onPageChange={handlePageChange} />
+          <PaginationCustom pageCount={pageCount} onPageChange={handlePageChange} />
         </div>
       </div>
     </>

@@ -1,38 +1,11 @@
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
-import ReactPaginate from 'react-paginate'
-
 import Select from './Select'
-interface IPagination {
-  pageCount: number
-  onPageChange?: ({ selected }: { selected: number }) => void
-}
-const Pagination = (props: IPagination) => {
-  const { pageCount, onPageChange } = props
+
+const Pagination = () => {
   return (
     <>
-      <div className='w-full '>
-        <div className='w-full  bg-[#E3E5E8] rounded-b px-3 flex justify-between items-center'>
+      <div className='w-full'>
+        <div className='w-full  bg-[#E3E5E8] rounded-b px-3 flex justify-between items-center py-1'>
           <Select />
-          <ReactPaginate
-            className='flex justify-end py-2   '
-            pageClassName=' w-[30px] h-[30px] bg-white  text-[20px] text-gray-700  border border-[#D5D8DD]'
-            pageLinkClassName='flex justify-center items-center w-full h-full'
-            activeClassName='bg-green-800'
-            activeLinkClassName='text-white flex '
-            breakLabel='...'
-            previousLabel={<IoIosArrowBack style={{ color: 'black' }} />}
-            nextLabel={<IoIosArrowForward style={{ color: 'black' }} />}
-            onPageChange={onPageChange}
-            pageRangeDisplayed={5}
-            pageCount={4}
-            nextClassName='  bg-white  w-[30px] h-[30px] flex justify-center items-center  text-[20px] text-white border border-[#D5D8DD] '
-            previousClassName='bg-white  w-[30px] h-[30px] flex justify-center items-center  text-[20px] text-white border border-[#D5D8DD]  '
-            disabledClassName=''
-            previousLinkClassName='flex justify-center items-center w-full h-full'
-            nextLinkClassName='flex justify-center items-center w-full h-full'
-            renderOnZeroPageCount={null}
-            initialPage={0}
-          />
         </div>
       </div>
     </>

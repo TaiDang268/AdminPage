@@ -11,6 +11,7 @@ import Action from '../common/Action'
 import DeleteWarning from '../notification/DeleteWarning'
 
 const AuthorTable = () => {
+  const { perPage } = useContext(Theme)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const authorData = useAppSelector((state) => state.author.authors)
@@ -19,14 +20,14 @@ const AuthorTable = () => {
   useEffect(() => {
     const fetchDataAsync = async () => {
       try {
-        const res = await getByParamsTopic('authors', { _page: 1, _limit: 10 })
+        const res = await getByParamsTopic('authors', { _page: 1, _limit: Number(perPage) })
         dispatch(setDataAuthor(res))
       } catch (error) {
         console.error('Lỗi khi lấy dữ liệu:', error)
       }
     }
     fetchDataAsync()
-  }, [])
+  }, [perPage])
   const handleClickTrash = (id: string) => {
     setToggle(true)
     setIdDelete(id)

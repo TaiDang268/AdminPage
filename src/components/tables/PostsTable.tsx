@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { ToastContainer } from 'react-toastify'
 
 import { getByParams } from '~/api'
+import { Theme } from '~/hooks/useContext'
 import { deletePost, setDataPost } from '~/redux/features/PostsSlice'
 import { useAppDispatch, useAppSelector } from '~/redux/hooks'
 import { IPosts } from '~/types/interfaces'
@@ -13,20 +14,21 @@ import { deleteErrorMess, deleteSuccessMess } from '../toast-message'
 
 const PostsTable = () => {
   const dispatch = useAppDispatch()
+  const { perPage } = useContext(Theme)
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [isEditShow, setIsEditShow] = useState<boolean>(false)
   const [selectedItem, setSelectedItem] = useState<IPosts | null>(null)
   useEffect(() => {
     const fetchDataAsync = async () => {
       try {
-        const res = await getByParams('posts', { _page: 1, _limit: 10 })
+        const res = await getByParams('posts', { _page: 1, _limit: Number(perPage) })
         dispatch(setDataPost(res))
       } catch (error) {
         console.error('Lỗi khi lấy dữ liệu:', error)
       }
     }
     fetchDataAsync()
-  }, [])
+  }, [perPage])
   const dataPosts = useAppSelector((state) => state.posts.posts)
   const handleClickTrash = (item: IPosts) => {
     setIsModalOpen(true)

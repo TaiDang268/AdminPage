@@ -43,7 +43,7 @@ const EditConfirm = (props: IEditConfirm) => {
         .catch((error) => {
           console.log(error)
         })
-      updateSuccessMess()
+      updateSuccessMess('bài viết')
     } catch (err) {
       console.log(err)
     }

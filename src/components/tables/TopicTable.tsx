@@ -14,21 +14,20 @@ const TopicTable = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const topicData = useAppSelector((state) => state.topic.topics)
-  const { toggle, setToggle, setIdDelete, idDelete } = useContext(Theme)
+  const { toggle, setToggle, setIdDelete, idDelete, perPage } = useContext(Theme)
 
   useEffect(() => {
     const fetchDataAsync = async () => {
       try {
-        const res = await getByParamsTopic('topics', { _page: 1, _limit: 10 })
+        const res = await getByParamsTopic('topics', { _page: 1, _limit: Number(perPage) })
         dispatch(setDataTopic(res))
       } catch (error) {
         console.error('Lỗi khi lấy dữ liệu:', error)
       }
     }
     fetchDataAsync()
-  }, [])
+  }, [perPage])
   const handleClickTrash = (id: string) => {
-    // dispatch(deleteTopic(id))
     setIdDelete(id)
     setToggle(true)
   }
