@@ -7,6 +7,7 @@ import * as yup from 'yup'
 
 import images from '~/assets/images'
 import { Theme } from '~/hooks/useContext'
+import routesPath from '~/routes/routesPath'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -33,8 +34,12 @@ const Login = () => {
     }
     try {
       const res = await axios.post('http://localhost:3007/login', acount)
+
       if (res.statusText == 'OK') {
-        navigate('write')
+        navigate(routesPath.posts)
+        localStorage.setItem('isLoggedIn', 'true')
+        localStorage.setItem('user', JSON.stringify(res.data.user))
+
         setIsLoggedIn(true)
       }
     } catch (err: any) {
@@ -68,6 +73,7 @@ const Login = () => {
             <div className='my-2'>
               <p className='mb-1'>Mật khẩu</p>
               <input
+                type='password'
                 className='h-[36px] w-full rounded-[25px] border border-[#d9d9d9] px-4'
                 {...register('password', { required: true })}
               />
@@ -79,7 +85,9 @@ const Login = () => {
                 <p>Nhớ mật khẩu</p>
               </div>
               <div>
-                <p>Quên mật khẩu</p>
+                <a href='' className='text-blue-500'>
+                  Quên mật khẩu
+                </a>
               </div>
             </div>
             <div className='mt-7' onClick={handleSubmit(handleClickLogin)}>

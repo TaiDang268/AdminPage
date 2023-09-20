@@ -1,6 +1,7 @@
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import axios from 'axios'
+import SelectNpm from 'react-select'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { AiOutlineCheck } from 'react-icons/ai'
@@ -18,14 +19,18 @@ import { IPosts } from '~/types/interfaces'
 import { addErrorMess, addSuccessMess } from '../toast-message'
 const CreatePosts = () => {
   const navigate = useNavigate()
-  const { register, getValues } = useForm()
+  const {
+    register,
+    getValues,
+    handleSubmit,
+    formState: { errors }
+  } = useForm()
   const [textCkEditor, setTextCkEditor] = useState<string>('0')
   const [lastId, setLastId] = useState<string>('')
   const [tagsName, setTagsName] = useState<string[]>([''])
   const [authorName, setAuthorName] = useState<string[]>([''])
   const [topicName, setTopicName] = useState<string[]>([''])
   const [selectedImage, setSelectedImage] = useState<string>('')
-  console.log(getCurrentDate())
 
   useEffect(() => {
     axios
@@ -91,7 +96,7 @@ const CreatePosts = () => {
             </div>
             <div
               className='flex justify-center items-center h-[32px] border border-[#D 9D9D9] rounded bg-[#186E25] px-2 cursor-pointer'
-              onClick={handleClickSave}
+              onClick={handleSubmit(handleClickSave)}
             >
               <p className='text-white'>Lưu bài viết</p>
             </div>
@@ -105,14 +110,22 @@ const CreatePosts = () => {
                   <p>Tên bài viết</p>
                   <p className='text-red-600 ml-1'> *</p>
                 </div>
-                <textarea className='h-[85px] border border-[#9D9D9D] w-full  px-2  ' {...register('name')} />
+                <textarea
+                  className='h-[85px] border border-[#9D9D9D] w-full  px-2  '
+                  {...register('name', { required: true })}
+                />
+                {errors.name && <p className='text-red-500'>Không được để trống trường này</p>}
               </div>
               <div className='w-[50%] '>
                 <div className='flex'>
                   <p>Mô tả</p>
                   <p className='text-red-600 ml-1'> *</p>
                 </div>
-                <textarea className='h-[85px] border border-[#9D9D9D] w-full  px-2  ' {...register('short_desc')} />
+                <textarea
+                  className='h-[85px] border border-[#9D9D9D] w-full  px-2  '
+                  {...register('short_desc', { required: true })}
+                />
+                {errors.short_desc && <p className='text-red-500'>Không được để trống trường này</p>}
               </div>
             </div>
             <div>
@@ -154,23 +167,27 @@ const CreatePosts = () => {
               </div>
             </div>
           </div>
-          <div className='w-[320px] h-[300px] bg-white  p-3 border border-[#E3E5E8] rounded'>
+          <div className='w-[320px] h-[350px] bg-white  p-3 border border-[#E3E5E8] rounded'>
             <p className='font-bold'>Thông tin</p>
             <div className='my-2'>
               <p className='mb-1'>Chủ đề </p>
-              <select className='w-full h-[32px]  border border-[#9D9D9D] rounded font-semibold' {...register('title')}>
+              <select
+                className='w-full h-[32px]  border border-[#9D9D9D] rounded font-semibold'
+                {...register('title', { required: true })}
+              >
                 {topicName.map((item) => (
                   <option key={item} value={item}>
                     {item}
                   </option>
                 ))}
               </select>
+              {errors.title && <p className='text-red-500'>Không được để trống trường này</p>}
             </div>
             <div className='mb-2'>
               <p className='mb-1'>Tác giả </p>
               <select
                 className='w-full h-[32px]  border border-[#9D9D9D] rounded font-semibold'
-                {...register('author')}
+                {...register('author', { required: true })}
               >
                 {authorName.map((item) => (
                   <option key={item} value={item}>
@@ -178,19 +195,27 @@ const CreatePosts = () => {
                   </option>
                 ))}
               </select>
+              {errors.author && <p className='text-red-500'>Không được để trống trường này</p>}
             </div>
             <div className='mb-2'>
               <p className='mb-1'>Tag </p>
-              <select
+              <SelectNpm
+                className=''
+                options={tagsName.map((item) => ({ value: item, label: item }))}
+                isMulti={true}
+                {...register('category', { required: true })}
+              />
+              {/* <select
                 className='w-full h-[32px]  border border-[#9D9D9D] rounded font-semibold'
-                {...register('category')}
+                {...register('category', { required: true })}
               >
                 {tagsName.map((item) => (
                   <option key={item} value={item}>
                     {item}
                   </option>
                 ))}
-              </select>
+              </select> */}
+              {errors.category && <p className='text-red-500'>Không được để trống trường này</p>}
             </div>
             <div className='mb-2 flex justify-between'>
               <p>Ngày viết: </p>

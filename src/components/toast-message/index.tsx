@@ -24,3 +24,8 @@ export const updateSuccessMess = (name: string) => {
     position: toast.POSITION.TOP_RIGHT
   })
 }
+export const loginSuccessMess = (name: string) => {
+  toast.success(`Xin chào ${name}`, {
+    position: toast.POSITION.TOP_RIGHT
+  })
+}

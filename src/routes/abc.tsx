@@ -1,9 +1,11 @@
+import { useContext } from 'react'
 import { Navigate, Outlet, useRoutes } from 'react-router-dom'
 
 import CreateAuthor from '~/components/create/CreateAuthor'
 import CreatePosts from '~/components/create/CreatePosts'
 import CreateTag from '~/components/create/CreateTag'
 import CreateTopic from '~/components/create/CreateTopic'
+import { Theme } from '~/hooks/useContext'
 
 import routesPath from './routesPath'
 import Author from '../components/Author'
@@ -12,19 +14,18 @@ import Login from '../components/Login'
 import Posts from '../components/Posts'
 import Tag from '../components/Tag'
 import Topic from '../components/Topic'
-
-export default function Routers() {
-  const isLoggedIn = localStorage.getItem('isLoggedIn')
+export const Routes = () => {
+  const { isLoggedIn } = useContext(Theme)
   const IsProtectedRouter = () => {
-    return isLoggedIn === 'true' ? <Outlet /> : <Navigate to='/login' />
+    return isLoggedIn ? <Outlet /> : <Navigate to='/login' />
   }
   const IsNotProtectedRouter = () => {
-    return isLoggedIn === 'false' ? <Outlet /> : <Navigate to='/' />
+    return !isLoggedIn ? <Outlet /> : <Navigate to='/' />
   }
-  const routers = [
+
+  const element = useRoutes([
     {
       path: '/login',
-
       element: <IsNotProtectedRouter />,
       children: [
         {
@@ -34,92 +35,68 @@ export default function Routers() {
       ]
     },
     {
-      path: '',
-      element: <IsProtectedRouter />,
+      path: routesPath.write,
       children: [
-        {
-          path: '',
-          element: (
-            <Layout>
-              <Posts />
-            </Layout>
-          )
-        },
+        { index: true, path: '', element: <Tag /> },
+
         {
           path: routesPath.posts,
           children: [
-            {
-              index: true,
-              path: '',
-              element: (
-                <Layout>
-                  <Posts />
-                </Layout>
-              )
-            },
+            { index: true, path: '', element: <Posts /> },
             {
               path: 'create_posts',
-              element: <CreatePosts />
+              element: (
+                <Layout>
+                  <CreatePosts />
+                </Layout>
+              )
             }
           ]
         },
         {
           path: routesPath.topic,
           children: [
-            {
-              index: true,
-              path: '',
-              element: (
-                <Layout>
-                  <Topic />
-                </Layout>
-              )
-            },
+            { index: true, path: '', element: <Topic /> },
             {
               path: 'create_topic',
-              element: <CreateTopic />
+              element: (
+                <Layout>
+                  <CreateTopic />
+                </Layout>
+              )
             }
           ]
         },
         {
           path: routesPath.author,
           children: [
-            {
-              index: true,
-              path: '',
-              element: (
-                <Layout>
-                  <Author />
-                </Layout>
-              )
-            },
+            { index: true, path: '', element: <Author /> },
             {
               path: 'create_author',
-              element: <CreateAuthor />
+              element: (
+                <Layout>
+                  <CreateAuthor />
+                </Layout>
+              )
             }
           ]
         },
         {
           path: routesPath.tag,
           children: [
-            {
-              index: true,
-              path: '',
-              element: (
-                <Layout>
-                  <Tag />
-                </Layout>
-              )
-            },
+            { index: true, path: '', element: <Tag /> },
             {
               path: 'create_tag',
-              element: <CreateTag />
+              element: (
+                <Layout>
+                  <CreateTag />
+                </Layout>
+              )
             }
           ]
         }
       ]
     }
-  ]
-  const routing = useRoutes(routers)
-  return routing
+  ])
+  return element
 }

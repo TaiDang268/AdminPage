@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
+import { ToastContainer } from 'react-toastify'
 
 import { getByParams, getTotalRecord, searchByName, sortAZ, sortZA } from '~/api'
 import { Theme } from '~/hooks/useContext'
@@ -9,9 +10,10 @@ import Filter from './common/Filter'
 import PaginationCustom from './common/PaginationCustom'
 import TitleTable from './common/TitleTable'
 import PostsTable from './tables/PostsTable'
-
+import { loginSuccessMess } from './toast-message'
 const Posts = () => {
   const dispatch = useAppDispatch()
+
   const { perPage } = useContext(Theme)
   const [valueInput, setValueInput] = useState<string>('')
   const [pageCount, setPageCount] = useState<number>(1)
@@ -77,6 +79,7 @@ const Posts = () => {
           <PostsTable />
           <PaginationCustom pageCount={pageCount} onPageChange={handlePageChange} />
         </div>
+        <ToastContainer />
       </div>
     </>
   )

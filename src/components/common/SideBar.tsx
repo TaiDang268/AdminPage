@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { useState } from 'react'
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
 
 import images from '~/assets/images'
 import routesPath from '~/routes/routesPath'
@@ -30,31 +30,30 @@ const arr = [
 const SideBar = () => {
   const navigate = useNavigate()
   const [active, setActive] = useState<string>('')
-  const [showSidebar, setShowSidebar] = useState<boolean>(false)
+  const [showSidebar, setShowSidebar] = useState<boolean>(true)
+  const location = useLocation()
+  const currentPath = location.pathname
+
   let userObject
   const storedUser = localStorage.getItem('user')
+
   if (storedUser) {
     userObject = JSON.parse(storedUser)
   } else {
     console.log('Không tìm thấy thông tin người dùng trong localStorage')
   }
-
-  // click sidebar cha
+  console.log(userObject)
   const handleOnclickSidebar = (sidebarItem: string) => {
     if (sidebarItem === 'write') {
       setShowSidebar(!showSidebar)
     }
-    setActive(sidebarItem)
-    navigate(sidebarItem)
   }
-  // click item tronf write
   const handleOnclickItemChildren = (itemChildren: string) => {
     setActive(itemChildren)
-    navigate(`/write/${itemChildren}`)
   }
-  //logout
   const handleClickLogOut = () => {
     navigate('/login')
+    localStorage.setItem('isLoggedIn', 'false')
   }
 
   return (
@@ -79,16 +78,17 @@ const SideBar = () => {
           </div>
           <div className={clsx(showSidebar ? 'block' : 'hidden')}>
             {arr.map((item) => (
-              <p
+              <NavLink
+                to={item.path}
                 key={item.id}
                 className={clsx(
                   ' cursor-pointer w-full rounded h-[40px]  pl-12 flex items-center ',
-                  active === item.path ? 'bg-[#3F4D63]' : null
+                  currentPath === item.path ? 'bg-[#3F4D63]' : null
                 )}
                 onClick={() => handleOnclickItemChildren(item.path)}
               >
                 {item.title}
-              </p>
+              </NavLink>
             ))}
           </div>
           <div
@@ -96,7 +96,6 @@ const SideBar = () => {
               'flex cursor-pointer items-center  w-full rounded h-[40px] my-3 pl-3 ',
               active === 'image' ? 'bg-[#3F4D63]' : null
             )}
-            onClick={() => handleOnclickSidebar('image')}
           >
             <img src={images.Image} />
             <p className='m-3'>Ảnh</p>
@@ -107,7 +106,6 @@ const SideBar = () => {
               'flex cursor-pointer items-center  w-full rounded h-[40px] my-3 pl-3 ',
               active === 'setting' ? 'bg-[#3F4D63]' : null
             )}
-            onClick={() => handleOnclickSidebar('setting')}
           >
             <img src={images.Setting} />
             <p className='m-3'>Cài đặt</p>
@@ -120,7 +118,7 @@ const SideBar = () => {
               <img src={userObject.image} className='w-[40px] h-[40px] rounded-[50%]' />
             </div>
             <div>
-              <p className='font-bold '>{userObject.username}</p>
+              <p className='font-bold '>{userObject.name}</p>
               <p className='text-[#939393] '>{userObject.typeOf}</p>
             </div>
           </div>
