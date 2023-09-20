@@ -12,12 +12,14 @@ import Login from '../components/Login'
 import Posts from '../components/Posts'
 import Tag from '../components/Tag'
 import Topic from '../components/Topic'
-
+import { Theme } from '~/hooks/useContext'
+import { useContext } from 'react'
 const routers = [
   {
-    path: routesPath.login,
+    path: '/login',
     element: <Login />
   },
+
   {
     path: routesPath.write,
     children: [
@@ -68,6 +70,12 @@ const routers = [
 ]
 
 export default function Routers() {
+  const { isLoggedIn } = useContext(Theme)
+
+  if (!isLoggedIn) {
+    return <Login />
+  }
+
   const routing = useRoutes(routers)
   return <Layout>{routing}</Layout>
 }

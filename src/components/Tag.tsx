@@ -18,7 +18,7 @@ const Tag = () => {
 
   const handleOnClickSearch = async () => {
     try {
-      const res = await searchByName('tags', valueInput)
+      const res = await searchByName('tags', valueInput, Number(perPage))
       dispatch(setDataTag(res))
     } catch (err) {
       console.log(err)
@@ -26,7 +26,7 @@ const Tag = () => {
   }
   const handleSortAZ = async () => {
     try {
-      const res = await sortAZ('tags')
+      const res = await sortAZ('tags', Number(perPage))
       dispatch(setDataTag(res))
     } catch (err) {
       console.log(err)
@@ -34,7 +34,7 @@ const Tag = () => {
   }
   const handleSortZA = async () => {
     try {
-      const res = await sortZA('tags')
+      const res = await sortZA('tags', Number(perPage))
       dispatch(setDataTag(res))
     } catch (err) {
       console.log(err)

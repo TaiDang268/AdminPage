@@ -18,7 +18,7 @@ const Author = () => {
 
   const handleOnClickSearch = async () => {
     try {
-      const res = await searchByName('authors', valueInput)
+      const res = await searchByName('authors', valueInput, Number(perPage))
       dispatch(setDataAuthor(res))
     } catch (err) {
       console.log(err)
@@ -26,7 +26,7 @@ const Author = () => {
   }
   const handleSortAZ = async () => {
     try {
-      const res = await sortAZ('authors')
+      const res = await sortAZ('authors', Number(perPage))
       dispatch(setDataAuthor(res))
     } catch (err) {
       console.log(err)
@@ -34,7 +34,7 @@ const Author = () => {
   }
   const handleSortZA = async () => {
     try {
-      const res = await sortZA('authors')
+      const res = await sortZA('authors', Number(perPage))
       dispatch(setDataAuthor(res))
     } catch (err) {
       console.log(err)

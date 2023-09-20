@@ -31,6 +31,14 @@ const SideBar = () => {
   const navigate = useNavigate()
   const [active, setActive] = useState<string>('')
   const [showSidebar, setShowSidebar] = useState<boolean>(false)
+  let userObject
+  const storedUser = localStorage.getItem('user')
+  if (storedUser) {
+    userObject = JSON.parse(storedUser)
+  } else {
+    console.log('Không tìm thấy thông tin người dùng trong localStorage')
+  }
+
   // click sidebar cha
   const handleOnclickSidebar = (sidebarItem: string) => {
     if (sidebarItem === 'write') {
@@ -48,6 +56,7 @@ const SideBar = () => {
   const handleClickLogOut = () => {
     navigate('/login')
   }
+
   return (
     <>
       <div className='w-[260px] h-screen bg-[#2A3444] relative text-white'>
@@ -108,11 +117,11 @@ const SideBar = () => {
         <div className='absolute bottom-4  w-full px-3'>
           <div className='flex my-3'>
             <div className='mr-3'>
-              <img src={images.Avatar} className='w-[40px] h-[40px] rounded-[50%]' />
+              <img src={userObject.image} className='w-[40px] h-[40px] rounded-[50%]' />
             </div>
             <div>
-              <p className='font-bold '>TuyenPhan</p>
-              <p className='text-[#939393]'>Admin</p>
+              <p className='font-bold '>{userObject.username}</p>
+              <p className='text-[#939393] '>{userObject.typeOf}</p>
             </div>
           </div>
           <div>

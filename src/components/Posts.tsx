@@ -17,7 +17,7 @@ const Posts = () => {
   const [pageCount, setPageCount] = useState<number>(1)
   const handleOnClickSearch = async () => {
     try {
-      const res = await searchByName('posts', valueInput)
+      const res = await searchByName('posts', valueInput, Number(perPage))
       dispatch(setDataPost(res))
     } catch (err) {
       console.log(err)
@@ -25,7 +25,7 @@ const Posts = () => {
   }
   const handleSortAZ = async () => {
     try {
-      const res = await sortAZ('posts')
+      const res = await sortAZ('posts', Number(perPage))
       dispatch(setDataPost(res))
     } catch (err) {
       console.log(err)
@@ -33,7 +33,7 @@ const Posts = () => {
   }
   const handleSortZA = async () => {
     try {
-      const res = await sortZA('posts')
+      const res = await sortZA('posts', Number(perPage))
       dispatch(setDataPost(res))
     } catch (err) {
       console.log(err)

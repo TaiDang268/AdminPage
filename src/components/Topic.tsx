@@ -18,7 +18,7 @@ const Topic = () => {
 
   const handleOnClickSearch = async () => {
     try {
-      const res = await searchByName('topics', valueInput)
+      const res = await searchByName('topics', valueInput, Number(perPage))
       dispatch(setDataTopic(res))
     } catch (err) {
       console.log(err)
@@ -26,7 +26,7 @@ const Topic = () => {
   }
   const handleSortAZ = async () => {
     try {
-      const res = await sortAZ('topics')
+      const res = await sortAZ('topics', Number(perPage))
       dispatch(setDataTopic(res))
     } catch (err) {
       console.log(err)
@@ -34,7 +34,7 @@ const Topic = () => {
   }
   const handleSortZA = async () => {
     try {
-      const res = await sortZA('topics')
+      const res = await sortZA('topics', Number(perPage))
       dispatch(setDataTopic(res))
     } catch (err) {
       console.log(err)
