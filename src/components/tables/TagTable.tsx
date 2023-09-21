@@ -25,7 +25,7 @@ const TagTable = () => {
       }
     }
     fetchDataAsync()
-  }, [perPage])
+  }, [])
   const handleClickTrash = (id: string) => {
     setToggle(true)
     setIdDelete(id)

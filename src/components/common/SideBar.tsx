@@ -42,7 +42,6 @@ const SideBar = () => {
   } else {
     console.log('Không tìm thấy thông tin người dùng trong localStorage')
   }
-  console.log(userObject)
   const handleOnclickSidebar = (sidebarItem: string) => {
     if (sidebarItem === 'write') {
       setShowSidebar(!showSidebar)

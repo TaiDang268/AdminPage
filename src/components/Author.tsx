@@ -62,7 +62,7 @@ const Author = () => {
       }
     }
     handlePageCount()
-  }, [perPage])
+  }, [])
   return (
     <>
       <div className='w-full h-screen'>

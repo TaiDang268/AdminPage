@@ -1,13 +1,13 @@
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import axios from 'axios'
-import SelectNpm from 'react-select'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { AiOutlineCheck } from 'react-icons/ai'
 import { MdArrowBackIos } from 'react-icons/md'
 import '../../css/custom.css'
 import { useNavigate } from 'react-router-dom'
+import SelectNpm from 'react-select'
 import { ToastContainer } from 'react-toastify'
 
 import { getNameForSelect, postPosts } from '~/api'
@@ -167,7 +167,7 @@ const CreatePosts = () => {
               </div>
             </div>
           </div>
-          <div className='w-[320px] h-[350px] bg-white  p-3 border border-[#E3E5E8] rounded'>
+          <div className='w-[320px] h-[370px] bg-white  p-3 border border-[#E3E5E8] rounded'>
             <p className='font-bold'>Thông tin</p>
             <div className='my-2'>
               <p className='mb-1'>Chủ đề </p>
@@ -200,7 +200,6 @@ const CreatePosts = () => {
             <div className='mb-2'>
               <p className='mb-1'>Tag </p>
               <SelectNpm
-                className=''
                 options={tagsName.map((item) => ({ value: item, label: item }))}
                 isMulti={true}
                 {...register('category', { required: true })}

@@ -10,7 +10,6 @@ import Filter from './common/Filter'
 import PaginationCustom from './common/PaginationCustom'
 import TitleTable from './common/TitleTable'
 import PostsTable from './tables/PostsTable'
-import { loginSuccessMess } from './toast-message'
 const Posts = () => {
   const dispatch = useAppDispatch()
 
@@ -63,7 +62,7 @@ const Posts = () => {
       }
     }
     handlePageCount()
-  }, [perPage])
+  }, [])
 
   return (
     <>
