@@ -28,7 +28,7 @@ const PostsTable = () => {
       }
     }
     fetchDataAsync()
-  }, [])
+  }, [perPage])
   const dataPosts = useAppSelector((state) => state.posts.posts)
   const handleClickTrash = (item: IPosts) => {
     setIsModalOpen(true)

@@ -26,7 +26,7 @@ const TopicTable = () => {
       }
     }
     fetchDataAsync()
-  }, [])
+  }, [perPage])
   const handleClickTrash = (id: string) => {
     setIdDelete(id)
     setToggle(true)

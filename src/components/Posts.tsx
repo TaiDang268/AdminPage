@@ -62,7 +62,7 @@ const Posts = () => {
       }
     }
     handlePageCount()
-  }, [])
+  }, [perPage])
 
   return (
     <>
