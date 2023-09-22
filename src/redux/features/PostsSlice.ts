@@ -1,6 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-import { deleteById } from '~/api'
 import { IPosts } from '~/types/interfaces'
 
 export interface PostState {
@@ -26,20 +25,10 @@ export const postSlice = createSlice({
       if (editedPostIndex !== -1) {
         state.posts[editedPostIndex] = action.payload
       }
-    },
-
-    deletePost: (state, action: PayloadAction<string>) => {
-      const postIdToDelete = action.payload
-      try {
-        deleteById('posts', postIdToDelete)
-        state.posts = state.posts.filter((post) => post.id !== postIdToDelete)
-      } catch (err) {
-        console.log(err)
-      }
     }
   }
 })
 
-export const { addPost, editPost, deletePost, setDataPost } = postSlice.actions
+export const { addPost, editPost, setDataPost } = postSlice.actions
 
 export default postSlice.reducer

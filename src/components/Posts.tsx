@@ -5,6 +5,7 @@ import { getByParams, getTotalRecord, searchByName, sortAZ, sortZA } from '~/api
 import { Theme } from '~/hooks/useContext'
 import { setDataPost } from '~/redux/features/PostsSlice'
 import { useAppDispatch } from '~/redux/hooks'
+import { useGetPostsQuery } from '~/rtk-query/posts.service'
 
 import Filter from './common/Filter'
 import PaginationCustom from './common/PaginationCustom'
@@ -12,10 +13,16 @@ import TitleTable from './common/TitleTable'
 import PostsTable from './tables/PostsTable'
 const Posts = () => {
   const dispatch = useAppDispatch()
-
   const { perPage } = useContext(Theme)
   const [valueInput, setValueInput] = useState<string>('')
   const [pageCount, setPageCount] = useState<number>(1)
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const { data: postsResponse } = useGetPostsQuery({ _limit: perPage, _page: '1' })
+  useEffect(() => {
+    if (postsResponse) {
+      dispatch(setDataPost(postsResponse))
+    }
+  }, [dispatch, postsResponse])
   const handleOnClickSearch = async () => {
     try {
       const res = await searchByName('posts', valueInput, Number(perPage))
@@ -41,6 +48,7 @@ const Posts = () => {
     }
   }
   const handlePageChange = ({ selected }: { selected: number }) => {
+    setCurrentPage(selected + 1)
     const fetchDataAsync = async () => {
       try {
         const res = await getByParams('posts', { _page: selected + 1, _limit: Number(perPage) })
@@ -61,6 +69,7 @@ const Posts = () => {
         console.error('Lỗi khi lấy dữ liệu:', error)
       }
     }
+
     handlePageCount()
   }, [perPage])
 
@@ -75,7 +84,7 @@ const Posts = () => {
             sortAZ={handleSortAZ}
             sortZA={handleSortZA}
           />
-          <PostsTable />
+          <PostsTable currentPage={currentPage} />
           <PaginationCustom pageCount={pageCount} onPageChange={handlePageChange} />
         </div>
         <ToastContainer />

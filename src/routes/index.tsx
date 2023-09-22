@@ -1,11 +1,11 @@
-import { Navigate, Outlet, useRoutes } from 'react-router-dom'
+import { Outlet, useRoutes } from 'react-router-dom'
 
 import CreateAuthor from '~/components/create/CreateAuthor'
 import CreatePosts from '~/components/create/CreatePosts'
-import CreateTag from '~/components/create/CreateTag'
 import CreateTopic from '~/components/create/CreateTopic'
 
-import routesPath from './routesPath'
+import PrivateRouter from './PrivateRouter'
+import PublicRouter from './PublicRouter'
 import Author from '../components/Author'
 import Layout from '../components/common/Layout'
 import Login from '../components/Login'
@@ -13,113 +13,89 @@ import Posts from '../components/Posts'
 import Tag from '../components/Tag'
 import Topic from '../components/Topic'
 
-export default function Routers() {
-  const isLoggedIn = localStorage.getItem('isLoggedIn')
-  const IsProtectedRouter = () => {
-    return isLoggedIn === 'true' ? <Outlet /> : <Navigate to='/login' />
+const routes = [
+  {
+    path: '/',
+    element: (
+      <PrivateRouter>
+        <Layout />
+      </PrivateRouter>
+    ),
+    children: [
+      {
+        index: true,
+        element: <h1>Trang home</h1>
+      },
+      {
+        path: '/posts',
+        element: <Outlet />,
+        children: [
+          {
+            index: true,
+            element: <Posts />
+          },
+          {
+            path: 'create_posts',
+            element: <CreatePosts />
+          }
+        ]
+      },
+      {
+        path: '/topic',
+        element: <Outlet />,
+        children: [
+          {
+            index: true,
+            element: <Topic />
+          },
+          {
+            path: 'create_topic',
+            element: <CreateTopic />
+          }
+        ]
+      },
+      {
+        path: '/author',
+        element: <Outlet />,
+        children: [
+          {
+            index: true,
+            element: <Author />
+          },
+          {
+            path: 'create_author',
+            element: <CreateAuthor />
+          }
+        ]
+      },
+      {
+        path: '/tag',
+        element: <Outlet />,
+        children: [
+          {
+            index: true,
+            element: <Tag />
+          },
+          {
+            path: 'create_tag',
+            element: <CreateAuthor />
+          }
+        ]
+      }
+    ]
+  },
+  {
+    path: '/login',
+    element: <PublicRouter />,
+    children: [
+      {
+        index: true,
+        element: <Login />
+      }
+    ]
   }
-  const IsNotProtectedRouter = () => {
-    return isLoggedIn === 'false' ? <Outlet /> : <Navigate to='/' />
-  }
-  const routers = [
-    {
-      path: '/login',
+]
 
-      element: <IsNotProtectedRouter />,
-      children: [
-        {
-          path: '/login',
-          element: <Login />
-        }
-      ]
-    },
-    {
-      path: '',
-      element: <IsProtectedRouter />,
-      children: [
-        {
-          path: '',
-          element: (
-            <Layout>
-              <Posts />
-            </Layout>
-          )
-        },
-        {
-          path: routesPath.posts,
-          children: [
-            {
-              index: true,
-              path: '',
-              element: (
-                <Layout>
-                  <Posts />
-                </Layout>
-              )
-            },
-            {
-              path: 'create_posts',
-              element: <CreatePosts />
-            }
-          ]
-        },
-        {
-          path: routesPath.topic,
-          children: [
-            {
-              index: true,
-              path: '',
-              element: (
-                <Layout>
-                  <Topic />
-                </Layout>
-              )
-            },
-            {
-              path: 'create_topic',
-              element: <CreateTopic />
-            }
-          ]
-        },
-        {
-          path: routesPath.author,
-          children: [
-            {
-              index: true,
-              path: '',
-              element: (
-                <Layout>
-                  <Author />
-                </Layout>
-              )
-            },
-            {
-              path: 'create_author',
-              element: <CreateAuthor />
-            }
-          ]
-        },
-        {
-          path: routesPath.tag,
-          children: [
-            {
-              index: true,
-              path: '',
-              element: (
-                <Layout>
-                  <Tag />
-                </Layout>
-              )
-            },
-            {
-              path: 'create_tag',
-              element: <CreateTag />
-            }
-          ]
-        }
-      ]
-    }
-  ]
-  const routing = useRoutes(routers)
-  return routing
+export default function Routers() {
+  return useRoutes(routes)
 }

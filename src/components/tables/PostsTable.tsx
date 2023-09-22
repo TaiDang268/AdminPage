@@ -1,42 +1,40 @@
 import { useContext, useEffect, useState } from 'react'
 import { ToastContainer } from 'react-toastify'
 
-import { getByParams } from '~/api'
 import { Theme } from '~/hooks/useContext'
-import { deletePost, setDataPost } from '~/redux/features/PostsSlice'
+import { setDataPost } from '~/redux/features/PostsSlice'
 import { useAppDispatch, useAppSelector } from '~/redux/hooks'
+import { useDeletePostsMutation, useGetPostsQuery } from '~/rtk-query/posts.service'
 import { IPosts } from '~/types/interfaces'
 
 import Action from '../common/Action'
 import EditPost from '../edit/EditPost'
 import DeleteModal from '../notification/DeleteConfirm'
 import { deleteErrorMess, deleteSuccessMess } from '../toast-message'
-
-const PostsTable = () => {
+interface IPostTable {
+  currentPage: number
+}
+const PostsTable = ({ currentPage }: IPostTable) => {
   const dispatch = useAppDispatch()
+  const dataPosts = useAppSelector((state) => state.posts.posts)
   const { perPage } = useContext(Theme)
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [isEditShow, setIsEditShow] = useState<boolean>(false)
   const [selectedItem, setSelectedItem] = useState<IPosts | null>(null)
+  const { data: postsResponse } = useGetPostsQuery({ _limit: perPage, _page: currentPage.toString() })
+  const [deletePosts] = useDeletePostsMutation()
   useEffect(() => {
-    const fetchDataAsync = async () => {
-      try {
-        const res = await getByParams('posts', { _page: 1, _limit: Number(perPage) })
-        dispatch(setDataPost(res))
-      } catch (error) {
-        console.error('Lỗi khi lấy dữ liệu:', error)
-      }
+    if (postsResponse) {
+      dispatch(setDataPost(postsResponse))
     }
-    fetchDataAsync()
-  }, [perPage])
-  const dataPosts = useAppSelector((state) => state.posts.posts)
+  }, [dispatch, postsResponse])
   const handleClickTrash = (item: IPosts) => {
     setIsModalOpen(true)
     setSelectedItem(item)
   }
   const handleClickDelete = async (postId: string) => {
     try {
-      dispatch(deletePost(postId))
+      await deletePosts(postId)
       setIsModalOpen(false)
       deleteSuccessMess()
     } catch (err) {
@@ -67,7 +65,7 @@ const PostsTable = () => {
             </tr>
           </thead>
           <tbody>
-            {dataPosts.map((item) => (
+            {dataPosts?.map((item) => (
               <tr key={item.id}>
                 <th>
                   <input type='checkbox' />
