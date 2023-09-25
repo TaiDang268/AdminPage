@@ -1,5 +1,6 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import axios from 'axios'
+import Cookies from 'js-cookie'
 import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
@@ -8,6 +9,7 @@ import * as yup from 'yup'
 import images from '~/assets/images'
 import { Theme } from '~/hooks/useContext'
 import routesPath from '~/routes/routesPath'
+import { baseUrl } from '~/rtk-query/baseUrl'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -33,13 +35,13 @@ const Login = () => {
       password: value.password
     }
     try {
-      const res = await axios.post('http://localhost:3007/login', acount)
+      const res = await axios.post(`${baseUrl}/login`, acount)
 
       if (res.statusText == 'OK') {
         navigate(routesPath.posts)
         localStorage.setItem('isLoggedIn', 'true')
         localStorage.setItem('user', JSON.stringify(res.data.user))
-
+        Cookies.set('accessToken', res.data.accessToken)
         setIsLoggedIn(true)
       }
     } catch (err: any) {

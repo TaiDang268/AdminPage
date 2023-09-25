@@ -3,17 +3,17 @@ import { MdArrowBackIos } from 'react-icons/md'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
-import { addTopic, updateTopic } from '~/redux/features/TopicSlice'
-import { useAppDispatch } from '~/redux/hooks'
+import { useAddTopicMutation, useEditTopicMutation } from '~/rtk-query/topic.service'
 import { ITopic } from '~/types/interfaces'
 
 import { addSuccessMess, updateSuccessMess } from '../toast-message'
 const CreateTopic = () => {
   const navigate = useNavigate()
-  const dispatch = useAppDispatch()
   const location = useLocation()
   const { register, getValues } = useForm()
   const topicItem = location.state
+  const [addTopic] = useAddTopicMutation()
+  const [editTopic] = useEditTopicMutation()
   const handleClickButton = () => {
     if (!topicItem) {
       const dataAdd: Omit<ITopic, 'id'> = {
@@ -21,7 +21,7 @@ const CreateTopic = () => {
         slug: getValues('topic_slug'),
         quantity: '10'
       }
-      dispatch(addTopic(dataAdd))
+      addTopic(dataAdd)
       addSuccessMess('chủ đề')
     } else {
       const dataEdit: ITopic = {
@@ -30,7 +30,7 @@ const CreateTopic = () => {
         slug: getValues('topic_slug'),
         quantity: '10'
       }
-      dispatch(updateTopic(dataEdit))
+      editTopic(dataEdit)
       updateSuccessMess('chủ đề')
     }
   }

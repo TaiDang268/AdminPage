@@ -1,10 +1,10 @@
 import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { getByParamsTopic } from '~/api'
 import { Theme } from '~/hooks/useContext'
-import { deleteTopic, setDataTopic } from '~/redux/features/TopicSlice'
+import { setDataTopic } from '~/redux/features/TopicSlice'
 import { useAppDispatch, useAppSelector } from '~/redux/hooks'
+import { useDeleteTopicMutation, useGetTopicQuery } from '~/rtk-query/topic.service'
 import { ITopic } from '~/types/interfaces'
 
 import Action from '../common/Action'
@@ -15,24 +15,19 @@ const TopicTable = () => {
   const dispatch = useAppDispatch()
   const topicData = useAppSelector((state) => state.topic.topics)
   const { toggle, setToggle, setIdDelete, idDelete, perPage } = useContext(Theme)
-
+  const { data: topicResponse } = useGetTopicQuery({ _limit: perPage })
+  const [deleteTopic] = useDeleteTopicMutation()
   useEffect(() => {
-    const fetchDataAsync = async () => {
-      try {
-        const res = await getByParamsTopic('topics', { _page: 1, _limit: Number(perPage) })
-        dispatch(setDataTopic(res))
-      } catch (error) {
-        console.error('Lỗi khi lấy dữ liệu:', error)
-      }
+    if (topicResponse) {
+      dispatch(setDataTopic(topicResponse))
     }
-    fetchDataAsync()
-  }, [perPage])
+  }, [dispatch, topicResponse])
   const handleClickTrash = (id: string) => {
     setIdDelete(id)
     setToggle(true)
   }
   const handleDeleteTopic = () => {
-    dispatch(deleteTopic(idDelete))
+    deleteTopic(idDelete)
   }
   const handleClickEdit = (item: ITopic) => {
     navigate('create_topic', { state: item })

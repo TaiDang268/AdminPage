@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import Cookies from 'js-cookie'
 import { useState } from 'react'
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
@@ -53,8 +54,8 @@ const SideBar = () => {
   const handleClickLogOut = () => {
     navigate('/login')
     localStorage.setItem('isLoggedIn', 'false')
+    Cookies.remove('accessToken')
   }
-
   return (
     <>
       <div className='w-[260px] h-screen bg-[#2A3444] relative text-white'>
