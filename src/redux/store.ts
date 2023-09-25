@@ -1,7 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/dist/query'
 
+import { authorApi } from '~/rtk-query/author.service'
 import { postsApi } from '~/rtk-query/posts.service'
+import { tagApi } from '~/rtk-query/tag.service'
 
 import { authorSlice } from './features/AuthorSlice'
 import { postSlice } from './features/PostsSlice'
@@ -14,9 +16,12 @@ export const store = configureStore({
     topic: topicSlice.reducer,
     tag: tagSlice.reducer,
     author: authorSlice.reducer,
-    [postsApi.reducerPath]: postsApi.reducer
+    [postsApi.reducerPath]: postsApi.reducer,
+    [authorApi.reducerPath]: authorApi.reducer,
+    [tagApi.reducerPath]: tagApi.reducer
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(postsApi.middleware)
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(postsApi.middleware, authorApi.middleware, tagApi.middleware)
 })
 setupListeners(store.dispatch)
 export type RootState = ReturnType<typeof store.getState>

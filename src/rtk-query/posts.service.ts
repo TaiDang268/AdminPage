@@ -2,9 +2,11 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 import { IParams, IPosts } from '~/types/interfaces'
 
+import { baseUrl } from './baseUrl'
+
 export const postsApi = createApi({
   reducerPath: 'postsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:3007' }),
+  baseQuery: fetchBaseQuery({ baseUrl: baseUrl }),
   tagTypes: ['Posts'],
   endpoints: (builder) => ({
     getPosts: builder.query<IPosts[], IParams>({
@@ -34,7 +36,17 @@ export const postsApi = createApi({
         }
       },
       invalidatesTags: ['Posts']
+    }),
+    editPosts: builder.mutation<IPosts[], any>({
+      query: (data) => {
+        return {
+          url: `posts/${data.id}`,
+          method: 'PATCH',
+          body: data
+        }
+      },
+      invalidatesTags: ['Posts']
     })
   })
 })
-export const { useGetPostsQuery, useDeletePostsMutation, useAddPostsMutation } = postsApi
+export const { useGetPostsQuery, useDeletePostsMutation, useAddPostsMutation, useEditPostsMutation } = postsApi

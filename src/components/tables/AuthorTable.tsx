@@ -1,10 +1,10 @@
 import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { getByParamsTopic } from '~/api'
 import { Theme } from '~/hooks/useContext'
-import { deleteAuthor, setDataAuthor } from '~/redux/features/AuthorSlice'
+import { setDataAuthor } from '~/redux/features/AuthorSlice'
 import { useAppDispatch, useAppSelector } from '~/redux/hooks'
+import { useDeleteAuthorMutation, useGetAuthorQuery } from '~/rtk-query/author.service'
 import { IAuthor } from '~/types/interfaces'
 
 import Action from '../common/Action'
@@ -15,25 +15,20 @@ const AuthorTable = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const authorData = useAppSelector((state) => state.author.authors)
+  const { data: authorResponse } = useGetAuthorQuery({ _limit: perPage })
+  const [deleteAuthor1] = useDeleteAuthorMutation()
   const { toggle, setToggle, idDelete, setIdDelete } = useContext(Theme)
-
   useEffect(() => {
-    const fetchDataAsync = async () => {
-      try {
-        const res = await getByParamsTopic('authors', { _page: 1, _limit: Number(perPage) })
-        dispatch(setDataAuthor(res))
-      } catch (error) {
-        console.error('Lỗi khi lấy dữ liệu:', error)
-      }
+    if (authorResponse) {
+      dispatch(setDataAuthor(authorResponse))
     }
-    fetchDataAsync()
-  }, [perPage])
+  }, [dispatch, authorResponse])
   const handleClickTrash = (id: string) => {
     setToggle(true)
     setIdDelete(id)
   }
   const handleDeleteAuthor = () => {
-    dispatch(deleteAuthor(idDelete))
+    deleteAuthor1(idDelete)
   }
   const handleClickEdit = (item: IAuthor) => {
     navigate('create_author', { state: item })

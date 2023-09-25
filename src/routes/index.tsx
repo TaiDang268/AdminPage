@@ -1,8 +1,8 @@
 import { Outlet, useRoutes } from 'react-router-dom'
 
-import CreateAuthor from '~/components/create/CreateAuthor'
-import CreatePosts from '~/components/create/CreatePosts'
-import CreateTopic from '~/components/create/CreateTopic'
+import CreateAuthor from '~/components/create_update/CreateAuthor'
+import CreatePosts from '~/components/create_update/CreatePosts'
+import CreateTopic from '~/components/create_update/CreateTopic'
 
 import PrivateRouter from './PrivateRouter'
 import PublicRouter from './PublicRouter'

@@ -1,10 +1,7 @@
-import axios from 'axios'
 import { GrClose } from 'react-icons/gr'
 import { ToastContainer } from 'react-toastify'
 
-import { getByParams } from '~/api'
-import { setDataPost } from '~/redux/features/PostsSlice'
-import { useAppDispatch } from '~/redux/hooks'
+import { useEditPostsMutation } from '~/rtk-query/posts.service'
 
 import { updateSuccessMess } from '../toast-message'
 
@@ -16,10 +13,11 @@ interface IEditConfirm {
 }
 const EditConfirm = (props: IEditConfirm) => {
   const { isShow, isClose, itemAfterEdit, isCheckConfirm } = props
-  const dispatch = useAppDispatch()
+  const [editPosts] = useEditPostsMutation()
   const handleClickConfirm = async () => {
     isCheckConfirm()
     const data = {
+      id: itemAfterEdit.id,
       author: itemAfterEdit.author,
       name: itemAfterEdit.name,
       short_desc: itemAfterEdit.short_desc,
@@ -27,22 +25,7 @@ const EditConfirm = (props: IEditConfirm) => {
       date: itemAfterEdit.date
     }
     try {
-      await axios
-        .patch(`http://localhost:3007/posts/${itemAfterEdit.id}`, data)
-        .then(() => {
-          const fetchDataAsync = async () => {
-            try {
-              const res = await getByParams('posts', { _limit: 10 })
-              dispatch(setDataPost(res))
-            } catch (error) {
-              console.error('Lỗi khi lấy dữ liệu:', error)
-            }
-          }
-          fetchDataAsync()
-        })
-        .catch((error) => {
-          console.log(error)
-        })
+      await editPosts(data)
       updateSuccessMess('bài viết')
     } catch (err) {
       console.log(err)
