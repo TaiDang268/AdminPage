@@ -3,8 +3,7 @@ import { MdArrowBackIos } from 'react-icons/md'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
-import { addAuthor, updateAuthor } from '~/redux/features/AuthorSlice'
-import { useAppDispatch } from '~/redux/hooks'
+import { useAddAuthorMutation, useEditAuthorMutation } from '~/rtk-query/author.service'
 import { IAuthor } from '~/types/interfaces'
 
 import { addSuccessMess, updateSuccessMess } from '../toast-message'
@@ -12,22 +11,23 @@ import { addSuccessMess, updateSuccessMess } from '../toast-message'
 const CreateAuthor = () => {
   const navigate = useNavigate()
   const location = useLocation()
-  const dispatch = useAppDispatch()
   const authorItem = location.state
   const { register, getValues } = useForm()
+  const [addAuthor] = useAddAuthorMutation()
+  const [updateAuthor] = useEditAuthorMutation()
   const handleClickButton = () => {
     if (!authorItem) {
       const dataAdd: Omit<IAuthor, 'id'> = {
         name: getValues('author_name')
       }
-      dispatch(addAuthor(dataAdd))
+      addAuthor(dataAdd)
       addSuccessMess('tác giả')
     } else {
       const dataEdit: IAuthor = {
         id: authorItem.id,
         name: getValues('author_name')
       }
-      dispatch(updateAuthor(dataEdit))
+      updateAuthor(dataEdit)
       updateSuccessMess('tác giả')
     }
   }

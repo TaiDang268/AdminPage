@@ -10,10 +10,11 @@ import { useNavigate } from 'react-router-dom'
 import SelectNpm from 'react-select'
 import { ToastContainer } from 'react-toastify'
 
-import { getNameForSelect, postPosts } from '~/api'
+import { getNameForSelect } from '~/api'
 import images from '~/assets/images'
 import { getCurrentDate } from '~/constant/getCurrentDate'
 import { getCurrentTime } from '~/constant/getCurrentTime'
+import { useAddPostsMutation } from '~/rtk-query/posts.service'
 import { IPosts } from '~/types/interfaces'
 
 import { addErrorMess, addSuccessMess } from '../toast-message'
@@ -31,7 +32,7 @@ const CreatePosts = () => {
   const [authorName, setAuthorName] = useState<string[]>([''])
   const [topicName, setTopicName] = useState<string[]>([''])
   const [selectedImage, setSelectedImage] = useState<string>('')
-
+  const [addPosts] = useAddPostsMutation()
   useEffect(() => {
     axios
       .get('http://localhost:3007/posts')
@@ -72,7 +73,7 @@ const CreatePosts = () => {
       short_desc: getValues('short_desc')
     }
     try {
-      await postPosts('posts', data)
+      await addPosts(data)
       addSuccessMess('bài viết')
     } catch (err) {
       console.log(err)
@@ -202,7 +203,7 @@ const CreatePosts = () => {
               <SelectNpm
                 options={tagsName.map((item) => ({ value: item, label: item }))}
                 isMulti={true}
-                {...register('category', { required: true })}
+                {...register('category')}
               />
               {/* <select
                 className='w-full h-[32px]  border border-[#9D9D9D] rounded font-semibold'

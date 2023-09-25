@@ -23,3 +23,7 @@ export interface IAuthor {
   id: string
   name: string
 }
+export interface IParams {
+  _page?: string
+  _limit?: string
+}

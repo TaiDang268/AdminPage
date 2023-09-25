@@ -1,10 +1,10 @@
 import { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { getByParamsTopic } from '~/api'
 import { Theme } from '~/hooks/useContext'
-import { deleteTag, setDataTag } from '~/redux/features/TagSlice'
+import { setDataTag } from '~/redux/features/TagSlice'
 import { useAppDispatch, useAppSelector } from '~/redux/hooks'
+import { useDeleteTagMutation, useGetTagQuery } from '~/rtk-query/tag.service'
 import { ITag } from '~/types/interfaces'
 
 import Action from '../common/Action'
@@ -15,24 +15,21 @@ const TagTable = () => {
   const dispatch = useAppDispatch()
   const tagData = useAppSelector((state) => state.tag.tags)
   const { toggle, setToggle, idDelete, setIdDelete, perPage } = useContext(Theme)
+  const { data: dataResponse } = useGetTagQuery({ _limit: perPage })
+  const [deleteTag] = useDeleteTagMutation()
   useEffect(() => {
-    const fetchDataAsync = async () => {
-      try {
-        const res = await getByParamsTopic('tags', { _page: 1, _limit: Number(perPage) })
-        dispatch(setDataTag(res))
-      } catch (error) {
-        console.error('Lỗi khi lấy dữ liệu:', error)
-      }
+    if (dataResponse) {
+      dispatch(setDataTag(dataResponse))
     }
-    fetchDataAsync()
-  }, [perPage])
+  }, [dispatch, dataResponse])
+
   const handleClickTrash = (id: string) => {
     setToggle(true)
     setIdDelete(id)
   }
 
   const handleDeleteTag = () => {
-    dispatch(deleteTag(idDelete))
+    deleteTag(idDelete)
   }
   const handleClickEdit = (item: ITag) => {
     navigate('create_tag', { state: item })
