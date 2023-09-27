@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react'
 import { ToastContainer } from 'react-toastify'
 
-import { getByParams, getTotalRecord, searchByName, sortAZ, sortZA } from '~/api'
+import { deleteById, getTotalRecord, searchByName, sortAZ, sortZA } from '~/api'
 import { Theme } from '~/hooks/useContext'
 import { setDataPost } from '~/redux/features/PostsSlice'
 import { useAppDispatch } from '~/redux/hooks'
@@ -16,12 +16,36 @@ const Posts = () => {
   const { perPage } = useContext(Theme)
   const [valueInput, setValueInput] = useState<string>('')
   const [pageCount, setPageCount] = useState<number>(1)
-  const { data: postsResponse } = useGetPostsQuery({ _limit: perPage, _page: '1' })
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [selectedListItem, setSelectedListItem] = useState<string[]>([])
+  const { data: postsResponse, refetch } = useGetPostsQuery({ _limit: perPage, _page: currentPage.toString() })
   useEffect(() => {
     if (postsResponse) {
       dispatch(setDataPost(postsResponse))
     }
   }, [dispatch, postsResponse])
+
+  const handlePageChange = ({ selected }: { selected: number }) => {
+    setCurrentPage(selected + 1)
+  }
+
+  useEffect(() => {
+    const handlePageCount = async () => {
+      try {
+        const res = await getTotalRecord('posts')
+        setPageCount(Math.ceil(res / Number(perPage)))
+      } catch (error) {
+        console.error('Lỗi khi lấy dữ liệu:', error)
+      }
+    }
+    handlePageCount()
+  }, [perPage])
+  const handleDeleteMultiple = () => {
+    selectedListItem.forEach(async (item) => {
+      await deleteById('posts', item)
+    })
+    refetch()
+  }
   const handleOnClickSearch = async () => {
     try {
       const res = await searchByName('posts', valueInput, Number(perPage))
@@ -46,31 +70,6 @@ const Posts = () => {
       console.log(err)
     }
   }
-  const handlePageChange = ({ selected }: { selected: number }) => {
-    const fetchDataAsync = async () => {
-      try {
-        const res = await getByParams('posts', { _page: selected + 1, _limit: Number(perPage) })
-        dispatch(setDataPost(res))
-      } catch (error) {
-        console.error('Lỗi khi lấy dữ liệu:', error)
-      }
-    }
-    fetchDataAsync()
-  }
-
-  useEffect(() => {
-    const handlePageCount = async () => {
-      try {
-        const res = await getTotalRecord('posts')
-        setPageCount(Math.ceil(res / Number(perPage)))
-      } catch (error) {
-        console.error('Lỗi khi lấy dữ liệu:', error)
-      }
-    }
-
-    handlePageCount()
-  }, [perPage])
-
   return (
     <>
       <div className='w-full h-screen'>
@@ -82,8 +81,12 @@ const Posts = () => {
             sortAZ={handleSortAZ}
             sortZA={handleSortZA}
           />
-          <PostsTable />
-          <PaginationCustom pageCount={pageCount} onPageChange={handlePageChange} />
+          <PostsTable selectedListItem={selectedListItem} setSelectedListItem={setSelectedListItem} />
+          <PaginationCustom
+            pageCount={pageCount}
+            onPageChange={handlePageChange}
+            onDeleteMultiple={handleDeleteMultiple}
+          />
         </div>
         <ToastContainer />
       </div>
