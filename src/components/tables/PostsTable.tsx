@@ -11,17 +11,15 @@ import Action from '../common/Action'
 import EditPost from '../edit/EditPost'
 import DeleteModal from '../notification/DeleteConfirm'
 import { deleteErrorMess, deleteSuccessMess } from '../toast-message'
-interface IPostTable {
-  currentPage: number
-}
-const PostsTable = ({ currentPage }: IPostTable) => {
+
+const PostsTable = () => {
   const dispatch = useAppDispatch()
   const dataPosts = useAppSelector((state) => state.posts.posts)
   const { perPage } = useContext(Theme)
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [isEditShow, setIsEditShow] = useState<boolean>(false)
   const [selectedItem, setSelectedItem] = useState<IPosts | null>(null)
-  const { data: postsResponse } = useGetPostsQuery({ _limit: perPage, _page: currentPage.toString() })
+  const { data: postsResponse } = useGetPostsQuery({ _limit: perPage })
   const [deletePosts] = useDeletePostsMutation()
   useEffect(() => {
     if (postsResponse) {

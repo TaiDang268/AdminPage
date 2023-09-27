@@ -16,7 +16,6 @@ const Posts = () => {
   const { perPage } = useContext(Theme)
   const [valueInput, setValueInput] = useState<string>('')
   const [pageCount, setPageCount] = useState<number>(1)
-  const [currentPage, setCurrentPage] = useState<number>(1)
   const { data: postsResponse } = useGetPostsQuery({ _limit: perPage, _page: '1' })
   useEffect(() => {
     if (postsResponse) {
@@ -48,7 +47,6 @@ const Posts = () => {
     }
   }
   const handlePageChange = ({ selected }: { selected: number }) => {
-    setCurrentPage(selected + 1)
     const fetchDataAsync = async () => {
       try {
         const res = await getByParams('posts', { _page: selected + 1, _limit: Number(perPage) })
@@ -84,7 +82,7 @@ const Posts = () => {
             sortAZ={handleSortAZ}
             sortZA={handleSortZA}
           />
-          <PostsTable currentPage={currentPage} />
+          <PostsTable />
           <PaginationCustom pageCount={pageCount} onPageChange={handlePageChange} />
         </div>
         <ToastContainer />
