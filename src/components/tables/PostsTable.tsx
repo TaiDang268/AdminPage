@@ -1,31 +1,29 @@
-import { useContext, useEffect, useState } from 'react'
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react'
 import { ToastContainer } from 'react-toastify'
 
-import { Theme } from '~/hooks/useContext'
-import { setDataPost } from '~/redux/features/PostsSlice'
-import { useAppDispatch, useAppSelector } from '~/redux/hooks'
-import { useDeletePostsMutation, useGetPostsQuery } from '~/rtk-query/posts.service'
+import { useAppSelector } from '~/redux/hooks'
+import { useDeletePostsMutation } from '~/rtk-query/posts.service'
 import { IPosts } from '~/types/interfaces'
 
 import Action from '../common/Action'
 import EditPost from '../edit/EditPost'
 import DeleteModal from '../notification/DeleteConfirm'
 import { deleteErrorMess, deleteSuccessMess } from '../toast-message'
-
-const PostsTable = () => {
-  const dispatch = useAppDispatch()
+interface IPostsTable {
+  selectedListItem: string[]
+  setSelectedListItem: Dispatch<SetStateAction<string[]>>
+}
+const PostsTable = (props: IPostsTable) => {
+  const { selectedListItem, setSelectedListItem } = props
   const dataPosts = useAppSelector((state) => state.posts.posts)
-  const { perPage } = useContext(Theme)
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [isEditShow, setIsEditShow] = useState<boolean>(false)
   const [selectedItem, setSelectedItem] = useState<IPosts | null>(null)
-  const { data: postsResponse } = useGetPostsQuery({ _limit: perPage })
+  const [checkAll, setCheckAll] = useState<boolean>(false)
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([])
+
   const [deletePosts] = useDeletePostsMutation()
-  useEffect(() => {
-    if (postsResponse) {
-      dispatch(setDataPost(postsResponse))
-    }
-  }, [dispatch, postsResponse])
+
   const handleClickTrash = (item: IPosts) => {
     setIsModalOpen(true)
     setSelectedItem(item)
@@ -44,6 +42,39 @@ const PostsTable = () => {
     setIsEditShow(true)
     setSelectedItem(item)
   }
+  const handleChangeInput = (checked: boolean, id: string) => {
+    if (checked) {
+      const item = selectedListItem.find((item) => item === id)
+      if (!item) {
+        setSelectedListItem((prev) => [...prev, id])
+      }
+    } else {
+      const list = selectedListItem.filter((item) => item !== id)
+      setSelectedListItem(list)
+    }
+  }
+  // useEffect(() => {
+  //   if (checkAll) {
+  //     const listInput = inputRefs.current
+  //     if (listInput) {
+  //       listInput.forEach((item) => {
+  //         if (item) item.checked = true
+  //       })
+  //     }
+  //     setSelectedListItem([])
+  //     dataPosts.forEach((item) => {
+  //       setSelectedListItem((prev) => [...prev, item.id])
+  //     })
+  //   } else {
+  //     const listInput = inputRefs.current
+  //     if (listInput) {
+  //       listInput.forEach((item) => {
+  //         if (item) item.checked = false
+  //       })
+  //     }
+  //     setSelectedListItem([])
+  //   }
+  // }, [checkAll])
   return (
     <>
       <div className='w-full mt-3'>
@@ -51,7 +82,7 @@ const PostsTable = () => {
           <thead>
             <tr className='text-white bg-primary'>
               <th className='th-checkbox'>
-                <input type='checkbox' />
+                <input type='checkbox' checked={checkAll} onChange={() => setCheckAll(!checkAll)} />
               </th>
               <th className='w-[60px] '>ID</th>
               <th className='w-[400px]'>Tên bài viết </th>
@@ -63,10 +94,14 @@ const PostsTable = () => {
             </tr>
           </thead>
           <tbody>
-            {dataPosts?.map((item) => (
+            {dataPosts?.map((item: IPosts, index) => (
               <tr key={item.id}>
                 <th>
-                  <input type='checkbox' />
+                  <input
+                    type='checkbox'
+                    onChange={(e) => handleChangeInput(e.target.checked, item.id)}
+                    ref={(el) => (inputRefs.current[index] = el)}
+                  />
                 </th>
                 <td className='text-center'>{item.id}</td>
                 <td>{item.name}</td>

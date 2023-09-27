@@ -42,10 +42,10 @@ export const getNameForSelect = async (endpoint: string) => {
   const res = await axios.get(`${baseUrl}/${endpoint}`)
   return res.data.map((item: any) => item.name)
 }
-// export const deleteById = async (endpoint: string, id: string) => {
-//   const res = await axios.delete(`${baseUrl}/${endpoint}/${id}`)
-//   return res
-// }
+export const deleteById = async (endpoint: string, id: string) => {
+  const res = await axios.delete(`${baseUrl}/${endpoint}/${id}`)
+  return res
+}
 // export const postPosts = async (endpoint: string, data: IPosts) => {
 //   const res = await axios.post(`${baseUrl}/${endpoint}`, data)
 //   return res

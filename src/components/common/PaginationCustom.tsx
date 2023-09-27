@@ -1,3 +1,4 @@
+import { BsTrash } from 'react-icons/bs'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import ReactPaginate from 'react-paginate'
 
@@ -5,19 +6,26 @@ import Select from './Select'
 interface IPaginationCustom {
   pageCount: number
   onPageChange?: ({ selected }: { selected: number }) => void
+  onDeleteMultiple?: () => void
 }
 const PaginationCustom = (props: IPaginationCustom) => {
-  const { pageCount, onPageChange } = props
+  const { pageCount, onPageChange, onDeleteMultiple } = props
   return (
     <>
       <div className='w-full '>
         <div className='w-full  bg-[#E3E5E8] rounded-b px-3 flex justify-between items-center'>
-          <Select />
+          <div className='flex justify-center items-center'>
+            <Select />
+            <div className='cursor-pointer ml-[20px]' onClick={onDeleteMultiple}>
+              <BsTrash style={{ color: 'red', fontSize: '22px' }} />
+            </div>
+          </div>
+
           <ReactPaginate
             className='flex justify-end py-2   '
             pageClassName=' w-[30px] h-[30px] bg-white  text-[20px] text-gray-700  border border-[#D5D8DD]'
             pageLinkClassName='flex justify-center items-center w-full h-full'
-            activeClassName='bg-green-800'
+            activeClassName='bg-green-600'
             activeLinkClassName='text-white flex '
             breakLabel='...'
             previousLabel={<IoIosArrowBack style={{ color: 'black' }} />}
