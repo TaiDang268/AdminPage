@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react'
 import { ToastContainer } from 'react-toastify'
+import Swal from 'sweetalert2'
 
 import { deleteById, getTotalRecord, searchByName, sortAZ, sortZA } from '~/api'
 import { Theme } from '~/hooks/useContext'
@@ -41,10 +42,40 @@ const Posts = () => {
     handlePageCount()
   }, [perPage])
   const handleDeleteMultiple = () => {
-    selectedListItem.forEach(async (item) => {
-      await deleteById('posts', item)
-    })
-    refetch()
+    if (selectedListItem.length == 0) {
+      Swal.fire({
+        title: 'Cảnh báo',
+        text: `Chưa có bài viết nào được chọn`,
+        icon: 'warning',
+        showCancelButton: true,
+        cancelButtonColor: '#186E25',
+        showConfirmButton: false,
+        cancelButtonText: 'Quay lại'
+      })
+    } else {
+      const postsName = selectedListItem.map((item) => {
+        const post = postsResponse?.find((post) => post.id == item)
+        return post ? post.name : ''
+      })
+      Swal.fire({
+        title: 'Bạn chắc chứ?',
+        text: `Sau khi đồng ý, các bài viết sau  sẽ bị xóa khỏi danh sách: ${postsName}`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#186E25',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Đồng ý',
+        cancelButtonText: 'Hủy'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          selectedListItem.forEach(async (item) => {
+            await deleteById('posts', item)
+          })
+          refetch()
+          setSelectedListItem([])
+        }
+      })
+    }
   }
   const handleOnClickSearch = async () => {
     try {

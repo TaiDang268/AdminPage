@@ -53,28 +53,28 @@ const PostsTable = (props: IPostsTable) => {
       setSelectedListItem(list)
     }
   }
-  // useEffect(() => {
-  //   if (checkAll) {
-  //     const listInput = inputRefs.current
-  //     if (listInput) {
-  //       listInput.forEach((item) => {
-  //         if (item) item.checked = true
-  //       })
-  //     }
-  //     setSelectedListItem([])
-  //     dataPosts.forEach((item) => {
-  //       setSelectedListItem((prev) => [...prev, item.id])
-  //     })
-  //   } else {
-  //     const listInput = inputRefs.current
-  //     if (listInput) {
-  //       listInput.forEach((item) => {
-  //         if (item) item.checked = false
-  //       })
-  //     }
-  //     setSelectedListItem([])
-  //   }
-  // }, [checkAll])
+  useEffect(() => {
+    if (checkAll) {
+      const listInput = inputRefs.current
+      if (listInput) {
+        listInput.forEach((item) => {
+          if (item) item.checked = true
+        })
+      }
+      setSelectedListItem([])
+      dataPosts.forEach((item) => {
+        setSelectedListItem((prev) => [...prev, item.id])
+      })
+    } else {
+      const listInput = inputRefs.current
+      if (listInput) {
+        listInput.forEach((item) => {
+          if (item) item.checked = false
+        })
+      }
+      setSelectedListItem([])
+    }
+  }, [checkAll])
   return (
     <>
       <div className='w-full mt-3'>

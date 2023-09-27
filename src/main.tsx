@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import App from './App.tsx'
 
 import './index.css'
+import 'react-tooltip/dist/react-tooltip.css'
 
 import { ProviderContext } from './hooks/useContext.tsx'
 import { store } from './redux/store.ts'

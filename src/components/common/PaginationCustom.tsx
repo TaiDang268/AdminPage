@@ -1,6 +1,7 @@
 import { BsTrash } from 'react-icons/bs'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import ReactPaginate from 'react-paginate'
+import { Tooltip } from 'react-tooltip'
 
 import Select from './Select'
 interface IPaginationCustom {
@@ -16,9 +17,10 @@ const PaginationCustom = (props: IPaginationCustom) => {
         <div className='w-full  bg-[#E3E5E8] rounded-b px-3 flex justify-between items-center'>
           <div className='flex justify-center items-center'>
             <Select />
-            <div className='cursor-pointer ml-[20px]' onClick={onDeleteMultiple}>
+            <div className='cursor-pointer ml-[20px] flex' onClick={onDeleteMultiple} id='deleteIcon'>
               <BsTrash style={{ color: 'red', fontSize: '22px' }} />
             </div>
+            <Tooltip anchorSelect='#deleteIcon' content='Xóa nhiều' />
           </div>
 
           <ReactPaginate
