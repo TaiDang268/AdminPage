@@ -1,7 +1,9 @@
 import { useContext } from 'react'
 
 import { Theme } from '~/hooks/useContext'
-
+interface ISelect {
+  getValue?: string
+}
 const Select = () => {
   const { perPage, setPerPage } = useContext(Theme)
   return (

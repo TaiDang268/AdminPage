@@ -60,28 +60,6 @@
       "short_desc": "Mô tả ngắn cho báo cáo 11"
     },
     {
-      "id": "12",
-      "author": "Trần Thị M",
-      "image": "url_hinh_12.jpg",
-      "category": "Data Science",
-      "date": "20/04/2022",
-      "title": "Chủ đề M12",
-      "description": "Báo cáo số 12 về Data Science",
-      "name": "Báo cáo 12",
-      "short_desc": "Mô tả ngắn cho báo cáo 12"
-    },
-    {
-      "id": "13",
-      "author": "Nguyễn Văn N",
-      "image": "url_hinh_13.jpg",
-      "category": "Machine Learning",
-      "date": "05/05/2022",
-      "title": "Chủ đề N13",
-      "description": "Báo cáo số 13 về Machine Learning",
-      "name": "Báo cáo 13",
-      "short_desc": "Mô tả ngắn cho báo cáo 13"
-    },
-    {
       "id": "14",
       "author": "Trần Thị P",
       "image": "url_hinh_14.jpg",

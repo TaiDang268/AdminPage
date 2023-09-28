@@ -1,9 +1,11 @@
 import { useContext, useEffect, useState } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import Swal from 'sweetalert2'
 
 import { deleteById, getTotalRecord, searchByName, sortAZ, sortZA } from '~/api'
 import { Theme } from '~/hooks/useContext'
+import { useQueryString } from '~/hooks/useQuery'
 import { setDataPost } from '~/redux/features/PostsSlice'
 import { useAppDispatch } from '~/redux/hooks'
 import { useGetPostsQuery } from '~/rtk-query/posts.service'
@@ -17,9 +19,16 @@ const Posts = () => {
   const { perPage } = useContext(Theme)
   const [valueInput, setValueInput] = useState<string>('')
   const [pageCount, setPageCount] = useState<number>(1)
-  const [currentPage, setCurrentPage] = useState<number>(1)
   const [selectedListItem, setSelectedListItem] = useState<string[]>([])
-  const { data: postsResponse, refetch } = useGetPostsQuery({ _limit: perPage, _page: currentPage.toString() })
+  const query = useQueryString()
+  const { data: postsResponse, refetch } = useGetPostsQuery(query)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const initialPage = searchParams.get('_page') || '1'
+  const [currentPage, setCurrentPage] = useState<number>(parseInt(initialPage))
+  useEffect(() => {
+    setSearchParams(`?${new URLSearchParams({ ...query, _page: currentPage.toString() })}`)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage])
   useEffect(() => {
     if (postsResponse) {
       dispatch(setDataPost(postsResponse))
@@ -31,6 +40,7 @@ const Posts = () => {
   }
 
   useEffect(() => {
+    setSearchParams(`?${new URLSearchParams({ ...query, _limit: perPage })}`)
     const handlePageCount = async () => {
       try {
         const res = await getTotalRecord('posts')
@@ -41,6 +51,7 @@ const Posts = () => {
     }
     handlePageCount()
   }, [perPage])
+
   const handleDeleteMultiple = () => {
     if (selectedListItem.length == 0) {
       Swal.fire({
@@ -59,7 +70,7 @@ const Posts = () => {
       })
       Swal.fire({
         title: 'Bạn chắc chứ?',
-        text: `Sau khi đồng ý, các bài viết sau  sẽ bị xóa khỏi danh sách: ${postsName}`,
+        text: `Sau khi đồng ý, các bài viết sau sẽ bị xóa khỏi danh sách: ${postsName}`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#186E25',
@@ -101,6 +112,7 @@ const Posts = () => {
       console.log(err)
     }
   }
+
   return (
     <>
       <div className='w-full h-screen'>
