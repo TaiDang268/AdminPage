@@ -1,5 +1,6 @@
 import { Outlet, useRoutes } from 'react-router-dom'
 
+import ApprovePost from '~/components/ApprovePost'
 import CreateAuthor from '~/components/create_update/CreateAuthor'
 import CreatePosts from '~/components/create_update/CreatePosts'
 import CreateTopic from '~/components/create_update/CreateTopic'
@@ -14,6 +15,7 @@ import Login from '../components/Login'
 import Posts from '../components/Posts'
 import Tag from '../components/Tag'
 import Topic from '../components/Topic'
+import Users from '~/components/Users'
 
 const routes = [
   {
@@ -31,6 +33,14 @@ const routes = [
       {
         path: '/info',
         element: <Info />
+      },
+      {
+        path: '/approve',
+        element: <ApprovePost />
+      },
+      {
+        path: '/users',
+        element: <Users />
       },
       {
         path: '/posts',

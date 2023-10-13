@@ -9,7 +9,7 @@ import routesPath from '~/routes/routesPath'
 const arr = [
   {
     id: 1,
-    title: 'Bài viết',
+    title: 'Báo cáo',
     path: routesPath.posts
   },
   {
@@ -82,7 +82,7 @@ const SideBar = () => {
                 to={item.path}
                 key={item.id}
                 className={clsx(
-                  ' cursor-pointer w-full rounded h-[40px]  pl-12 flex items-center ',
+                  'cursor-pointer w-full rounded h-[40px]  pl-12 flex items-center ',
                   currentPath === item.path ? 'bg-[#3F4D63]' : null
                 )}
                 onClick={() => handleOnclickItemChildren(item.path)}
@@ -96,8 +96,11 @@ const SideBar = () => {
               <div
                 className={clsx(
                   'flex cursor-pointer items-center  w-full rounded h-[40px] my-3 pl-3 ',
-                  active === 'image' ? 'bg-[#3F4D63]' : null
+                  active === 'approve' ? 'bg-[#3F4D63]' : null
                 )}
+                onClick={() => {
+                  navigate('approve')
+                }}
               >
                 <img src={images.Image} />
                 <p className='m-3'> Phê duyệt</p>
@@ -108,6 +111,9 @@ const SideBar = () => {
                   'flex cursor-pointer items-center  w-full rounded h-[40px] my-3 pl-3 ',
                   active === 'setting' ? 'bg-[#3F4D63]' : null
                 )}
+                onClick={() => {
+                  navigate('/users')
+                }}
               >
                 <img src={images.Setting} />
                 <p className='m-3'>Người dùng</p>

@@ -118,7 +118,7 @@ const Posts = () => {
     <>
       <div className='w-full h-screen'>
         <div className='w-full p-4'>
-          <TitleTable title='Danh sách bài viết' nameButton='Bài viết mới' navigateTo='create_posts' />
+          <TitleTable title='Danh sách báo cáo' nameButton='Báo cáo mới' navigateTo='create_posts' />
           <Filter
             setValueInput={setValueInput}
             onSearch={handleOnClickSearch}
