@@ -1,45 +1,14 @@
 {
   "users": [
     {
-      "email": "admin2@gmail.com",
-      "password": "$2a$10$TvxXeLdZmufTIXYvvYBRruP95j20NdyqeSZ3kZJ6JXqpPkasC8jGm",
+      "email": "admin@gmail.com",
+      "password": "$2a$10$.iWrSF7UO3.TwlrbUMuTq.qXQvCJQVWlUsN12uC.TMvDr8qQNHkRi",
+      "username": "Đặng Tài",
       "role": "admin",
-      "id": 15
-    },
-    {
-      "email": "user1@gmail.com",
-      "password": "$2a$10$DLUjWD2DKh2aszt1WA50weBB6lOmptv/OYdDvAZ3NruVRi81h3j2O",
-      "role": "user",
-      "id": 16
-    },
-    {
-      "email": "taidang268@gmail.com",
-      "password": "$2a$10$o5mLbn/19mmRUXY.5cQ30OTuvKkTp3PFvzO3/9I35jXpiNTjzZ7lW",
-      "username": "Đặng Văn Tài",
-      "phone": "0837225328",
-      "address": "HN",
-      "avatar": "12121",
-      "id": 17
-    },
-    {
-      "email": "taidang2681221@gmail.com",
-      "password": "$2a$10$G04hLqBXDuD8qRtQUE4wq.vbgV6snvlKVrMEyFkLKRXpczVra/MWq",
-      "username": "Đặng Văn Tài",
-      "phone": "0837225328",
-      "address": "HN",
-      "avatar": "12121",
-      "role": "role",
-      "id": 18
-    },
-    {
-      "email": "admin123@gmail.com",
-      "password": "$2a$10$RWfeL673HyE5.8NZPnATN.aoZpAwgcR4FMVwWUcBL956pMEuHsqq2",
-      "username": "Đặng Văn Tài",
-      "phone": "0837225328",
-      "address": "HN",
-      "image": "https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/318112037_866423641355630_5738190960303858592_n.jpg?stp=cp6_dst-jpg_p843x403&_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Om3Mb5Mbp0cAX_Rs1UF&_nc_ht=scontent.fhan2-4.fna&oh=00_AfClvrZxg9rLUhNpg3DvWVCfmV7Wt8uEzeicX6Zj2-nGnA&oe=652EA88E",
-      "role": "User",
-      "id": 19
+      "id": 1,
+      "image": "https://img.nhandan.com.vn/Files/Images/2020/07/26/nhat_cay-1595747664059.jpg",
+      "phone": "096888999",
+      "address": "VP"
     }
   ],
   "posts": [

@@ -42,7 +42,6 @@ const SideBar = () => {
   } else {
     console.log('Không tìm thấy thông tin người dùng trong localStorage')
   }
-  console.log(userObject?.role)
   const handleOnclickSidebar = (sidebarItem: string) => {
     if (sidebarItem === 'write') {
       setShowSidebar(!showSidebar)
@@ -101,7 +100,7 @@ const SideBar = () => {
                 )}
               >
                 <img src={images.Image} />
-                <p className='m-3'> Bài viết</p>
+                <p className='m-3'> Phê duyệt</p>
               </div>
 
               <div
@@ -117,8 +116,13 @@ const SideBar = () => {
           ) : null}
         </div>
         {/* bottom */}
-        <div className='absolute bottom-4  w-full px-3'>
-          <div className='flex my-3'>
+        <div className='absolute bottom-4  w-full px-3 cursor-pointer'>
+          <div
+            className='flex my-3'
+            onClick={() => {
+              navigate('/info')
+            }}
+          >
             <div className='mr-3'>
               <img src={userObject.image} className='w-[40px] h-[40px] rounded-[50%]' />
             </div>

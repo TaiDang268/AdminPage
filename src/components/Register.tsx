@@ -17,7 +17,6 @@ export default function Register() {
     }
   }
   const onFinish = async (values: any) => {
-    console.log('Received values of form: ', values)
     values.role = 'User'
     try {
       const res = await axios.post(`${baseUrl}/register`, values)
@@ -93,9 +92,7 @@ export default function Register() {
           <div className='flex justify-around ml-10 mt-20'>
             <Form.Item style={{ display: 'flex', justifyContent: 'center' }}>
               <Link to='/login'>
-                <Button type='primary' htmlType='submit' style={{ backgroundColor: '#F27024' }}>
-                  Đăng nhập
-                </Button>
+                <Button style={{ backgroundColor: '#F27024' }}>Đăng nhập</Button>
               </Link>
             </Form.Item>
             <Form.Item style={{ display: 'flex', justifyContent: 'center' }}>

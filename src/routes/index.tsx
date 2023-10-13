@@ -3,6 +3,8 @@ import { Outlet, useRoutes } from 'react-router-dom'
 import CreateAuthor from '~/components/create_update/CreateAuthor'
 import CreatePosts from '~/components/create_update/CreatePosts'
 import CreateTopic from '~/components/create_update/CreateTopic'
+import Info from '~/components/Info'
+import Register from '~/components/Register'
 
 import PrivateRouter from './PrivateRouter'
 import PublicRouter from './PublicRouter'
@@ -12,7 +14,6 @@ import Login from '../components/Login'
 import Posts from '../components/Posts'
 import Tag from '../components/Tag'
 import Topic from '../components/Topic'
-import Register from '~/components/Register'
 
 const routes = [
   {
@@ -26,6 +27,10 @@ const routes = [
       {
         index: true,
         element: <h1>Trang home</h1>
+      },
+      {
+        path: '/info',
+        element: <Info />
       },
       {
         path: '/posts',
