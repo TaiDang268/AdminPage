@@ -50,6 +50,7 @@ const Posts = () => {
       }
     }
     handlePageCount()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [perPage])
 
   const handleDeleteMultiple = () => {

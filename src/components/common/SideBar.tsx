@@ -37,12 +37,12 @@ const SideBar = () => {
 
   let userObject
   const storedUser = localStorage.getItem('user')
-
   if (storedUser) {
     userObject = JSON.parse(storedUser)
   } else {
     console.log('Không tìm thấy thông tin người dùng trong localStorage')
   }
+  console.log(userObject?.role)
   const handleOnclickSidebar = (sidebarItem: string) => {
     if (sidebarItem === 'write') {
       setShowSidebar(!showSidebar)
@@ -56,6 +56,7 @@ const SideBar = () => {
     localStorage.setItem('isLoggedIn', 'false')
     Cookies.remove('accessToken')
   }
+
   return (
     <>
       <div className='w-[260px] h-screen bg-[#2A3444] relative text-white'>
@@ -91,25 +92,29 @@ const SideBar = () => {
               </NavLink>
             ))}
           </div>
-          <div
-            className={clsx(
-              'flex cursor-pointer items-center  w-full rounded h-[40px] my-3 pl-3 ',
-              active === 'image' ? 'bg-[#3F4D63]' : null
-            )}
-          >
-            <img src={images.Image} />
-            <p className='m-3'>Ảnh</p>
-          </div>
+          {userObject?.role.toLowerCase() === 'admin' ? (
+            <div>
+              <div
+                className={clsx(
+                  'flex cursor-pointer items-center  w-full rounded h-[40px] my-3 pl-3 ',
+                  active === 'image' ? 'bg-[#3F4D63]' : null
+                )}
+              >
+                <img src={images.Image} />
+                <p className='m-3'> Bài viết</p>
+              </div>
 
-          <div
-            className={clsx(
-              'flex cursor-pointer items-center  w-full rounded h-[40px] my-3 pl-3 ',
-              active === 'setting' ? 'bg-[#3F4D63]' : null
-            )}
-          >
-            <img src={images.Setting} />
-            <p className='m-3'>Cài đặt</p>
-          </div>
+              <div
+                className={clsx(
+                  'flex cursor-pointer items-center  w-full rounded h-[40px] my-3 pl-3 ',
+                  active === 'setting' ? 'bg-[#3F4D63]' : null
+                )}
+              >
+                <img src={images.Setting} />
+                <p className='m-3'>Người dùng</p>
+              </div>
+            </div>
+          ) : null}
         </div>
         {/* bottom */}
         <div className='absolute bottom-4  w-full px-3'>
@@ -118,8 +123,8 @@ const SideBar = () => {
               <img src={userObject.image} className='w-[40px] h-[40px] rounded-[50%]' />
             </div>
             <div>
-              <p className='font-bold '>{userObject.name}</p>
-              <p className='text-[#939393] '>{userObject.typeOf}</p>
+              <p className='font-bold '>{userObject.username}</p>
+              <p className='text-[#939393] '>{userObject.role}</p>
             </div>
           </div>
           <div>

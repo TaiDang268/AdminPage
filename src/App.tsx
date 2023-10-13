@@ -7,11 +7,21 @@ import './css/custom.css'
 import 'react-toastify/dist/ReactToastify.css'
 import Routers from './routes'
 
+// eslint-disable-next-line import/order
+import { ConfigProvider } from 'antd'
 function App() {
   return (
-    <BrowserRouter>
-      <Routers />
-    </BrowserRouter>
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: '#186E25'
+        }
+      }}
+    >
+      <BrowserRouter>
+        <Routers />
+      </BrowserRouter>
+    </ConfigProvider>
   )
 }
 

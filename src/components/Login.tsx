@@ -3,7 +3,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import { useContext } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import * as yup from 'yup'
 
 import images from '~/assets/images'
@@ -83,8 +83,7 @@ const Login = () => {
             </div>
             <div className='flex justify-between my-2'>
               <div className='flex'>
-                <input type='checkbox' className='mr-3' />
-                <p>Nhớ mật khẩu</p>
+                <Link to='/register'>Đăng ký</Link>
               </div>
               <div>
                 <a href='' className='text-blue-500'>

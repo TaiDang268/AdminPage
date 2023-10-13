@@ -12,6 +12,7 @@ import Login from '../components/Login'
 import Posts from '../components/Posts'
 import Tag from '../components/Tag'
 import Topic from '../components/Topic'
+import Register from '~/components/Register'
 
 const routes = [
   {
@@ -91,6 +92,16 @@ const routes = [
       {
         index: true,
         element: <Login />
+      }
+    ]
+  },
+  {
+    path: '/register',
+    element: <PublicRouter />,
+    children: [
+      {
+        index: true,
+        element: <Register />
       }
     ]
   }

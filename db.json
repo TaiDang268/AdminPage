@@ -1,53 +1,48 @@
 {
   "users": [
     {
-      "email": "admin@gmail.com",
-      "password": "$2a$10$VgT58./7ykDY6HRK2JgeI.mE.J2/qPlu.myxOfVYFkAkgQyIJtVJm",
-      "name": "Lê Linh",
-      "typeOf": "Admin",
-      "image": "data:image/jpeg;base64,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",
-      "id": 12
+      "email": "admin2@gmail.com",
+      "password": "$2a$10$TvxXeLdZmufTIXYvvYBRruP95j20NdyqeSZ3kZJ6JXqpPkasC8jGm",
+      "role": "admin",
+      "id": 15
     },
     {
-      "email": "use1use1@gmail.com",
-      "password": "$2a$10$gSQixQTJNWPAO5z8N8wzs.uM2ivMDbzZq.KTel9UG2U2Usym1PwC.",
-      "id": 13
+      "email": "user1@gmail.com",
+      "password": "$2a$10$DLUjWD2DKh2aszt1WA50weBB6lOmptv/OYdDvAZ3NruVRi81h3j2O",
+      "role": "user",
+      "id": 16
+    },
+    {
+      "email": "taidang268@gmail.com",
+      "password": "$2a$10$o5mLbn/19mmRUXY.5cQ30OTuvKkTp3PFvzO3/9I35jXpiNTjzZ7lW",
+      "username": "Đặng Văn Tài",
+      "phone": "0837225328",
+      "address": "HN",
+      "avatar": "12121",
+      "id": 17
+    },
+    {
+      "email": "taidang2681221@gmail.com",
+      "password": "$2a$10$G04hLqBXDuD8qRtQUE4wq.vbgV6snvlKVrMEyFkLKRXpczVra/MWq",
+      "username": "Đặng Văn Tài",
+      "phone": "0837225328",
+      "address": "HN",
+      "avatar": "12121",
+      "role": "role",
+      "id": 18
+    },
+    {
+      "email": "admin123@gmail.com",
+      "password": "$2a$10$RWfeL673HyE5.8NZPnATN.aoZpAwgcR4FMVwWUcBL956pMEuHsqq2",
+      "username": "Đặng Văn Tài",
+      "phone": "0837225328",
+      "address": "HN",
+      "image": "https://scontent.fhan2-4.fna.fbcdn.net/v/t39.30808-6/318112037_866423641355630_5738190960303858592_n.jpg?stp=cp6_dst-jpg_p843x403&_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_ohc=Om3Mb5Mbp0cAX_Rs1UF&_nc_ht=scontent.fhan2-4.fna&oh=00_AfClvrZxg9rLUhNpg3DvWVCfmV7Wt8uEzeicX6Zj2-nGnA&oe=652EA88E",
+      "role": "User",
+      "id": 19
     }
   ],
   "posts": [
-    {
-      "id": "1",
-      "author": "Nguyễn Văn A",
-      "image": "url_hinh_1.jpg",
-      "category": "Programming",
-      "date": "10/05/2021",
-      "title": "Chủ đề A1",
-      "description": "Báo cáo số 1 về Programming",
-      "name": "Báo cáo 1",
-      "short_desc": "Mô tả ngắn cho báo cáo 1"
-    },
-    {
-      "id": "3",
-      "author": "Lê Văn C",
-      "image": "url_hinh_3.jpg",
-      "category": "Machine Learning",
-      "date": "05/07/2021",
-      "title": "Chủ đề C3",
-      "description": "Báo cáo số 3 về Machine Learning",
-      "name": "Báo cáo 3",
-      "short_desc": "Mô tả ngắn cho báo cáo 3"
-    },
-    {
-      "id": "7",
-      "author": "Nguyễn Văn G",
-      "image": "url_hinh_7.jpg",
-      "category": "Data Science",
-      "date": "20/11/2021",
-      "title": "Chủ đề G7",
-      "description": "Báo cáo số 7 về Data Science",
-      "name": "Báo cáo 7",
-      "short_desc": "Mô tả ngắn cho báo cáo 7"
-    },
     {
       "id": "11",
       "author": "Hoàng Văn L",
@@ -80,17 +75,6 @@
       "description": "Báo cáo số 15 về Cloud Computing",
       "name": "Báo cáo 15",
       "short_desc": "Mô tả ngắn cho báo cáo 15"
-    },
-    {
-      "id": "16",
-      "author": "Hoàng Văn R",
-      "image": "url_hinh_16.jpg",
-      "category": "Programming",
-      "date": "10/08/2022",
-      "title": "Chủ đề R16",
-      "description": "Báo cáo số 16 về Programming",
-      "name": "Báo cáo 16",
-      "short_desc": "Mô tả ngắn cho báo cáo 16"
     },
     {
       "id": "17",
