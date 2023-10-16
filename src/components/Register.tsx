@@ -1,9 +1,12 @@
 import { Button, Form, Input } from 'antd'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
 import images from '~/assets/images'
 import { baseUrl } from '~/rtk-query/baseUrl'
+
+import { registerError, registerSuccess } from './toast-message'
 export default function Register() {
   const [form] = Form.useForm()
   const formItemLayout = {
@@ -19,10 +22,11 @@ export default function Register() {
   const onFinish = async (values: any) => {
     values.role = 'User'
     try {
-      const res = await axios.post(`${baseUrl}/register`, values)
-      console.log(res)
+      await axios.post(`${baseUrl}/register`, values)
+      registerSuccess()
     } catch (err) {
       console.log(err)
+      registerError()
     }
   }
   return (
@@ -103,6 +107,7 @@ export default function Register() {
           </div>
         </Form>
       </div>
+      <ToastContainer />
     </div>
   )
 }

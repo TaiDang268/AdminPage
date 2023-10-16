@@ -29,3 +29,13 @@ export const loginSuccessMess = (name: string) => {
     position: toast.POSITION.TOP_RIGHT
   })
 }
+export const registerSuccess = () => {
+  toast.success(`Tạo tài khoản thành công`, {
+    position: toast.POSITION.TOP_RIGHT
+  })
+}
+export const registerError = () => {
+  toast.error(`Có lỗi xảy ra`, {
+    position: toast.POSITION.TOP_RIGHT
+  })
+}

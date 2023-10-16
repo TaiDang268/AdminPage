@@ -7,6 +7,18 @@ import { IPosts } from '~/types/interfaces'
 
 const ApprovePost = () => {
   const [data, setData] = useState<IPosts[]>()
+  const [lastId, setLastId] = useState<string>('')
+  useEffect(() => {
+    axios
+      .get('http://localhost:3007/posts')
+      .then((resp) => {
+        const last = resp.data.length
+        setLastId(resp.data[last - 1].id)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [])
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -29,8 +41,13 @@ const ApprovePost = () => {
     }
   }
   const handleClickOK = async ({ id, ...item }: IPosts) => {
+    const data: IPosts = {
+      id: (Number(lastId) + 1).toString(),
+      ...item
+    }
+    console.log(data)
     try {
-      await axios.post(`${baseUrl}/posts`, item)
+      await axios.post(`${baseUrl}/posts`, data)
       await axios.delete(`${baseUrl}/postApprove/${id}`)
       const response = await axios.get(`${baseUrl}/postApprove`)
       setData(response.data)

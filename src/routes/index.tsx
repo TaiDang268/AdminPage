@@ -6,6 +6,7 @@ import CreatePosts from '~/components/create_update/CreatePosts'
 import CreateTopic from '~/components/create_update/CreateTopic'
 import Info from '~/components/Info'
 import Register from '~/components/Register'
+import Users from '~/components/Users'
 
 import PrivateRouter from './PrivateRouter'
 import PublicRouter from './PublicRouter'
@@ -15,7 +16,6 @@ import Login from '../components/Login'
 import Posts from '../components/Posts'
 import Tag from '../components/Tag'
 import Topic from '../components/Topic'
-import Users from '~/components/Users'
 
 const routes = [
   {
