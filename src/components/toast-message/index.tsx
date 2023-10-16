@@ -39,3 +39,8 @@ export const registerError = () => {
     position: toast.POSITION.TOP_RIGHT
   })
 }
+export const addForAdmin = () => {
+  toast.success(`Tạo thành công, vui lòng đợi quản trị viên kiểm duyệt!`, {
+    position: toast.POSITION.TOP_RIGHT
+  })
+}

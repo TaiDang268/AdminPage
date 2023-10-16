@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { ToastContainer } from 'react-toastify'
+import Swal from 'sweetalert2'
 
 import { baseUrl } from '~/rtk-query/baseUrl'
 import { IPosts } from '~/types/interfaces'
@@ -32,28 +33,53 @@ const ApprovePost = () => {
     fetchData()
   }, [])
   const handleClickDelete = async (id: string) => {
-    try {
-      await axios.delete(`${baseUrl}/postApprove/${id}`)
-      const response = await axios.get(`${baseUrl}/postApprove`)
-      setData(response.data)
-    } catch (error) {
-      console.error('Error fetching data: ', error)
-    }
+    Swal.fire({
+      title: 'Bạn chắc chứ?',
+      text: `Sau khi đồng ý, bài viết sẽ bị xóa khỏi danh sách phê duyệt`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#186E25',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Đồng ý',
+      cancelButtonText: 'Hủy'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await axios.delete(`${baseUrl}/postApprove/${id}`)
+          const response = await axios.get(`${baseUrl}/postApprove`)
+          setData(response.data)
+        } catch (error) {
+          console.error('Error fetching data: ', error)
+        }
+      }
+    })
   }
   const handleClickOK = async ({ id, ...item }: IPosts) => {
     const data: IPosts = {
       id: (Number(lastId) + 1).toString(),
       ...item
     }
-    console.log(data)
-    try {
-      await axios.post(`${baseUrl}/posts`, data)
-      await axios.delete(`${baseUrl}/postApprove/${id}`)
-      const response = await axios.get(`${baseUrl}/postApprove`)
-      setData(response.data)
-    } catch (error) {
-      console.error('Error fetching data: ', error)
-    }
+    Swal.fire({
+      title: 'Bạn chắc chứ?',
+      text: `Sau khi đồng ý, bài viết sẽ được thêm vào danh sách báo cáo đồng thời bị xóa khỏi danh sách phê duyệt`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#186E25',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Đồng ý',
+      cancelButtonText: 'Hủy'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await axios.post(`${baseUrl}/posts`, data)
+          await axios.delete(`${baseUrl}/postApprove/${id}`)
+          const response = await axios.get(`${baseUrl}/postApprove`)
+          setData(response.data)
+        } catch (error) {
+          console.error('Error fetching data: ', error)
+        }
+      }
+    })
   }
   return (
     <>

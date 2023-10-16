@@ -14,10 +14,11 @@ import { getNameForSelect } from '~/api'
 import images from '~/assets/images'
 import { getCurrentDate } from '~/constant/getCurrentDate'
 import { getCurrentTime } from '~/constant/getCurrentTime'
-import { useAddPostsMutation } from '~/rtk-query/posts.service'
+import { baseUrl } from '~/rtk-query/baseUrl'
+// import { useAddPostsMutation } from '~/rtk-query/posts.service'
 import { IPosts } from '~/types/interfaces'
 
-import { addErrorMess, addSuccessMess } from '../toast-message'
+import { addErrorMess, addForAdmin, addSuccessMess } from '../toast-message'
 const CreatePosts = () => {
   const navigate = useNavigate()
   const {
@@ -32,7 +33,14 @@ const CreatePosts = () => {
   const [authorName, setAuthorName] = useState<string[]>([''])
   const [topicName, setTopicName] = useState<string[]>([''])
   const [selectedImage, setSelectedImage] = useState<string>('')
-  const [addPosts] = useAddPostsMutation()
+  // const [addPosts] = useAddPostsMutation()
+  let userObject: any
+  const storedUser = localStorage.getItem('user')
+  if (storedUser) {
+    userObject = JSON.parse(storedUser)
+  } else {
+    console.log('Không tìm thấy thông tin người dùng trong localStorage')
+  }
   useEffect(() => {
     axios
       .get('http://localhost:3007/posts')
@@ -73,8 +81,10 @@ const CreatePosts = () => {
       short_desc: getValues('short_desc')
     }
     try {
-      await addPosts(data)
-      addSuccessMess('bài viết')
+      // await addPosts(data)
+      await axios.post(`${baseUrl}/postApprove`, data)
+
+      userObject?.role.toLowerCase() !== 'admin' ? addForAdmin() : addSuccessMess('bài viết')
     } catch (err) {
       console.log(err)
       addErrorMess()
