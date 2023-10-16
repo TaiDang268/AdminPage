@@ -1,8 +1,11 @@
 import { Button, Form, Input } from 'antd'
 import axios from 'axios'
+import { ToastContainer } from 'react-toastify'
 
 import images from '~/assets/images'
 import { baseUrl } from '~/rtk-query/baseUrl'
+
+import { updateInfomationError, updateInfomationSuccess } from './toast-message'
 export default function Info() {
   const [form] = Form.useForm()
   const formItemLayout = {
@@ -41,8 +44,10 @@ export default function Info() {
     try {
       const res = await axios.patch(`${baseUrl}/users/${updatedUser.id}`, values)
       localStorage.setItem('user', JSON.stringify(res.data))
+      updateInfomationSuccess()
     } catch (err) {
       console.log(err)
+      updateInfomationError()
     }
   }
   return (
@@ -87,6 +92,7 @@ export default function Info() {
           </div>
         </Form>
       </div>
+      <ToastContainer />
     </div>
   )
 }

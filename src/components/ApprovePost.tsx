@@ -34,9 +34,9 @@ const ApprovePost = () => {
   }, [])
   const handleClickDelete = async (id: string) => {
     Swal.fire({
-      title: 'Bạn chắc chứ?',
+      title: 'Xóa bài viết?',
       text: `Sau khi đồng ý, bài viết sẽ bị xóa khỏi danh sách phê duyệt`,
-      icon: 'warning',
+      icon: 'question',
       showCancelButton: true,
       confirmButtonColor: '#186E25',
       cancelButtonColor: '#d33',
@@ -60,9 +60,9 @@ const ApprovePost = () => {
       ...item
     }
     Swal.fire({
-      title: 'Bạn chắc chứ?',
+      title: 'Duyệt bài viết',
       text: `Sau khi đồng ý, bài viết sẽ được thêm vào danh sách báo cáo đồng thời bị xóa khỏi danh sách phê duyệt`,
-      icon: 'warning',
+      icon: 'question',
       showCancelButton: true,
       confirmButtonColor: '#186E25',
       cancelButtonColor: '#d33',

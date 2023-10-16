@@ -25,9 +25,9 @@ const User = () => {
   }, [])
   const handleClickDelete = (id: string) => {
     Swal.fire({
-      title: 'Bạn chắc chứ?',
-      text: `Sau khi đồng ý, nguời dùng sẽ bị xóa khỏi danh sách`,
-      icon: 'warning',
+      title: 'Xóa người dùng?',
+      text: `Sau khi đồng ý, tài khoản này sẽ không đăng nhập được vào hệ thống`,
+      icon: 'question',
       showCancelButton: true,
       confirmButtonColor: '#186E25',
       cancelButtonColor: '#d33',

@@ -44,3 +44,13 @@ export const addForAdmin = () => {
     position: toast.POSITION.TOP_RIGHT
   })
 }
+export const updateInfomationSuccess = () => {
+  toast.success(`Cập nhập thông tin cá nhân thành công`, {
+    position: toast.POSITION.TOP_RIGHT
+  })
+}
+export const updateInfomationError = () => {
+  toast.error(`Cập nhập thông tin cá nhân thất bại`, {
+    position: toast.POSITION.TOP_RIGHT
+  })
+}
