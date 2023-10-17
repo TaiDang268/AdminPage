@@ -1,5 +1,7 @@
 import { Button, Form, Input } from 'antd'
 import axios from 'axios'
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 
@@ -7,8 +9,12 @@ import images from '~/assets/images'
 import { baseUrl } from '~/rtk-query/baseUrl'
 
 import { registerError, registerSuccess } from './toast-message'
+import { storage } from '../config/firebase'
+
 export default function Register() {
   const [form] = Form.useForm()
+  const [imgUrl, setImgUrl] = useState('')
+
   const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -19,8 +25,21 @@ export default function Register() {
       sm: { span: 16 }
     }
   }
+
+  const handleSelectImage = async (file: File | null) => {
+    if (!file) return
+    const imageRef = ref(storage, `files/${file.name}`)
+    await uploadBytes(imageRef, file).then(() => {})
+
+    await getDownloadURL(imageRef).then((url) => {
+      setImgUrl(url)
+    })
+  }
   const onFinish = async (values: any) => {
     values.role = 'User'
+    values.image =
+      imgUrl || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSktK4jzhODqE-okFjhhHyxhvDPmbrrFdpIhg&usqp=CAU'
+
     try {
       await axios.post(`${baseUrl}/register`, values)
       registerSuccess()
@@ -65,7 +84,7 @@ export default function Register() {
             rules={[
               {
                 required: true,
-                message: 'Không được để trống trường Username!'
+                message: 'Không được để trống trường họ tên!'
               }
             ]}
           >
@@ -77,7 +96,7 @@ export default function Register() {
             rules={[
               {
                 required: true,
-                message: 'Không được để trống trường password!'
+                message: 'Không được để trống trường mật khẩu !'
               }
             ]}
             hasFeedback
@@ -91,7 +110,29 @@ export default function Register() {
             <Input />
           </Form.Item>
           <Form.Item name='image' label='Ảnh'>
-            <Input />
+            <div className='flex  items-center'>
+              <div className='hidden'>
+                <input
+                  id='inputImage'
+                  type='file'
+                  onChange={(e) => {
+                    if (e.target.files) {
+                      handleSelectImage(e.target.files[0])
+                    }
+                  }}
+                />
+              </div>
+              <label htmlFor='inputImage' className='cursor-pointer'>
+                <img
+                  src={
+                    imgUrl
+                      ? imgUrl
+                      : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSktK4jzhODqE-okFjhhHyxhvDPmbrrFdpIhg&usqp=CAU'
+                  }
+                  className='w-12 h-12'
+                />
+              </label>
+            </div>
           </Form.Item>
           <div className='flex justify-around ml-10 mt-20'>
             <Form.Item style={{ display: 'flex', justifyContent: 'center' }}>

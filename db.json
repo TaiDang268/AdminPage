@@ -6,9 +6,9 @@
       "username": "Đặng Tài ",
       "role": "admin",
       "id": 1,
-      "image": "https://img.nhandan.com.vn/Files/Images/2020/07/26/nhat_cay-1595747664059.jpg",
+      "image": "https://firebasestorage.googleapis.com/v0/b/admin-cbff9.appspot.com/o/files%2Ft%E1%BA%A3i%20xu%E1%BB%91ng%20(2).png?alt=media&token=70c787f2-be99-427e-8b5a-9a39b82a3206",
       "phone": "096888999",
-      "address": "VP"
+      "address": "HN"
     },
     {
       "email": "user1@gmail.com",
@@ -33,6 +33,38 @@
       "phone": "123456",
       "role": "User",
       "id": 4
+    },
+    {
+      "email": "user10@gmail.com",
+      "password": "$2a$10$H5m5iJX6ftHGkEdUJrJSJecl.mSr/HBfSXwVM7vVaDx15dV34o5zm",
+      "username": "asas",
+      "image": "https://firebasestorage.googleapis.com/v0/b/admin-cbff9.appspot.com/o/files%2Ft%E1%BA%A3i%20xu%E1%BB%91ng%20(1).png?alt=media&token=b15d12b7-5ae1-46b7-aca2-3a319bd1e0d6",
+      "role": "User",
+      "id": 5
+    },
+    {
+      "email": "user5@gmail.com",
+      "password": "$2a$10$WIIg7SU5dOtjefYyWpubsupmv0dQlXtrabZcGGt5NyF8HRd0DJE1.",
+      "username": "Đặng Tài ",
+      "image": "C:\\fakepath\\tải xuống (1).png",
+      "role": "User",
+      "id": 6
+    },
+    {
+      "email": "user11@gmail.com",
+      "password": "$2a$10$JXMLpUVTxw68XESl6CoXhOJtBhgog1fssvj73F77wjitoEDasqw66",
+      "username": "Đặng Văn Tài",
+      "image": "https://firebasestorage.googleapis.com/v0/b/admin-cbff9.appspot.com/o/files%2Ft%E1%BA%A3i%20xu%E1%BB%91ng%20(1).png?alt=media&token=09f531a7-b92d-4bba-84a3-1ec6f44865d7",
+      "role": "User",
+      "id": 7
+    },
+    {
+      "email": "user12@gmail.com",
+      "password": "$2a$10$EEcDIXKWAbS9JS9rOoCQPuN45q2FWHQ26SAn6SyU0Ed8K/K7G/q7K",
+      "username": "Đặng Văn Tài",
+      "image": "https://firebasestorage.googleapis.com/v0/b/admin-cbff9.appspot.com/o/files%2Ft%E1%BA%A3i%20xu%E1%BB%91ng%20(1).png?alt=media&token=c3645573-5bc1-42f7-bbbc-930742eb4983",
+      "role": "User",
+      "id": 8
     }
   ],
   "posts": [
@@ -48,16 +80,6 @@
       "short_desc": "Mô tả ngắn cho báo cáo 11"
     },
     {
-      "id": "2",
-      "author": "Tác giả F",
-      "image": {},
-      "date": "16/10/2023",
-      "title": "Chủ đề F",
-      "description": "0",
-      "name": "vxcvx",
-      "short_desc": "cvxzcv"
-    },
-    {
       "id": "3",
       "author": "Trần Thị U",
       "image": "url_hinh_19.jpg",
@@ -67,17 +89,6 @@
       "description": "Báo cáo số 19 về Web Development",
       "name": "Báo cáo 19",
       "short_desc": "Mô tả ngắn cho báo cáo 19"
-    },
-    {
-      "id": "4",
-      "author": "Phạm Thị Q",
-      "image": "url_hinh_15.jpg",
-      "category": "Cloud Computing",
-      "date": "25/07/2022",
-      "title": "Chủ đề Q15",
-      "description": "Báo cáo số 15 về Cloud Computing",
-      "name": "Báo cáo 15",
-      "short_desc": "Mô tả ngắn cho báo cáo 15"
     }
   ],
   "postApprove": [

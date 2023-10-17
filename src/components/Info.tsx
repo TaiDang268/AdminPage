@@ -1,13 +1,17 @@
 import { Button, Form, Input } from 'antd'
 import axios from 'axios'
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
+import { useState } from 'react'
 import { ToastContainer } from 'react-toastify'
 
 import images from '~/assets/images'
 import { baseUrl } from '~/rtk-query/baseUrl'
 
 import { updateInfomationError, updateInfomationSuccess } from './toast-message'
+import { storage } from '../config/firebase'
 export default function Info() {
   const [form] = Form.useForm()
+  const [imgUrl, setImgUrl] = useState('')
   const formItemLayout = {
     labelCol: {
       xs: { span: 24 },
@@ -25,8 +29,18 @@ export default function Info() {
   } else {
     console.log('Không tìm thấy thông tin người dùng trong localStorage')
   }
+  const handleSelectImage = async (file: File | null) => {
+    if (!file) return
+    const imageRef = ref(storage, `files/${file.name}`)
+    await uploadBytes(imageRef, file).then(() => {})
+
+    await getDownloadURL(imageRef).then((url) => {
+      setImgUrl(url)
+    })
+  }
   const onFinish = async (values: any) => {
     const updatedUser: any = {}
+    values.image = imgUrl || values.image
     for (const key in userObject) {
       // eslint-disable-next-line no-prototype-builtins
       if (userObject.hasOwnProperty(key)) {
@@ -44,6 +58,7 @@ export default function Info() {
     try {
       const res = await axios.patch(`${baseUrl}/users/${updatedUser.id}`, values)
       localStorage.setItem('user', JSON.stringify(res.data))
+      await location.reload()
       updateInfomationSuccess()
     } catch (err) {
       console.log(err)
@@ -81,7 +96,22 @@ export default function Info() {
             <Input defaultValue={userObject?.address} />
           </Form.Item>
           <Form.Item name='image' label='Ảnh'>
-            <Input defaultValue={userObject?.image} />
+            <div className='flex  items-center'>
+              <div className='hidden'>
+                <input
+                  id='inputImage'
+                  type='file'
+                  onChange={(e) => {
+                    if (e.target.files) {
+                      handleSelectImage(e.target.files[0])
+                    }
+                  }}
+                />
+              </div>
+              <label htmlFor='inputImage' className='cursor-pointer'>
+                <img src={imgUrl ? imgUrl : userObject?.image} className='w-12 h-12' />
+              </label>
+            </div>
           </Form.Item>
           <div className='flex justify-around ml-10 mt-20'>
             <Form.Item style={{ display: 'flex', justifyContent: 'center' }}>
