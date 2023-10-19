@@ -6,7 +6,7 @@
       "username": "Đặng Tài ",
       "role": "admin",
       "id": 1,
-      "image": "https://firebasestorage.googleapis.com/v0/b/admin-cbff9.appspot.com/o/files%2Ft%E1%BA%A3i%20xu%E1%BB%91ng%20(2).png?alt=media&token=70c787f2-be99-427e-8b5a-9a39b82a3206",
+      "image": "https://firebasestorage.googleapis.com/v0/b/admin-cbff9.appspot.com/o/files%2F149071.png?alt=media&token=99a5e4c6-a311-4db9-ab9c-fde506611808",
       "phone": "096888999",
       "address": "HN"
     },
@@ -16,7 +16,8 @@
       "username": "Đặng Văn Tài",
       "phone": "123456",
       "role": "User",
-      "id": 2
+      "id": 2,
+      "image": "https://firebasestorage.googleapis.com/v0/b/admin-cbff9.appspot.com/o/files%2Ft%E1%BA%A3i%20xu%E1%BB%91ng%20(1).png?alt=media&token=409bf721-c788-4637-9a11-a7091278da01"
     },
     {
       "email": "user2@gmail.com",
@@ -25,46 +26,6 @@
       "phone": "123456",
       "role": "User",
       "id": 3
-    },
-    {
-      "email": "user3@gmail.com",
-      "password": "$2a$10$RwCKitkzkwisiXOVrqbFguMik/QP1aUmTQXS1r8BcTYHAsFiEo2DC",
-      "username": "Đặng Văn Tài",
-      "phone": "123456",
-      "role": "User",
-      "id": 4
-    },
-    {
-      "email": "user10@gmail.com",
-      "password": "$2a$10$H5m5iJX6ftHGkEdUJrJSJecl.mSr/HBfSXwVM7vVaDx15dV34o5zm",
-      "username": "asas",
-      "image": "https://firebasestorage.googleapis.com/v0/b/admin-cbff9.appspot.com/o/files%2Ft%E1%BA%A3i%20xu%E1%BB%91ng%20(1).png?alt=media&token=b15d12b7-5ae1-46b7-aca2-3a319bd1e0d6",
-      "role": "User",
-      "id": 5
-    },
-    {
-      "email": "user5@gmail.com",
-      "password": "$2a$10$WIIg7SU5dOtjefYyWpubsupmv0dQlXtrabZcGGt5NyF8HRd0DJE1.",
-      "username": "Đặng Tài ",
-      "image": "C:\\fakepath\\tải xuống (1).png",
-      "role": "User",
-      "id": 6
-    },
-    {
-      "email": "user11@gmail.com",
-      "password": "$2a$10$JXMLpUVTxw68XESl6CoXhOJtBhgog1fssvj73F77wjitoEDasqw66",
-      "username": "Đặng Văn Tài",
-      "image": "https://firebasestorage.googleapis.com/v0/b/admin-cbff9.appspot.com/o/files%2Ft%E1%BA%A3i%20xu%E1%BB%91ng%20(1).png?alt=media&token=09f531a7-b92d-4bba-84a3-1ec6f44865d7",
-      "role": "User",
-      "id": 7
-    },
-    {
-      "email": "user12@gmail.com",
-      "password": "$2a$10$EEcDIXKWAbS9JS9rOoCQPuN45q2FWHQ26SAn6SyU0Ed8K/K7G/q7K",
-      "username": "Đặng Văn Tài",
-      "image": "https://firebasestorage.googleapis.com/v0/b/admin-cbff9.appspot.com/o/files%2Ft%E1%BA%A3i%20xu%E1%BB%91ng%20(1).png?alt=media&token=c3645573-5bc1-42f7-bbbc-930742eb4983",
-      "role": "User",
-      "id": 8
     }
   ],
   "posts": [

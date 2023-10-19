@@ -3,6 +3,7 @@ import Cookies from 'js-cookie'
 import { useState } from 'react'
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 import images from '~/assets/images'
 import routesPath from '~/routes/routesPath'
@@ -51,9 +52,22 @@ const SideBar = () => {
     setActive(itemChildren)
   }
   const handleClickLogOut = () => {
-    navigate('/login')
-    localStorage.setItem('isLoggedIn', 'false')
-    Cookies.remove('accessToken')
+    Swal.fire({
+      title: 'Đăng xuất khỏi thiết bị này?',
+      // text: `Sau khi đồng ý, tài khoản này sẽ không đăng nhập được vào hệ thống`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#186E25',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Đồng ý',
+      cancelButtonText: 'Hủy'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        navigate('/login')
+        localStorage.setItem('isLoggedIn', 'false')
+        Cookies.remove('accessToken')
+      }
+    })
   }
 
   return (
@@ -93,31 +107,46 @@ const SideBar = () => {
           </div>
           {userObject?.role.toLowerCase() === 'admin' ? (
             <div>
-              <div
+              <NavLink
+                to='statistic'
                 className={clsx(
                   'flex cursor-pointer items-center  w-full rounded h-[40px] my-3 pl-3 ',
-                  active === 'approve' ? 'bg-[#3F4D63]' : null
+                  currentPath === '/statistic' ? 'bg-[#3F4D63]' : null
                 )}
                 onClick={() => {
-                  navigate('approve')
+                  handleOnclickItemChildren('statistic')
+                }}
+              >
+                <img src={images.Image} />
+                <p className='m-3'> Thống kê</p>
+              </NavLink>
+              <NavLink
+                to='approve'
+                className={clsx(
+                  'flex cursor-pointer items-center  w-full rounded h-[40px] my-3 pl-3 ',
+                  currentPath === '/approve' ? 'bg-[#3F4D63]' : null
+                )}
+                onClick={() => {
+                  handleOnclickItemChildren('approve')
                 }}
               >
                 <img src={images.Image} />
                 <p className='m-3'> Phê duyệt</p>
-              </div>
+              </NavLink>
 
-              <div
+              <NavLink
+                to='users'
                 className={clsx(
                   'flex cursor-pointer items-center  w-full rounded h-[40px] my-3 pl-3 ',
-                  active === 'setting' ? 'bg-[#3F4D63]' : null
+                  currentPath === '/users' ? 'bg-[#3F4D63]' : null
                 )}
                 onClick={() => {
-                  navigate('/users')
+                  handleOnclickItemChildren('approve')
                 }}
               >
                 <img src={images.Setting} />
                 <p className='m-3'>Người dùng</p>
-              </div>
+              </NavLink>
             </div>
           ) : null}
         </div>

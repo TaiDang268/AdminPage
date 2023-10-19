@@ -97,6 +97,9 @@ export default function Info() {
           </Form.Item>
           <Form.Item name='image' label='Ảnh'>
             <div className='flex  items-center'>
+              <label htmlFor='inputImage' className='cursor-pointer'>
+                <img src={imgUrl ? imgUrl : userObject?.image} className='w-12 h-12' />
+              </label>
               <div className='hidden'>
                 <input
                   id='inputImage'
@@ -108,9 +111,7 @@ export default function Info() {
                   }}
                 />
               </div>
-              <label htmlFor='inputImage' className='cursor-pointer'>
-                <img src={imgUrl ? imgUrl : userObject?.image} className='w-12 h-12' />
-              </label>
+              <p>Click để tải ảnh</p>
             </div>
           </Form.Item>
           <div className='flex justify-around ml-10 mt-20'>

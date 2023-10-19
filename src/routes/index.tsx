@@ -6,6 +6,7 @@ import CreatePosts from '~/components/create_update/CreatePosts'
 import CreateTopic from '~/components/create_update/CreateTopic'
 import Info from '~/components/Info'
 import Register from '~/components/Register'
+import Statistic from '~/components/Statistic'
 import Users from '~/components/Users'
 
 import PrivateRouter from './PrivateRouter'
@@ -37,6 +38,10 @@ const routes = [
       {
         path: '/approve',
         element: <ApprovePost />
+      },
+      {
+        path: '/statistic',
+        element: <Statistic />
       },
       {
         path: '/users',

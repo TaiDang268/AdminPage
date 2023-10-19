@@ -85,7 +85,7 @@ const ApprovePost = () => {
     <>
       <div className='w-full h-screen'>
         <div className='w-full p-4'>
-          <p className='font-semibold text-[24px]'>Danh sách phê duyệt</p>
+          <p className='font-semibold text-[24px]'>Danh sách báo cáo chờ phê duyệt</p>
           <div className='w-full mt-3'>
             <table>
               <thead>

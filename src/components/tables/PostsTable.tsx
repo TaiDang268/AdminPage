@@ -23,7 +23,6 @@ const PostsTable = (props: IPostsTable) => {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([])
 
   const [deletePosts] = useDeletePostsMutation()
-
   const handleClickTrash = (item: IPosts) => {
     setIsModalOpen(true)
     setSelectedItem(item)
@@ -75,6 +74,7 @@ const PostsTable = (props: IPostsTable) => {
       setSelectedListItem([])
     }
   }, [checkAll])
+
   return (
     <>
       <div className='w-full mt-3'>
@@ -95,7 +95,7 @@ const PostsTable = (props: IPostsTable) => {
           </thead>
           <tbody>
             {dataPosts?.map((item: IPosts, index) => (
-              <tr key={item.id}>
+              <tr key={item.id} className='cursor-pointer'>
                 <th>
                   <input
                     type='checkbox'
