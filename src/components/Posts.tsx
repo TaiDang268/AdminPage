@@ -25,6 +25,7 @@ const Posts = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const initialPage = searchParams.get('_page') || '1'
   const [currentPage, setCurrentPage] = useState<number>(parseInt(initialPage))
+  console.log('🚀 ~ file: Posts.tsx:28 ~ Posts ~ currentPage:', currentPage)
   useEffect(() => {
     setSearchParams(`?${new URLSearchParams({ ...query, _page: currentPage.toString() })}`)
     // eslint-disable-next-line react-hooks/exhaustive-deps

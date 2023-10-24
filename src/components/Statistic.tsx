@@ -26,7 +26,6 @@ export default function Statistic() {
       setQuery(selectedAuthor)
     }
   }, [selectedOption])
-  console.log(query)
   return (
     <div className='p-5'>
       <p className='font-bold'>Thống kê theo tác giả</p>
