@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from 'react'
 
-import { getByParams, getTotalRecord, searchByName, sortAZ, sortZA } from '~/api'
+import { getByParams, getTotalRecord, searchByName } from '~/api'
 import { Theme } from '~/hooks/useContext'
+import useSort from '~/hooks/useSort'
 import { setDataTag } from '~/redux/features/TagSlice'
 import { useAppDispatch } from '~/redux/hooks'
 
@@ -15,6 +16,7 @@ const Tag = () => {
   const { perPage } = useContext(Theme)
   const [valueInput, setValueInput] = useState<string>('')
   const [pageCount, setPageCount] = useState<number>(1)
+  const { handleSortAZ, handleSortZA } = useSort('tags', Number(perPage), setDataTag)
 
   const handleOnClickSearch = async () => {
     try {
@@ -24,22 +26,7 @@ const Tag = () => {
       console.log(err)
     }
   }
-  const handleSortAZ = async () => {
-    try {
-      const res = await sortAZ('tags', Number(perPage))
-      dispatch(setDataTag(res))
-    } catch (err) {
-      console.log(err)
-    }
-  }
-  const handleSortZA = async () => {
-    try {
-      const res = await sortZA('tags', Number(perPage))
-      dispatch(setDataTag(res))
-    } catch (err) {
-      console.log(err)
-    }
-  }
+
   const handlePageChange = ({ selected }: { selected: number }) => {
     const fetchDataAsync = async () => {
       try {

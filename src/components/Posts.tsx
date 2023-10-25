@@ -3,9 +3,10 @@ import { useSearchParams } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import Swal from 'sweetalert2'
 
-import { deleteById, getTotalRecord, searchByName, sortAZ, sortZA } from '~/api'
+import { deleteById, getTotalRecord, searchByName } from '~/api'
 import { Theme } from '~/hooks/useContext'
 import { useQueryString } from '~/hooks/useQuery'
+import useSort from '~/hooks/useSort'
 import { setDataPost } from '~/redux/features/PostsSlice'
 import { useAppDispatch } from '~/redux/hooks'
 import { useGetPostsQuery } from '~/rtk-query/posts.service'
@@ -25,6 +26,8 @@ const Posts = () => {
   const [searchParams, setSearchParams] = useSearchParams()
   const initialPage = searchParams.get('_page') || '1'
   const [currentPage, setCurrentPage] = useState<number>(parseInt(initialPage))
+  const { handleSortAZ, handleSortZA } = useSort('posts', Number(perPage), setDataPost)
+
   useEffect(() => {
     setSearchParams(`?${new URLSearchParams({ ...query, _page: currentPage.toString() })}`)
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -92,22 +95,6 @@ const Posts = () => {
   const handleOnClickSearch = async () => {
     try {
       const res = await searchByName('posts', valueInput, Number(perPage))
-      dispatch(setDataPost(res))
-    } catch (err) {
-      console.log(err)
-    }
-  }
-  const handleSortAZ = async () => {
-    try {
-      const res = await sortAZ('posts', Number(perPage))
-      dispatch(setDataPost(res))
-    } catch (err) {
-      console.log(err)
-    }
-  }
-  const handleSortZA = async () => {
-    try {
-      const res = await sortZA('posts', Number(perPage))
       dispatch(setDataPost(res))
     } catch (err) {
       console.log(err)

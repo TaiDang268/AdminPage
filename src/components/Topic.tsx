@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from 'react'
 
-import { getByParamsTopic, getTotalRecord, searchByName, sortAZ, sortZA } from '~/api'
+import { getByParamsTopic, getTotalRecord, searchByName } from '~/api'
 import { Theme } from '~/hooks/useContext'
+import useSort from '~/hooks/useSort'
 import { setDataTopic } from '~/redux/features/TopicSlice'
 import { useAppDispatch } from '~/redux/hooks'
 
@@ -15,6 +16,7 @@ const Topic = () => {
   const { perPage } = useContext(Theme)
   const [valueInput, setValueInput] = useState<string>('')
   const [pageCount, setPageCount] = useState<number>(1)
+  const { handleSortAZ, handleSortZA } = useSort('topics', Number(perPage), setDataTopic)
 
   const handleOnClickSearch = async () => {
     try {
@@ -24,22 +26,7 @@ const Topic = () => {
       console.log(err)
     }
   }
-  const handleSortAZ = async () => {
-    try {
-      const res = await sortAZ('topics', Number(perPage))
-      dispatch(setDataTopic(res))
-    } catch (err) {
-      console.log(err)
-    }
-  }
-  const handleSortZA = async () => {
-    try {
-      const res = await sortZA('topics', Number(perPage))
-      dispatch(setDataTopic(res))
-    } catch (err) {
-      console.log(err)
-    }
-  }
+
   const handlePageChange = ({ selected }: { selected: number }) => {
     const fetchDataAsync = async () => {
       try {

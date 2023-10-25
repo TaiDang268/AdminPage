@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from 'react'
 
-import { getByParams, getTotalRecord, searchByName, sortAZ, sortZA } from '~/api'
+import { getByParams, getTotalRecord, searchByName } from '~/api'
 import { Theme } from '~/hooks/useContext'
+import useSort from '~/hooks/useSort'
 import { setDataAuthor } from '~/redux/features/AuthorSlice'
 import { useAppDispatch } from '~/redux/hooks'
 
@@ -15,6 +16,7 @@ const Author = () => {
   const { perPage } = useContext(Theme)
   const [valueInput, setValueInput] = useState<string>('')
   const [pageCount, setPageCount] = useState<number>(1)
+  const { handleSortAZ, handleSortZA } = useSort('authors', Number(perPage), setDataAuthor)
 
   const handleOnClickSearch = async () => {
     try {
@@ -24,22 +26,7 @@ const Author = () => {
       console.log(err)
     }
   }
-  const handleSortAZ = async () => {
-    try {
-      const res = await sortAZ('authors', Number(perPage))
-      dispatch(setDataAuthor(res))
-    } catch (err) {
-      console.log(err)
-    }
-  }
-  const handleSortZA = async () => {
-    try {
-      const res = await sortZA('authors', Number(perPage))
-      dispatch(setDataAuthor(res))
-    } catch (err) {
-      console.log(err)
-    }
-  }
+
   const handlePageChange = ({ selected }: { selected: number }) => {
     const fetchDataAsync = async () => {
       try {
