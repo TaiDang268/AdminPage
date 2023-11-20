@@ -15,7 +15,6 @@ export default function Statistic() {
       .then((resp) => {
         const res = resp.data
         setAuthor(res)
-        console.log(res)
       })
       .catch((error) => {
         console.log(error)
@@ -27,7 +26,7 @@ export default function Statistic() {
       setQuery(selectedAuthor)
     }
     axios
-      .get(`http://localhost:3007/posts?name_like=${selectedOption}`)
+      .get(`http://localhost:3007/posts?q=${selectedOption}`)
       .then((resp) => {
         const res = resp.data
         setDataPost(res)
@@ -36,12 +35,13 @@ export default function Statistic() {
         console.log(error)
       })
   }, [selectedOption])
+  console.log(selectedOption)
   return (
     <div className='p-5'>
       <p className='font-bold'>Thống kê theo tác giả</p>
       <SelectNpm
         defaultValue={selectedOption}
-        onChange={setSelectedOption}
+        onChange={(choice) => setSelectedOption(choice)}
         options={author.map((item) => ({ value: item.name, label: item.name }))}
         isMulti
       />
