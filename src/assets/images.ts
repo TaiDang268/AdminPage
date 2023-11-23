@@ -15,6 +15,7 @@ import BackgroundLogin from './images/bg-login.svg'
 import LogoBattechSidebar from './images/logo-battech-sidebar.svg'
 import LogoBattech from './images/logo-battech.svg'
 
+
 const images = {
   LogoBattech,
   BackgroundLogin,

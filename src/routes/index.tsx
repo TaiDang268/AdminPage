@@ -1,5 +1,6 @@
 import { Outlet, useRoutes } from 'react-router-dom'
 
+import images from '~/assets/images'
 import ApprovePost from '~/components/ApprovePost'
 import CreateAuthor from '~/components/create_update/CreateAuthor'
 import CreatePosts from '~/components/create_update/CreatePosts'
@@ -17,7 +18,13 @@ import Login from '../components/Login'
 import Posts from '../components/Posts'
 import Tag from '../components/Tag'
 import Topic from '../components/Topic'
-
+let userObject: any
+const storedUser = localStorage.getItem('user')
+if (storedUser) {
+  userObject = JSON.parse(storedUser)
+} else {
+  console.log('Không tìm thấy thông tin người dùng trong localStorage')
+}
 const routes = [
   {
     path: '/',
@@ -29,7 +36,11 @@ const routes = [
     children: [
       {
         index: true,
-        element: <h1>Trang home</h1>
+        element: (
+          <div className='w-full h-screen' style={{ backgroundImage: `url(${images.BackgroundLogin})` }}>
+            Trang home
+          </div>
+        )
       },
       {
         path: '/info',

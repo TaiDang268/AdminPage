@@ -35,7 +35,6 @@ export default function Statistic() {
         console.log(error)
       })
   }, [selectedOption])
-  console.log(selectedOption)
   return (
     <div className='p-5'>
       <p className='font-bold'>Thống kê theo tác giả</p>
