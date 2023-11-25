@@ -5,6 +5,7 @@ import ApprovePost from '~/components/ApprovePost'
 import CreateAuthor from '~/components/create_update/CreateAuthor'
 import CreatePosts from '~/components/create_update/CreatePosts'
 import CreateTopic from '~/components/create_update/CreateTopic'
+import ReadPost from '~/components/create_update/ReadPost'
 import Info from '~/components/Info'
 import Register from '~/components/Register'
 import Statistic from '~/components/Statistic'
@@ -18,13 +19,7 @@ import Login from '../components/Login'
 import Posts from '../components/Posts'
 import Tag from '../components/Tag'
 import Topic from '../components/Topic'
-let userObject: any
-const storedUser = localStorage.getItem('user')
-if (storedUser) {
-  userObject = JSON.parse(storedUser)
-} else {
-  console.log('Không tìm thấy thông tin người dùng trong localStorage')
-}
+
 const routes = [
   {
     path: '/',
@@ -53,6 +48,10 @@ const routes = [
       {
         path: '/statistic',
         element: <Statistic />
+      },
+      {
+        path: '/readpost',
+        element: <ReadPost />
       },
       {
         path: '/users',

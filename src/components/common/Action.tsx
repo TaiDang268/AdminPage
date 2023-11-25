@@ -8,6 +8,7 @@ interface IAction {
 }
 const Action = (props: IAction) => {
   const { onDelete, onEdit } = props
+
   return (
     <>
       <div className='flex gap-2'>

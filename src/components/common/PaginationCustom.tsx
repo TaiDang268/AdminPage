@@ -27,7 +27,7 @@ const PaginationCustom = (props: IPaginationCustom) => {
             className='flex justify-end py-2   '
             pageClassName=' w-[30px] h-[30px] bg-white  text-[20px] text-gray-700  border border-[#D5D8DD]'
             pageLinkClassName='flex justify-center items-center w-full h-full'
-            activeClassName='bg-green-700'
+            activeClassName='bg-green-600'
             activeLinkClassName='text-white flex '
             breakLabel='...'
             previousLabel={<IoIosArrowBack style={{ color: 'black' }} />}

@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import { AiOutlineCheck } from 'react-icons/ai'
 import { MdArrowBackIos } from 'react-icons/md'
 import '../../css/custom.css'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import SelectNpm from 'react-select'
 import { ToastContainer } from 'react-toastify'
 
@@ -19,7 +19,7 @@ import { baseUrl } from '~/rtk-query/baseUrl'
 import { IPosts } from '~/types/interfaces'
 
 import { addErrorMess, addForAdmin, addSuccessMess } from '../toast-message'
-const CreatePosts = () => {
+const ReadPost = () => {
   const navigate = useNavigate()
   const {
     register,
@@ -33,6 +33,9 @@ const CreatePosts = () => {
   const [authorName, setAuthorName] = useState<string[]>([''])
   const [topicName, setTopicName] = useState<string[]>([''])
   const [selectedImage, setSelectedImage] = useState<string>('')
+  const [data, setData] = useState<IPosts>()
+  const location = useLocation()
+  console.log(location.state)
   // const [addPosts] = useAddPostsMutation()
   let userObject: any
   const storedUser = localStorage.getItem('user')
@@ -47,6 +50,17 @@ const CreatePosts = () => {
       .then((resp) => {
         const last = resp.data.length
         setLastId(resp.data[last - 1].id)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [])
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3007/posts/${location.state}`)
+      .then((resp) => {
+        const data1 = resp.data
+        setData(data1)
       })
       .catch((error) => {
         console.log(error)
@@ -98,9 +112,9 @@ const CreatePosts = () => {
             <div className='cursor-pointer' onClick={() => navigate(-1)}>
               <MdArrowBackIos />
             </div>
-            <p className='font-semibold text-[24px]'>Báo cáo mới</p>
+            <p className='font-semibold text-[24px]'>Báo cáo </p>
           </div>
-          <div className='flex'>
+          {/* <div className='flex'>
             <div className='flex justify-center items-center h-[32px] border border-[#9D9D9D] rounded bg-[#C8CBD1] mr-3 px-2'>
               <AiOutlineCheck />
               <p className='ml-1'>Puslish</p>
@@ -111,7 +125,7 @@ const CreatePosts = () => {
             >
               <p className='text-white'>Lưu báo cáo</p>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className='flex gap-5 '>
           <div className='flex-1 bg-white p-3 border border-[#E3E5E8] rounded'>
@@ -121,10 +135,12 @@ const CreatePosts = () => {
                   <p>Tên báo cáo</p>
                   <p className='text-red-600 ml-1'> *</p>
                 </div>
-                <textarea
+                <p
                   className='h-[85px] border border-[#9D9D9D] w-full  px-2  '
                   {...register('name', { required: true })}
-                />
+                >
+                  {data?.name}
+                </p>
                 {errors.name && <p className='text-red-500'>Không được để trống trường này</p>}
               </div>
               <div className='w-[50%] '>
@@ -132,10 +148,12 @@ const CreatePosts = () => {
                   <p>Mô tả</p>
                   <p className='text-red-600 ml-1'> *</p>
                 </div>
-                <textarea
+                <p
                   className='h-[85px] border border-[#9D9D9D] w-full  px-2  '
                   {...register('short_desc', { required: true })}
-                />
+                >
+                  {data?.short_desc}
+                </p>
                 {errors.short_desc && <p className='text-red-500'>Không được để trống trường này</p>}
               </div>
             </div>
@@ -145,13 +163,15 @@ const CreatePosts = () => {
                 <p className='text-red-600 ml-1'>*</p>
               </div>
               <div>
-                <CKEditor
+                {/* <CKEditor
                   editor={ClassicEditor}
                   onChange={(event, editor) => {
                     setTextCkEditor(editor.getData())
                     console.log(event)
                   }}
-                />
+                  
+                /> */}
+                <p className='h-[85px] border border-[#9D9D9D] w-full  px-2  '>{data?.description}</p>
               </div>
             </div>
             <div className='flex gap-5 my-3'>
@@ -182,58 +202,40 @@ const CreatePosts = () => {
             <p className='font-bold'>Thông tin</p>
             <div className='my-2'>
               <p className='mb-1'>Chủ đề </p>
-              <select
-                className='w-full h-[32px]  border border-[#9D9D9D] rounded font-semibold'
+              <p
+                className='w-full h-[32px]  border flex items-center px-2 border-[#9D9D9D] rounded font-semibold'
                 {...register('title', { required: true })}
               >
-                {topicName.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
+                {data?.category}
+              </p>
               {errors.title && <p className='text-red-500'>Không được để trống trường này</p>}
             </div>
             <div className='mb-2'>
               <p className='mb-1'>Tác giả </p>
-              <select
-                className='w-full h-[32px]  border border-[#9D9D9D] rounded font-semibold'
+              <p
+                className='w-full h-[32px] flex items-center px-2 border border-[#9D9D9D] rounded font-semibold'
                 {...register('author', { required: true })}
               >
-                {authorName.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
+                {data?.author}
+              </p>
               {errors.author && <p className='text-red-500'>Không được để trống trường này</p>}
             </div>
             <div className='mb-2'>
               <p className='mb-1'>Tag </p>
-              <SelectNpm
-                options={tagsName.map((item) => ({ value: item, label: item }))}
-                isMulti={true}
-                {...register('category')}
-              />
-              {/* <select
-                className='w-full h-[32px]  border border-[#9D9D9D] rounded font-semibold'
-                {...register('category', { required: true })}
+              <p
+                className='w-full h-[32px] flex items-center px-2 border border-[#9D9D9D] rounded font-semibold'
+                {...register('author', { required: true })}
               >
-                {tagsName.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select> */}
-              {errors.category && <p className='text-red-500'>Không được để trống trường này</p>}
+                {data?.title}
+              </p>
             </div>
-            <div className='mb-2 flex justify-between'>
+            {/* <div className='mb-2 flex justify-between'>
               <p>Ngày viết: </p>
               <div className='flex'>
                 <p className='font-semibold mr-2'>{getCurrentTime()}</p>
                 <p className='font-semibold'>{getCurrentDate()}</p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <ToastContainer />
@@ -241,4 +243,4 @@ const CreatePosts = () => {
     </>
   )
 }
-export default CreatePosts
+export default ReadPost

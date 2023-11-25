@@ -26,6 +26,16 @@
       "phone": "123456",
       "role": "User",
       "id": 3
+    },
+    {
+      "email": "user4@gmail.com",
+      "password": "$2a$10$h.3ZWE5Gdn272dEkV8q4Yu0/JHxglxdOVWyEL/Gs9yFGOCrY6eBc2",
+      "username": "Đặng Văn Tài",
+      "phone": "0837225328",
+      "address": "ádd",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSktK4jzhODqE-okFjhhHyxhvDPmbrrFdpIhg&usqp=CAU",
+      "role": "User",
+      "id": 4
     }
   ],
   "posts": [
@@ -72,28 +82,6 @@
       "description": "Khám phá thế giới nghệ thuật đương đại thông qua các tác phẩm mới",
       "name": "Nghệ thuật đương đại",
       "short_desc": "Sự đa dạng và sáng tạo trong nghệ thuật ngày nay"
-    },
-    {
-      "id": "8",
-      "author": "Ngô Văn E",
-      "image": "url_hinh_88.jpg",
-      "category": "Music",
-      "date": "15/04/2022",
-      "title": "Âm nhạc và cảm xúc",
-      "description": "Tác động của âm nhạc đối với cảm xúc con người",
-      "name": "Âm nhạc và cảm xúc",
-      "short_desc": "Khám phá sức mạnh của âm nhạc trong việc thay đổi cảm xúc"
-    },
-    {
-      "id": "9",
-      "author": "Mai Văn F",
-      "image": "url_hinh_99.jpg",
-      "category": "Fashion",
-      "date": "20/04/2022",
-      "title": "Xu hướng thời trang mùa xuân",
-      "description": "Những xu hướng thời trang nổi bật trong mùa xuân năm nay",
-      "name": "Thời trang mùa xuân",
-      "short_desc": "Những phong cách thời trang mới và sáng tạo"
     },
     {
       "id": "10",
@@ -215,11 +203,9 @@
       "description": "Những đặc sản ẩm thực ngon miệng từ khắp nơi",
       "name": "Ẩm thực đặc sản",
       "short_desc": "Khám phá và thưởng thức những món ngon đặc sản"
-    }
-  ],
-  "postApprove": [
+    },
     {
-      "id": "18",
+      "id": "21",
       "author": "Nguyễn Văn T",
       "image": "url_hinh_18.jpg",
       "category": "Machine Learning",
@@ -228,7 +214,9 @@
       "description": "Báo cáo số 18 về Machine Learning",
       "name": "Báo cáo 18",
       "short_desc": "Mô tả ngắn cho báo cáo 18"
-    },
+    }
+  ],
+  "postApprove": [
     {
       "id": "5",
       "author": "Tác giả D",
@@ -286,10 +274,6 @@
     {
       "id": "6",
       "name": "Tác giả F"
-    },
-    {
-      "name": "Tác giả D",
-      "id": "z-oImLg"
     },
     {
       "name": "Tác giả g",

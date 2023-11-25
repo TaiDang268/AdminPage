@@ -9,6 +9,7 @@ import Action from '../common/Action'
 import EditPost from '../edit/EditPost'
 import DeleteModal from '../notification/DeleteConfirm'
 import { deleteErrorMess, deleteSuccessMess } from '../toast-message'
+import { useNavigate } from 'react-router-dom'
 interface IPostsTable {
   selectedListItem: string[]
   setSelectedListItem: Dispatch<SetStateAction<string[]>>
@@ -23,6 +24,7 @@ const PostsTable = (props: IPostsTable) => {
   const inputRefs = useRef<(HTMLInputElement | null)[]>([])
 
   const [deletePosts] = useDeletePostsMutation()
+  const navigate = useNavigate()
   const handleClickTrash = (item: IPosts) => {
     setIsModalOpen(true)
     setSelectedItem(item)
@@ -74,7 +76,13 @@ const PostsTable = (props: IPostsTable) => {
       setSelectedListItem([])
     }
   }, [checkAll])
-
+  let userObject: any
+  const storedUser = localStorage.getItem('user')
+  if (storedUser) {
+    userObject = JSON.parse(storedUser)
+  } else {
+    console.log('Không tìm thấy thông tin người dùng trong localStorage')
+  }
   return (
     <>
       <div className='w-full mt-3'>
@@ -90,7 +98,7 @@ const PostsTable = (props: IPostsTable) => {
               <th>Tác giả </th>
               <th>Chủ đề </th>
               <th className='w-[140px]'>Ngày đăng bài </th>
-              <th>Thao tác </th>
+              {userObject?.role.toLowerCase() === 'admin' ? <th>Thao tác </th> : ''}
             </tr>
           </thead>
           <tbody>
@@ -104,16 +112,21 @@ const PostsTable = (props: IPostsTable) => {
                   />
                 </th>
                 <td className='text-center'>{item.id}</td>
-                <td>{item.name}</td>
+                <td onClick={() => navigate('/readpost', { state: item.id })}>{item.name}</td>
                 <td>{item.short_desc}</td>
                 <td>{item.author}</td>
                 <td>{item.title}</td>
                 <td>{item.date}</td>
-                <td className=''>
-                  <div className='flex justify-center'>
-                    <Action onDelete={() => handleClickTrash(item)} onEdit={() => handleClickEdit(item)} />
-                  </div>
-                </td>
+                {userObject?.role.toLowerCase() === 'admin' ? (
+                  <td className=''>
+                    <div className='flex justify-center'>
+                      <Action onDelete={() => handleClickTrash(item)} onEdit={() => handleClickEdit(item)} />
+                    </div>
+                  </td>
+                ) : (
+                  ''
+                )}
+                {}
               </tr>
             ))}
           </tbody>
